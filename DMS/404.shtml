@@ -1,0 +1,430 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Accessories of Bon bon, zilveren oorbellen, taj, dyrberg, barong etc</title>
+<meta name="description" content="anisafashion Accessories - Wij verkopen bon bon, taj, dyrberg, tov, cc skye en barong. Ook als u een mooie kaftan of sieraden in amsterdam zoekt zoals een dameshorloge of zilveren oorbellen, is anisafashion perfect. " />
+<meta name="keywords" content="bon bon, zilveren oorbellen, taj, dyrberg, sieraden in amsterdam, dameshorloge, tov, cc skye, barong, kaftan" />
+<link rel="shortcut icon" href="favicon.ico">
+<meta http-equiv="Content-Style-Type" content="text/css" />
+	<link href="http://www.anisafashion.nl/css/CssIndex.css" rel="stylesheet" type="text/css" />
+<link href="http://www.anisafashion.nl/css/CssCalendar.css" rel="stylesheet" type="text/css" />
+<script language="javascript" type="text/javascript" src="http://www.anisafashion.nl/jscript/JsCommon.js"></script>
+<script language="javascript" type="text/javascript" src="http://www.anisafashion.nl/jscript/JsAjax.js"></script>
+
+<script language="javascript" type="text/javascript" src="http://www.anisafashion.nl/jscript/JsCalendar.js"></script>
+<script language="javascript" type="text/javascript" src="http://www.anisafashion.nl/jscript/JsLang-EN.js"></script>
+<script language="javascript" type="text/javascript" src="http://www.anisafashion.nl/jscript/JsShowCalendar.js"></script>
+</head><body>
+		<div id="topBar">
+        <div class="content">
+            <div class="lefts">
+                <a href="http://www.anisafashion.nl/"><img src="http://www.anisafashion.nl/images/ico_home.gif" alt="Home" title="Home" width="11" height="10" border="0" /></a>
+                <a href="http://www.anisafashion.nl/?show=contact"><img src="http://www.anisafashion.nl/images/ico_email.gif" alt="Contact Us" title="Contact Us" width="11" height="9" border="0"/></a>
+
+                				<a href="http://www.anisafashion.nl/?show=login"><img src="http://www.anisafashion.nl/images/sign_in.gif" alt="Sign In" title="Sign In" width="63" height="8" border="0" /></a>
+				           	</div> <!-- end of lefts -->
+            
+            <div class="rights">
+            	
+            		<p class="basket">
+MY BASKET <span>(leeg)</span>
+</p>				<script language="javascript">
+				function doSearch(){
+					var search = document.getElementById('search').value;
+					if(document.getElementById('search') && search != ""){
+						document.location = 'http://www.anisafashion.nl/?show=products&search=' + escape(search);
+					}
+					else{
+						document.location = 'http://www.anisafashion.nl/?show=products&search=';
+					}
+				}
+				</script>
+                <p class="search">
+
+					<span><input class="search" name="search" id="search" value="" type="text" /></span>
+                    <span class="go">
+						<a href="javascript:void(null);" onClick="doSearch();">
+							<img src="http://www.anisafashion.nl/images/btn_go.gif" alt="Go" border="0" />
+						</a>
+					</span>
+               	</p>        	
+       	  </div>
+        </div> <!-- end of rights -->
+
+        
+        <div class="clear"></div>
+    
+    </div> <!-- end of top bar -->
+        	<div id="header">
+    	<p class="logo"><a href="http://www.anisafashion.nl/"><img src="http://www.anisafashion.nl/images/yuya_logo.gif" alt="Accessories of Bon bon, zilveren oorbellen, taj, dyrberg etc" title="Accessories of Bon bon, zilveren oorbellen, taj, dyrberg etc" border="0" /></a></p>
+        <p class="topBanner">
+        	<object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=9,0,28,0" width="470" height="120" title="Accessories of Bon bon, zilveren oorbellen, taj, dyrberg etc">
+		        <param name="movie" value="http://www.anisafashion.nl/flash/banner.swf" />
+		        <param name="quality" value="high" />
+
+		        <embed src="http://www.anisafashion.nl/flash/banner.swf" quality="high" pluginspage="http://www.adobe.com/shockwave/download/download.cgi?P1_Prod_Version=ShockwaveFlash" type="application/x-shockwave-flash" width="470" height="120"></embed>
+		    </object>
+        </p>
+            </div> <!-- end of Header -->	<div id="midContent">
+    		<div class="navigation">
+        <ul>
+            <li><a href="http://www.anisafashion.nl/?show=brand">Brands</a></li>
+
+            <li><a href="http://www.anisafashion.nl/?show=products&category_cd=5">Accessories</a></li>
+<li><a href="http://www.anisafashion.nl/?show=products&category_cd=3">Women</a></li>
+<li><a href="http://www.anisafashion.nl/?show=products&category_cd=2">Men</a></li>
+<li><a href="http://www.anisafashion.nl/?show=products&category_cd=1">Kids</a></li>
+<li><a href="http://www.anisafashion.nl/?show=products&category_cd=10">New</a></li>
+			<li><a href="http://www.anisafashion.nl/?show=products&category=sale">Sale</a></li>
+        </ul>
+    </div> <!-- end of Navigation -->    	        <div class="leftCol">
+
+        	<div class="title">Brands</div>
+            <div class="leftContent">
+            	<div class="result"><p></p><p></p></div>
+              <div class="adSearch"><p class="searchead"></p></div>
+            </div> <!-- end of Left Content -->
+            <div class="clear"></div>
+        </div> <!-- end of Left Column -->
+
+        <div class="rightCol">
+		<H1>URL Not Found</H1>
+The requested URL <!--#echo var="REQUEST_URI" --> was not found on this server.
+<HR>
+          	<div class="categorie"><a name="page_top">Brands (39)</a></div>
+            <div id="productList">
+            			            	<div style="font-weight:bold;margin-top:5px;">
+		                    <div>
+		                    	<h1>B</h1>								<a href="http://www.anisafashion.nl/?show=products&brand_cd=77">
+									B-Low the belt (2)
+								</a>
+
+							</div>
+		                </div> <!-- end of product -->
+		            			            	<div style="font-weight:bold;margin-top:5px;">
+		                    <div>
+		                    									<a href="http://www.anisafashion.nl/?show=products&brand_cd=68">
+									Barong Barong (20)
+								</a>
+							</div>
+		                </div> <!-- end of product -->
+
+		            			            	<div style="font-weight:bold;margin-top:5px;">
+		                    <div>
+		                    									<a href="http://www.anisafashion.nl/?show=products&brand_cd=8">
+									Bon Bon (13)
+								</a>
+							</div>
+		                </div> <!-- end of product -->
+		            			            	<div style="font-weight:bold;margin-top:5px;">
+		                    <div>
+
+		                    									<a href="http://www.anisafashion.nl/?show=products&brand_cd=5">
+									Bonnie doon (7)
+								</a>
+							</div>
+		                </div> <!-- end of product -->
+		            			            	<div style="font-weight:bold;margin-top:5px;">
+		                    <div>
+		                    	<h1>C</h1>								<a href="http://www.anisafashion.nl/?show=products&brand_cd=72">
+
+									CC Skye (2)
+								</a>
+							</div>
+		                </div> <!-- end of product -->
+		            			            	<div style="font-weight:bold;margin-top:5px;">
+		                    <div>
+		                    									<a href="http://www.anisafashion.nl/?show=products&brand_cd=69">
+									Challimar (2)
+								</a>
+
+							</div>
+		                </div> <!-- end of product -->
+		            			            	<div style="font-weight:bold;margin-top:5px;">
+		                    <div>
+		                    									<a href="http://www.anisafashion.nl/?show=products&brand_cd=16">
+									Citrine by the stones (8)
+								</a>
+							</div>
+		                </div> <!-- end of product -->
+
+		            			            	<div style="font-weight:bold;margin-top:5px;">
+		                    <div>
+		                    	<h1>D</h1>								<a href="http://www.anisafashion.nl/?show=products&brand_cd=60">
+									Davis (9)
+								</a>
+							</div>
+		                </div> <!-- end of product -->
+		            			            	<div style="font-weight:bold;margin-top:5px;">
+
+		                    <div>
+		                    									<a href="http://www.anisafashion.nl/?show=products&brand_cd=1">
+									DKman (16)
+								</a>
+							</div>
+		                </div> <!-- end of product -->
+		            			            	<div style="font-weight:bold;margin-top:5px;">
+		                    <div>
+		                    									<a href="http://www.anisafashion.nl/?show=products&brand_cd=62">
+
+									Duchamp london (21)
+								</a>
+							</div>
+		                </div> <!-- end of product -->
+		            			            	<div style="font-weight:bold;margin-top:5px;">
+		                    <div>
+		                    									<a href="http://www.anisafashion.nl/?show=products&brand_cd=2">
+									Dyrberg/kern (31)
+								</a>
+
+							</div>
+		                </div> <!-- end of product -->
+		            			            	<div style="font-weight:bold;margin-top:5px;">
+		                    <div>
+		                    	<h1>E</h1>								<a href="http://www.anisafashion.nl/?show=products&brand_cd=76">
+									Ettika (13)
+								</a>
+							</div>
+
+		                </div> <!-- end of product -->
+		            			            	<div style="font-weight:bold;margin-top:5px;">
+		                    <div>
+		                    	<h1>F</h1>								<a href="http://www.anisafashion.nl/?show=products&brand_cd=67">
+									Fab (15)
+								</a>
+							</div>
+		                </div> <!-- end of product -->
+
+		            			            	<div style="font-weight:bold;margin-top:5px;">
+		                    <div>
+		                    									<a href="http://www.anisafashion.nl/?show=products&brand_cd=3">
+									Fiva (12)
+								</a>
+							</div>
+		                </div> <!-- end of product -->
+		            			            	<div style="font-weight:bold;margin-top:5px;">
+		                    <div>
+
+		                    	<h1>H</h1>								<a href="http://www.anisafashion.nl/?show=products&brand_cd=13">
+									Hanky panky (1)
+								</a>
+							</div>
+		                </div> <!-- end of product -->
+		            			            	<div style="font-weight:bold;margin-top:5px;">
+		                    <div>
+		                    									<a href="http://www.anisafashion.nl/?show=products&brand_cd=15">
+
+									Havaianas (10)
+								</a>
+							</div>
+		                </div> <!-- end of product -->
+		            			            	<div style="font-weight:bold;margin-top:5px;">
+		                    <div>
+		                    									<a href="http://www.anisafashion.nl/?show=products&brand_cd=63">
+									Hot lava (6)
+								</a>
+
+							</div>
+		                </div> <!-- end of product -->
+		            			            	<div style="font-weight:bold;margin-top:5px;">
+		                    <div>
+		                    	<h1>J</h1>								<a href="http://www.anisafashion.nl/?show=products&brand_cd=59">
+									Jacky luxury (3)
+								</a>
+							</div>
+
+		                </div> <!-- end of product -->
+		            			            	<div style="font-weight:bold;margin-top:5px;">
+		                    <div>
+		                    									<a href="http://www.anisafashion.nl/?show=products&brand_cd=73">
+									Jules Smith (6)
+								</a>
+							</div>
+		                </div> <!-- end of product -->
+
+		            			            	<div style="font-weight:bold;margin-top:5px;">
+		                    <div>
+		                    	<h1>K</h1>								<a href="http://www.anisafashion.nl/?show=products&brand_cd=80">
+									kenneth jay lane (1)
+								</a>
+							</div>
+		                </div> <!-- end of product -->
+		            			            	<div style="font-weight:bold;margin-top:5px;">
+
+		                    <div>
+		                    	<h1>L</h1>								<a href="http://www.anisafashion.nl/?show=products&brand_cd=14">
+									London sole (5)
+								</a>
+							</div>
+		                </div> <!-- end of product -->
+		            			            	<div style="font-weight:bold;margin-top:5px;">
+		                    <div>
+
+		                    	<h1>M</h1>								<a href="http://www.anisafashion.nl/?show=products&brand_cd=12">
+									Maluo (3)
+								</a>
+							</div>
+		                </div> <!-- end of product -->
+		            			            	<div style="font-weight:bold;margin-top:5px;">
+		                    <div>
+		                    									<a href="http://www.anisafashion.nl/?show=products&brand_cd=58">
+
+									Melissa odabash (13)
+								</a>
+							</div>
+		                </div> <!-- end of product -->
+		            			            	<div style="font-weight:bold;margin-top:5px;">
+		                    <div>
+		                    									<a href="http://www.anisafashion.nl/?show=products&brand_cd=79">
+									Mippies (0)
+								</a>
+
+							</div>
+		                </div> <!-- end of product -->
+		            			            	<div style="font-weight:bold;margin-top:5px;">
+		                    <div>
+		                    									<a href="http://www.anisafashion.nl/?show=products&brand_cd=81">
+									morelli (0)
+								</a>
+							</div>
+		                </div> <!-- end of product -->
+
+		            			            	<div style="font-weight:bold;margin-top:5px;">
+		                    <div>
+		                    									<a href="http://www.anisafashion.nl/?show=products&brand_cd=9">
+									Muchachomalo (6)
+								</a>
+							</div>
+		                </div> <!-- end of product -->
+		            			            	<div style="font-weight:bold;margin-top:5px;">
+		                    <div>
+
+		                    	<h1>O</h1>								<a href="http://www.anisafashion.nl/?show=products&brand_cd=71">
+									Otazu (1)
+								</a>
+							</div>
+		                </div> <!-- end of product -->
+		            			            	<div style="font-weight:bold;margin-top:5px;">
+		                    <div>
+		                    	<h1>P</h1>								<a href="http://www.anisafashion.nl/?show=products&brand_cd=7">
+
+									Psssy (6)
+								</a>
+							</div>
+		                </div> <!-- end of product -->
+		            			            	<div style="font-weight:bold;margin-top:5px;">
+		                    <div>
+		                    									<a href="http://www.anisafashion.nl/?show=products&brand_cd=70">
+									Pure Jewelry (4)
+								</a>
+
+							</div>
+		                </div> <!-- end of product -->
+		            			            	<div style="font-weight:bold;margin-top:5px;">
+		                    <div>
+		                    	<h1>R</h1>								<a href="http://www.anisafashion.nl/?show=products&brand_cd=11">
+									Rebecca Minkoff (6)
+								</a>
+							</div>
+
+		                </div> <!-- end of product -->
+		            			            	<div style="font-weight:bold;margin-top:5px;">
+		                    <div>
+		                    									<a href="http://www.anisafashion.nl/?show=products&brand_cd=74">
+									Rebel Cashmere (5)
+								</a>
+							</div>
+		                </div> <!-- end of product -->
+
+		            			            	<div style="font-weight:bold;margin-top:5px;">
+		                    <div>
+		                    	<h1>S</h1>								<a href="http://www.anisafashion.nl/?show=products&brand_cd=10">
+									Secret ponpon (6)
+								</a>
+							</div>
+		                </div> <!-- end of product -->
+		            			            	<div style="font-weight:bold;margin-top:5px;">
+
+		                    <div>
+		                    									<a href="http://www.anisafashion.nl/?show=products&brand_cd=64">
+									SoHo Hearts (59)
+								</a>
+							</div>
+		                </div> <!-- end of product -->
+		            			            	<div style="font-weight:bold;margin-top:5px;">
+		                    <div>
+		                    									<a href="http://www.anisafashion.nl/?show=products&brand_cd=57">
+
+									Suggest by pain de sucre (2)
+								</a>
+							</div>
+		                </div> <!-- end of product -->
+		            			            	<div style="font-weight:bold;margin-top:5px;">
+		                    <div>
+		                    	<h1>T</h1>								<a href="http://www.anisafashion.nl/?show=products&brand_cd=78">
+									TAJ by Sabrina Crippa (0)
+								</a>
+
+							</div>
+		                </div> <!-- end of product -->
+		            			            	<div style="font-weight:bold;margin-top:5px;">
+		                    <div>
+		                    									<a href="http://www.anisafashion.nl/?show=products&brand_cd=66">
+									Ted Baker (5)
+								</a>
+							</div>
+		                </div> <!-- end of product -->
+
+		            			            	<div style="font-weight:bold;margin-top:5px;">
+		                    <div>
+		                    									<a href="http://www.anisafashion.nl/?show=products&brand_cd=61">
+									TOV (2)
+								</a>
+							</div>
+		                </div> <!-- end of product -->
+		            			            	<div style="font-weight:bold;margin-top:5px;">
+		                    <div>
+
+		                    									<a href="http://www.anisafashion.nl/?show=products&brand_cd=65">
+									Triwa by Tritoni (12)
+								</a>
+							</div>
+		                </div> <!-- end of product -->
+		            			            	<div style="font-weight:bold;margin-top:5px;">
+		                    <div>
+		                    	<h1>V</h1>								<a href="http://www.anisafashion.nl/?show=products&brand_cd=75">
+
+									Visio Dei (2)
+								</a>
+							</div>
+		                </div> <!-- end of product -->
+		            	            </div> <!-- end of Product List -->
+            <div class="clear"></div>
+   	  </div> <!-- end of Right Column -->
+      <div class="clear"></div>
+
+	</div> <!-- end of Mid Content -->
+    <div id="productScroll">
+    <object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=9,0,28,0" width="770" height="130" title="Accessories of Bon bon, zilveren oorbellen, taj, dyrberg etc">
+        <param name="movie" value="http://www.anisafashion.nl/footer_flash.swf" />
+        <param name="quality" value="high" />
+        <embed src="http://www.anisafashion.nl/footer_flash.swf" quality="high" pluginspage="http://www.adobe.com/shockwave/download/download.cgi?P1_Prod_Version=ShockwaveFlash" type="application/x-shockwave-flash" width="770" height="130"></embed>
+    </object>
+</div>    	<div id="footer">
+
+    	<div class="footerMenu">
+        	<ul>
+            	<li><a href="http://www.anisafashion.nl/?show=contents&content=about">ABOUT US</a></li>
+                <li><a href="http://www.anisafashion.nl/?show=contents&content=help">HELP</a></li>
+                <li><a href="http://www.anisafashion.nl/?show=contents&content=privacy">PRIVACY POLICY</a></li>
+                <li><a href="http://www.anisafashion.nl/?show=contents&content=terms">TERMS AND CONDITIONS</a></li>
+                <li><a href="http://www.anisafashion.nl/?show=contact">CONTACT US</a></li>
+
+            </ul>
+        </div>
+        <p>&copy; <a href="http://www.anisafashion.nl">anisafashion</a> 2008. ALL RIGHTS RESERVED<img src="../images/spacer.gif" alt="anisafashion" width="50" height="1" /><a href="http://www.nlstreets.nl" target="_blank"><u>www.nlstreets.nl</u></a><img src="../images/spacer.gif" alt="anisafashion" width="50" height="1" />Powered by <a href="http://www.webciters.com" target="_blank"><u>WebCiters</u></a></p>
+    </div>
+</body>
+</html>

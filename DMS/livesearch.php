@@ -1,0 +1,346 @@
+<?php    
+require_once("config/config.php");
+
+$objCommon 		= new Common;
+$objMenu 		= new Menu;
+//$objNews 		= new News;
+$objContent 	= new Content;
+$objTemplate 	= new Template;
+$objMail 		= new Mail;
+$objCustomer 	= new Customer;
+//$objCart 	= new Cart;
+$objAdminUser 	= new AdminUser;
+$objProduct 	= new Product;
+$objValidate 	= new Validate;
+//$objOrder 		= new Order;
+$objLog 		= new Log;
+require_once('rs_lang.admin.php');
+require_once('rs_lang.website.php');
+?>
+<?php
+$user_cd	= $objAdminUser->user_cd;
+$user_type	= $objAdminUser->user_type;
+
+//$cvflag 		= $_SESSION['cv'];
+//$cvadmflag 		= $_SESSION['cvadm'];
+//$cventryflag 	= $_SESSION['cventry'];
+
+//$superadmin = $_SESSION['superadmin'];
+
+$valued = $_REQUEST['d'];
+$valuer = $_REQUEST['r'];
+$valuet = $_REQUEST['t'];
+
+//$valuei = date('Y-m-d',strtotime($valueidate));
+
+$now = new DateTime();
+$nowyear = $now->format("Y");
+
+
+$sCondition = '';
+
+if($valued!="")
+{
+	if($sCondition!="")
+	{
+	$sCondition.=" AND (document_no LIKE '%".$valued."%')";
+	}
+	else
+	{
+	$sCondition=" (document_no LIKE '%".$valued."%')";
+	}
+//	echo $sCondition;
+}
+
+if($valuer!="")
+{
+
+	if($sCondition!="")
+	{
+	$sCondition.=" AND (revision LIKE '%".$valuer."%')";
+	}
+	else
+	{
+	$sCondition=" (revision LIKE '%".$valuer."%')";
+	}
+//	echo $sCondition;
+}
+
+if($valuet!="")
+{
+	if($sCondition!="")
+	{
+	$sCondition.=" AND (report_title LIKE '%".$valuet."%')";
+	}
+	else
+	{
+	$sCondition=" (report_title LIKE '%".$valuet."%')";
+	}
+//	echo $sCondition;
+}
+if($valuesp!="")
+{
+$valuesperiod = date('Y-m-d',strtotime($valuesp));
+
+	if($sCondition!="")
+	{
+	$sCondition.=" AND (doc_upload_date>=$valuesperiod)";
+	}
+	else
+	{
+	$sCondition=" (doc_upload_date>=$valuesperiod)";
+	}
+//	echo $sCondition;
+}
+if($valueep!="")
+{
+$valueeperiod = date('Y-m-d',strtotime($valueep));
+	if($sCondition!="")
+	{
+	$sCondition.=" AND (doc_upload_date=<$valueeperiod)";
+	}
+	else
+	{
+	$sCondition=" (doc_upload_date=<$valueeperiod)";
+	}
+//	echo $sCondition;
+}
+
+
+if($valueo!="")
+{
+	$orderby = " order by ".$valueo." ".$valueos;
+	
+} else {
+	$orderby = " order by report_id"." ".$valueos;	
+}
+?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Interactive Search</title>
+<link rel="stylesheet" type="text/css" href="css/style.css">
+
+<script language="JavaScript">
+function toggle(source) {
+  checkboxes = document.getElementsByName('cvcheck[]');
+  for each(var checkbox in checkboxes)
+    checkbox.checked = source.checked;
+}
+</script>
+
+
+</head>
+
+<body>
+<?php include ('includes/saveurl.php');?>
+<?php
+if($valuet=="" && $valued=="" && $valuer=="")
+{
+}
+else
+{
+$sSQL1 = "SELECT * FROM rs_tbl_documents WHERE ".$sCondition.$orderby;
+$sSQL12=mysql_query($sSQL1);
+$iCount = mysql_num_rows($sSQL12);
+if($iCount>0)
+{
+?>
+
+<form action="" method="post"  name="report_cat" id="report_cat" onsubmit="return atleast_onecheckbox(event)" > 
+ 
+  
+<input type="hidden" name="valued" id="valued" value="<?=$valued ?>" />
+<input type="hidden" name="valuer" id="valuer" value="<?=$valuer ?>" />
+<input type="hidden" name="valuet" id="valuet" value="<?=$valuet ?>" />
+<input type="hidden" name="valuesp" id="valuesp" value="<?=$valuesp ?>" />
+<input type="hidden" name="valueep" id="valueep" value="<?=$valueep ?>" />
+
+
+
+<div> 
+   <input type="submit" name="download_submit" id="download_submit" value="Download Files" form="report_cat" />
+   
+	<table class="reference" style="width:100%; margin-top:10px" >
+	
+
+    <tr bgcolor="#333333" style="text-decoration:inherit; color:#CCC">
+    
+     <th align="center" width="2%"><strong>Sr. No.</strong></th>
+	 <th align="center" width="2%"><input  type="checkbox"  name="chkAll" id=
+          "chkAll" value="1"   onclick="selectAllUnSelectAll_1(this,'file_download[]',report_cat);" /></th>
+      <th align="center" width="50%"><strong>Title</strong></th>
+      <th align="center" width="18%"><strong>Document No.</strong></th>
+      <th align="center" width="12%"><strong>Revision No.</strong></th>
+	 <th align="center" width="10%"><strong>Issue Date</strong></th>
+	 <th align="center" width="10%"><strong>Document Upload Date</strong></th>
+	 
+
+    <?php /*if ($superadmin == 1 or $cvadmflag ==1) { ?> 
+      <th><strong>EMAIL </strong></th>
+    <?php }*/ ?>
+
+    </tr>
+  
+
+
+<?php
+$i=0;
+	while($sSQL3=mysql_fetch_array($sSQL12))
+	{
+		$report_category 			= $sSQL3['report_category'];
+		$report_id  			= $sSQL3['report_id'];
+		$report_title  			= $sSQL3['report_title'];
+		$file  			= $sSQL3['report_file'];
+		$document_no  			= $sSQL3['document_no'];
+		$doc_issue_date  			= $sSQL3['doc_issue_date'];
+		$revision  			= $sSQL3['revision'];
+		$doc_upload_date  			= $sSQL3['doc_upload_date'];
+	$sSQL2 = "SELECT * FROM rs_tbl_category WHERE category_cd=".$report_category;
+	$sSQL13=mysql_query($sSQL2);
+	$sSQL4=mysql_fetch_array($sSQL13);
+	$category_name=$sSQL4['category_name'];
+	$user_ids=$sSQL4['user_ids'];
+	$parent_cd=$sSQL4['parent_cd'];
+	$cid=$sSQL4['cid'];
+	$parent_group=$sSQL4['parent_group'];
+		if($user_type==1)
+		{
+		
+		?>
+		<tr <?php echo $style; ?>>
+		
+<td ><center> <?php echo $i=$i+1;?> </center> </td>
+<td><input type="checkbox" class="checkbox"    name="file_download[]"  value="<?php echo $report_id;?>" form="report_cat"  onclick="selectUnSelect_top(this,report_cat);"/></td>
+<td ><a href="?p=reports&category_cd=<?php echo $report_category;?>&cid=<?php echo $cid; ?>&cat_cd=<?php echo $parent_cd; ?>" style=" font-weight:bold"><?php echo $category_name?></a> &raquo; <a href="<?php echo REPORT_URL.$file ;?>" target="_blank"><?=$report_title;?></a></td>
+<td ><?=$document_no;?></td>
+<td ><?=$revision;?></td>
+<td ><?=$doc_issue_date;?></td>
+<td ><?=$doc_upload_date;?></td>
+
+
+</tr>
+
+		<?php
+		}
+		else
+		{
+		
+
+	if($user_ids=="" && $parent_cd==0)
+	{
+	
+	?>
+	<tr <?php echo $style; ?>>
+<td ><center> <?php echo $i=$i+1;?> </center> </td>
+<td><input type="checkbox" class="checkbox"    name="file_download[]"  value="<?php echo $report_id;?>" form="report_cat"  onclick="selectUnSelect_top(this,report_cat);"/></td>
+<td ><a href="?p=reports&category_cd=<?php echo $report_category;?>&cid=<?php echo $cid; ?>&cat_cd=<?php echo $parent_cd; ?>" style=" font-weight:bold"><?php echo $category_name?></a> &raquo; <a href="<?php echo REPORT_URL.$file ;?>" target="_blank"><?=$report_title;?></a></td>
+<td ><?=$document_no;?></td>
+<td ><?=$revision;?></td>
+<td ><?=$doc_issue_date;?></td>
+<td ><?=$doc_upload_date;?></td>
+
+
+</tr>
+	<?php
+	}else
+	{
+	
+	$group_arr=explode("_",$parent_group);
+	$count_group_arr= count($group_arr);
+	$sign=1;
+	for($k=1;$k<$count_group_arr;$k++)
+	{
+	$cat_id=$group_arr[$k];
+	$sSQL_loop = "SELECT * FROM rs_tbl_category WHERE category_cd=".$cat_id;
+	$sSQLloop=mysql_query($sSQL_loop);
+	$sSQLloop1=mysql_fetch_array($sSQLloop);
+
+	$user_p_ids=$sSQLloop1['user_ids'];
+	
+	
+	
+	
+	$exp_arr=explode(",", $user_p_ids);
+	$count_exp_arr= count($exp_arr);
+	
+		$flg="";
+			for($j=0; $j<$count_exp_arr; $j++)
+			{
+			
+				if($exp_arr[$j]==$user_cd)
+				{
+				$flg=1;
+				}
+				
+			}
+		if($flg==1)
+			{
+			
+			$sign=$sign+1;
+			continue;
+			}
+		else
+			{
+			
+			$sign=1;
+			break;
+			}
+			
+	
+?>
+
+<?php 
+}
+if($count_group_arr==$sign)
+{
+
+?>
+<tr <?php echo $style; ?>>
+<td ><center> <?php echo $i=$i+1;?> </center> </td>
+<td><input type="checkbox" class="checkbox"    name="file_download[]"  value="<?php echo $report_id;?>" form="report_cat"  onclick="selectUnSelect_top(this,report_cat);"/></td>
+<td ><a  href="?p=reports&category_cd=<?php echo $report_category;?>&cid=<?php echo $cid; ?>&cat_cd=<?php echo $parent_cd; ?>" style=" font-weight:bold"><?php echo $category_name?></a> &raquo; <a href="<?php echo REPORT_URL.$file ;?>" target="_blank"><?=$report_title;?></a></td>
+<td ><?=$document_no;?></td>
+<td ><?=$revision;?></td>
+<td ><?=$doc_issue_date;?></td>
+<td ><?=$doc_upload_date;?></td>
+
+
+</tr>
+<?php
+}
+}
+}       
+	}
+?>
+</table>
+</div>
+</form>
+
+<?php
+} else { echo "<br />","<center> No Report Found..... </center> <br /><br />"; }
+}
+?>
+
+</td> 
+
+</body>
+</html>
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
