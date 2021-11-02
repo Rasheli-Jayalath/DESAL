@@ -17,32 +17,40 @@ $objProduct 	= new Product;
 $objValidate 	= new Validate;
 $objOrder 		= new Order;
 $objLog 		= new Log;
-require_once('rs_lang.admin.php');
-require_once('rs_lang.website.php');
-require_once('rs_lang.eng.php');
+require_once('requires/rs_lang.admin.php');
+require_once('requires/rs_lang.website.php');
+require_once('requires/rs_lang.eng.php');
 
 if($_REQUEST['lang']=="4")
 {
 
-require_once('rs_lang.rus.php');
+require_once('requires/rs_lang.rus.php');
 }
 else
 {
-require_once('rs_lang.eng.php');
+require_once('requires/rs_lang.eng.php');
 }
 
 ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
+<html lang="en">
 
-<html class="no-js" data-version="v2.61.1.007e3fe145ac6592cc89119d556fd99f07be8d8f"    lang="ru">
-
-<title><?php echo HOME_MAIN_TITLE?></title>
 <head>
- <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta http-equiv="content-language" content="ru" />
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<link href="css/style.css" rel="stylesheet" type="text/css">
-<link rel="stylesheet" type="text/css" href="menu/chromestyle.css"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+    </style>
+
+<link href="css/style.css" rel="stylesheet">
+
+
+    <title><?php echo HOME_MAIN_TITLE?></title>
+
 <?php 
 # JS file
 importJs("Menu");
@@ -118,46 +126,37 @@ echo '<link rel="stylesheet" type="text/css" media="all" href="'.SITE_URL.'css/j
      <?php  include 'includes/headerMainHome.php'; ?>
      <?php
 	 }
-	 else
-	 {?>
-     <?php  include 'includes/headerMain.php'; ?>
-     <?php }
-   ?>
-   <?php
    
 	 if($objAdminUser->is_login == true){?>
      <?php include("includes/menu.php");
 	?>
-	 
+	 <div id="content"  class="container" style="margin-top: 20px; margin-bottom: 50px;"> </div>
      <?php
 	 }
    ?>
-   <div id="content" >
+   
   
   <?php  if($_GET['p'] == "logout"){
 	require_once("./pages/logout.php");
 }
 
-if(isset($_GET['forgot']) && $_GET['forgot'] == "forgot"){
-	require_once("pages/forgot.passwd.php");
+if(isset($_GET['forgot']) && $_GET['forgot'] == "forgot"){ 
+	require_once("pages/forgot.passwd.php"); 
 }
 else{
 	if($objAdminUser->is_login == true){
 		
 		require_once("pages/default.php");	
-		
+		include ("includes/footer.php"); 
 	}
 	else{
 		$refurl = $_SERVER['QUERY_STRING'];
 		require_once("pages/login-form.php");
 	}
 }
-
-
 ?>
 
- </div>
-<?php //include ("includes/footer.php"); ?>
+
 </div>
 </body>
 </html>

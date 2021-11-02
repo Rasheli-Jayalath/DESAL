@@ -1,60 +1,63 @@
 <div id="wrapperPRight">
-<div style="text-align:right; padding:10px; text-decoration:none">
-<a  style="text-align:right; padding:10px; text-decoration:none" href="./?p=my_profile" title="header=[My Profile] body=[&nbsp;] fade=[on]">
-<?php
-echo  WELCOME." <b>".$objAdminUser->fullname_name."</b> ";?>
- 
-<?php 
-echo   " [" ;
-			if($objAdminUser->user_type==1)  
-			echo "SuperAdmin";
-			elseif($objAdminUser->user_type==2&&$objAdminUser->member_cd==0)
-			echo "SubAdmin";
-			else
-			echo "User";
-			echo "]";
+   
 
-	?> 
-   </a>
-   
-   <br />
-   <span   style="text-align:right; width:200px; padding-right:10px; padding-top:10px;">
-<?php $sSQL_u = "select max(uploading_file_date) as last_updated from rs_tbl_documents";
-$objDb		= new Database;
-$max_date=$objDb->dbCon->query($sSQL_u);
-$sSQL_r1=$max_date->fetch();
-	?>
-<b>Last Updated on:</b><?php echo $sSQL_r1['last_updated'];?></span>
-   </div>
-   
-		<div id="tableContainer">		 
-			<table width="100%"  align="center" border="0" >
-			<?php $sql_cms="Select * from rs_tbl_cms where cms_cd=1";
-			$cms_data=$objDb->dbCon->query($sql_cms);
-			$sql_cms_r=$cms_data->fetch();
-			 ?>
-   <tr>
-     <td height="40" colspan="5" align="left" style="color:#0E0989; font-size:21px" ><?php echo $sql_cms_r['title'];?></td>
-   </tr>
-   <tr>
-     <td height="99" colspan="5"  style="line-height:18px; text-align:justify"><p><?php echo $sql_cms_r['details'];?></p>
-   </td>
-   </tr>
-   <tr><td colspan="5" align="center"><img src="<?php echo CMS_URL; ?>/<?php echo $sql_cms_r['cmsfile'];?>"  width="727" /></td></tr>
-    </table>
-		
-	  </div>
+<div class="container" style="margin-top: 20px; margin-bottom: 50px;">
+        <div class="row">
+            <div class="col-md">
+				<?php $sql_cms="Select * from rs_tbl_cms where cms_cd=1";
+				   $cms_data=$objDb->dbCon->query($sql_cms);
+			       $sql_cms_r=$cms_data->fetch();
+			    ?>
+                <p class="medium" style="font-size: large;"> <?php echo $sql_cms_r['title'];?> </p>
+            </div>
+
+        </div>
+
+        <div class="row">
+            <div class="col-md">
+                <p class="regular" style="font-size:small;"> <?php echo $sql_cms_r['details'];?> </p>
+            </div>
+
+        </div>
+
+        <div class="row" style="margin-right: 1px; margin-left: 1px;">
+            <div class="col-md-7" style="background-color: aliceblue; padding: 15px;">
+                <p class="regular basicfontsize" style="text-align: justify;">
+                    Dhaka Mass Rapid Transit Development Project (Line 5, Southern Route) is being exceuted by the Dhaka
+                    Mass Transit Company Limited (DMTCL), under the Ministry of Road Transport and Bridges, and is
+                    financed by the Asian Development Bank (ADB). The contract for “Consulting Services for Feasibility
+                    Study, Engineering Design and Procurement Support” for the Project has been awarded to the Joint
+                    Venture (JV) of Egis Rail S.A (as the Lead), Oriental Consultants Global Co., Ltd. Japan, SMEC
+                    International Pty Ltd. Australia, and Egis India Consulting Engineers Pvt. Ltd.</p>
+
+                <p class="regular basicfontsize" style=" text-align: justify;">
+                    The Project has a total length of about 17.4 km between Gabtoli station and Dasherkandi station. It
+                    consists of an underground section of about 12.8 km and an elevated section of about 4.6 km with 12
+                    underground and 4 elevated stations. A depot accommodating rolling stocks and operational facilities
+                    for Line 5 (South) is planned near the east end of the Project at Dasherkandi station area. </p>
+    
+            </div>
+
+            <div class="col-md-5" style=" padding: 20px;">
+                <img src="<?php echo CMS_URL; ?>/<?php echo $sql_cms_r['cmsfile'];?>" width="100%" alt="">
+            </div>
+
+        </div>
+
+
+    </div>
+	  
 <div style="padding-bottom:20px; text-decoration:none">
 
 <span style="text-align:right;padding-right:20px;width:200px; float:right">
 <?php
 if($objAdminUser->user_type==1)  
 {
-echo "<b>Number of users login:</b>";
+echo "<b style=\"font-size:small;\">Number of users login:</b>";
 }
 else
 {
-echo  "<b>Number of times login:</b>";
+echo  "<b style=\"font-size:small;\" >Number of times login:</b>";
 }?>
  
 <?php 
@@ -80,9 +83,5 @@ else
 </span>
 </div>
 
-<div style="width:100%; height:10px; border:0px; background:#000066"></div>
-<div style="width:100%; text-align:center;"><h3>Developed by: SJ-SMEC</h3><br />
-<a href="http://www.egcpakistan.com/index.php?id=it" target="_blank" style="text-decoration:none"><img src="images/sj.png" width="100px" /></a>
-</div>
+
 	</div>
-	<div class="clear"></div>
