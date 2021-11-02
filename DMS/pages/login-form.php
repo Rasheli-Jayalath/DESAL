@@ -73,6 +73,24 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
 	}
 }
 ?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+    </style>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+    <link href="css/loginstyle.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <title>DMS</title>
+</head>
+<body >
 
 <script>
 function frmValidate(frm){
@@ -95,51 +113,55 @@ function frmValidate(frm){
 </script>
 <script type="text/javascript">
 function toggleDiv(divId) {
- /*  $("#"+divId).toggle();*/
    $("#"+divId).hide(800);
-/*   $("p").hide("slow");*/
-
 }
 </script>
 
-<div id="wrapper_MemberLogin_main" style="padding-bottom:50px">
-	<h1 style="color:#000"><?php echo LOGIN_H1;?></h1>
-	<div class="clear"></div>
-	<div id="LoginBox" class="borderRound borderShadow">
-		<!--<div id="useralert">Please Enter Correct User/Pass.</div>-->
-		<?php echo $objCommon->displayMessage();?>      
-	<form name="frmlogin" onsubmit="return frmValidate(this);" method="post" action="">
-	  
-	  	<div class="loginboxContainer borderRound borderShadow">
-			<div id="username1">
-			 <input name="username" type="text" id="username" value="<?php echo $_POST['username'];?>" class="userinbox"/>
-			</div>
+
+
+
+<div class="wrapper" style="   position:absolute;" >
+
+<div class="container" style="margin-top: 30px; margin-bottom: 30px;">
+
+	<div class="row">
+
+		<div  style="text-align: center; margin: auto;">
+			<a class="navbar-brand" href="#"><img src="img/smec-logo-white.png" height="70px" alt="smec logo"></a>
 		</div>
-		<div class="loginboxContainer borderRound borderShadow">
-			<div id="userpass">
-			 <input name="password" id="password" type="password" class="userinbox"/>
-			</div>
-		</div>	  
-	  
-	  	<!--<div class="loginboxContainer borderRound borderShadow">
-			<div id="usertype">
-			  <input type="radio"  
-			id="user_type" name="user_type" value="1" />
-			 SuperAdmin 
-			 <input type="radio" 
-			 id="user_type" name="user_type" value="2" checked="checked"/>
-			SubAdmin
-            <input type="radio" 
-			 id="user_type" name="user_type" value="3" />
-			User</div>
-		</div>-->
+
+		</div>
+   
+	<div class="row" style="margin-top: 25px;">
+
+		<div style="text-align: center;margin: auto;">
+			<h3 class="semibold" style="color: #fff;">DOCUMENT MANAGEMENT SYSTEM</h3>
 		
-	  <div id="userLogin"> <input type="submit" name="Submit" value="<?php echo LOGIN_BTN_LOGIN;?>" id="uLogin" />
-	    
-	  </div>
-	 
-	  <div class="clear"></div>	  
-      </form>
+		</div>
 	</div>
-	 <!--<div id="forgotPass"><a href="./?forgot=forgot" id="forgotPass">Forgot Password?</a></div>-->
 </div>
+
+<?php echo $objCommon->displayMessage();?>      
+	<form name="frmlogin" onsubmit="return frmValidate(this);" method="post" action="" class="login" >
+
+
+<p class="title">	<?php echo LOGIN_H1;?></p>
+  <input name="username" id="username" type="text" placeholder="Username" style="font-size: 13px;"  value="<?php echo $_POST['username'];?>" autofocus/>
+  <input type="password" placeholder="Password" style="font-size: 13px;" name="password" id="password" />
+  <a href="#">Forgot your password?</a><br><br>
+
+  
+
+  <div style="text-align: center;" id="userLogin"> 
+	<button class="btn btn-warning" name="Submit" type="submit" value="<?php echo LOGIN_BTN_LOGIN;?>" id="uLogin" > Log in</button>
+  </div>
+
+
+ 
+</form>
+<footer><a target="blank" href="https://www.smec.com/en_lk">Developed by SJ-SMEC © 2021</a></footer>
+</p>
+</div>
+
+</body>
+</html>
