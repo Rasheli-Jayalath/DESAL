@@ -16,9 +16,9 @@ $objProduct 	= new Product;
 $objValidate 	= new Validate;
 $objOrder 		= new Order;
 $objLog 		= new Log;
-require_once('rs_lang.admin.php');
-require_once('rs_lang.website.php');
-require_once('rs_lang.eng.php');
+require_once('requires/rs_lang.admin.php');
+require_once('requires/rs_lang.website.php');
+require_once('requires/rs_lang.eng.php');
 ?>
 <?php
 $news_cd= $_GET['news_cd'];

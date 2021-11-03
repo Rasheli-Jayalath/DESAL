@@ -1,97 +1,4 @@
-<style>
-a
-{
-text-decoration:none
-}
 
-.report_tbl {
-/*margin-right:-45px;*/
-padding:0px;
-min-width:100%;	box-shadow: 10px 10px 5px #888888;
-border:1px solid #000000;
-
--moz-border-radius-bottomleft:0px;
--webkit-border-bottom-left-radius:0px;
-border-bottom-left-radius:0px;
-
--moz-border-radius-bottomright:0px;
--webkit-border-bottom-right-radius:0px;
-border-bottom-right-radius:0px;
-
--moz-border-radius-topright:0px;
--webkit-border-top-right-radius:0px;
-border-top-right-radius:0px;
-
--moz-border-radius-topleft:0px;
--webkit-border-top-left-radius:0px;
-border-top-left-radius:0px;
-}.report_tbl table{
-min-width:100%;
-height:100%;
-margin-left:50px;
-padding:0px;
-}.report_tbl tr:last-child td:last-child {
--moz-border-radius-bottomright:0px;
--webkit-border-bottom-right-radius:0px;
-border-bottom-right-radius:0px;
-}
-.report_tbl table tr:first-child td:first-child {
--moz-border-radius-topleft:0px;
--webkit-border-top-left-radius:0px;
-border-top-left-radius:0px;
-}
-.report_tbl table tr:first-child td:last-child {
--moz-border-radius-topright:0px;
--webkit-border-top-right-radius:0px;
-border-top-right-radius:0px;
-}.report_tbl tr:last-child td:first-child{
--moz-border-radius-bottomleft:0px;
--webkit-border-bottom-left-radius:0px;
-border-bottom-left-radius:0px;
-}.report_tbl tr:hover td{
-background-color:#d3e9ff;
-}
-.report_tbl td{
-vertical-align:middle;
-	background:-o-linear-gradient(bottom, #ffffff 5%, #d3e9ff 100%);	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #ffffff), color-stop(1, #d3e9ff) ); 	background:-moz-linear-gradient( center top, #ffffff 5%, #d3e9ff 100% );	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr="#ffffff", endColorstr="#d3e9ff");	background: -o-linear-gradient(top,#ffffff,d3e9ff);
-background-color:#ffffff;
-border:1px solid #000000;
-border-width:0px 1px 1px 0px;
-text-align:left;
-padding:7px;
-font-size:14px;
-font-family:Arial;
-font-weight:normal;
-color:#000000;
-}.report_tbl tr:last-child td{
-border-width:0px 1px 0px 0px;
-}.report_tbl tr td:last-child{
-border-width:0px 0px 1px 0px;
-}.report_tbl tr:last-child td:last-child{
-border-width:0px 0px 0px 0px;
-}
-.report_tbl tr:first-child td{
-	background:-o-linear-gradient(bottom, #0057af 5%, #007fff 100%);	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #0057af), color-stop(1, #007fff) );	background:-moz-linear-gradient( center top, #0057af 5%, #007fff 100% );	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr="#0057af", endColorstr="#007fff");	background: -o-linear-gradient(top,#0057af,007fff);
-background-color:#0057af;
-border:0px solid #000000;
-text-align:center;
-border-width:0px 1px 1px 0;
-font-size:14px;
-font-family:Arial;
-font-weight:bold;
-color:#ffffff;
-}
-.report_tbl tr:first-child:hover td{
-	background:-o-linear-gradient(bottom, #0057af 5%, #007fff 100%);	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #0057af), color-stop(1, #007fff) );	background:-moz-linear-gradient( center top, #0057af 5%, #007fff 100% );	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr="#0057af", endColorstr="#007fff");	background: -o-linear-gradient(top,#0057af,007fff);
-background-color:#0057af;
-}
-.report_tbl tr:first-child td:first-child{
-border-width:0px 1px 1px 0px;
-}
-.report_tbl tr:first-child td:last-child{
-border-width:0px 0px 1px 0px;
-}
-</style>
 <script src="lightbox/js/lightbox.min.js"></script>
   <link href="lightbox/css/lightbox.css" rel="stylesheet" /> 
 <?php
@@ -289,21 +196,13 @@ if(isset($_GET['mode']) && $_GET['mode'] == "dgfDelete"){
 				{
 				while($row2c=$res2c->fetch())
 				{
-		/**/
 			 $sql2d="Select * from rs_tbl_documents";
 			 $res2d=$objDb->dbCon->query($sSQLlog_log);
 				
 				while($row2d=$res2d->fetch())
 				{
 				$d_subcat=$row2d['report_subcategory'];
-				/*if($d_subcat=="")
-				{
-				$sdelete= "Delete from rs_tbl_documents where report_id='$row2d[report_id]'";
-	 			  mysql_query($sdelete);
-
-				}
-				else
-				{*/
+	
 				$d_sub_cat=explode("_",$d_subcat);				
 				$dl=count($d_sub_cat);
 				for($h=0;$h<$dl;$h++)
@@ -349,8 +248,6 @@ if(isset($_GET['mode']) && $_GET['mode'] == "dgfDelete"){
 				}
 				
 				}
-				/* $sdeletet= "Delete from rs_tbl_category_template where cat_id='$category_cd'";
-	   mysql_query($sdeletet);*/
 				}
 		
 		
@@ -431,9 +328,7 @@ if(isset($_GET['cat_cd']))
 }
  $td = date('Y-m-d-h-m-s',time());
  $filename1 = $cat_name.$td.".zip";
- // $f = fopen ("data/".$filename,'w+');
- // fputs($f, $out);
-  //fclose($f);
+
   
   
   $zip = new ZipArchive();
@@ -519,9 +414,31 @@ if(chkAll.checked == true){
 
 </script>
 
-<div id="wrapperPRight">
-<!--<div id="wrapperPRight">-->
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+    </style>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/table-styling.css" rel="stylesheet">
+
+
+
+    <title>DMS</title>
+</head>
+
+<body>
+
+<div id="" class="container" style="margin-top: 20px; margin-bottom: 50px;">
 
 <?php      
 	
@@ -541,7 +458,7 @@ if(chkAll.checked == true){
 	
 	
 	$category_name .='<a href="?p=reports&cid='.$sqlCNrw["cid"].'&cat_cd='.$sqlCNrw["parent_cd"].'&category_cd='.$par_arr[$i].'">'.$sqlCNrw["category_name"].'</a>';
-	
+	$category_name_heading = $sqlCNrw["category_name"];
 	$category_name .="&nbsp;&raquo;&nbsp;";
 	
 	//$category_name .=$category_name;
@@ -556,51 +473,28 @@ if(chkAll.checked == true){
 				
 			?>
          
-		
-	<div style="text-align:right; padding:10px; text-decoration:none">
-<a  style="text-align:right; padding:10px; text-decoration:none" href="./?p=my_profile" title="header=[My Profile] body=[&nbsp;] fade=[on]">
-<?php 
-echo  "Welcome ".$objAdminUser->fullname_name." ".$objAdminUser->designation;   ?>
- 
-<?php 
-echo   " [" ;
-			if($objAdminUser->user_type==1)  
-			echo "SuperAdmin";
-			elseif($objAdminUser->user_type==2)
-			echo "SubAdmin";
-			else
-			echo "User";
-			echo "]";
-
-	?> 
-   </a></div>
     <?php echo $objCommon->displayMessage();?>
-	<div id="tableContainer"  >
-	
-    <div  class="shadowWhite" >
-    <div align="left"><?php echo $report_category;?></div></div>
-    <table width="100%"  align="center" border="0" >
+	<div id=""  > <!-- id tableContainer -->
 
+    <div> <?php echo "<h5 class= \" semibold text-dark  text-center opacity-75 \" style=\" font-family: \"Gill Sans\", sans-serif;\"> ".$category_name_heading. "</h5>" ;?></div>  <!-- project name -->
+
+		
 <?php if($objAdminUser->user_type==1 || $objAdminUser->user_type==2)
 {
   ?>
-<tr>
-<td height="40" colspan="4" align="center" style=" padding-bottom:15px;padding-left:125px;" width="50%">
-</td>
-<td align="right" width="20%">
-<a href="javascript:void(null);" onclick="window.open('threads_input.php?cat_cd=<?php echo $category_cd;?>&cid=<?php echo $cid;?>', 'INV','width=870,height=550,scrollbars=yes');" ><img src="<?php echo SITE_URL;?>images/folder.ico" border="0" 
-width="32" height="32" />Add Tasks</a> &nbsp;&nbsp;
-<a href="javascript:void(null);" onclick="window.open('category.php?cat_cd=<?php echo $category_cd;?>&cid=<?php echo $cid;?>', 'INV','width=870,height=550,scrollbars=yes');" ><img src="<?php echo SITE_URL;?>images/folder.ico" border="0" 
-width="32" height="32" />Add Category</a>&nbsp;&nbsp;
+  <div style="text-align: right; "><!-- Action Buttons -->
+<a class="btn btn-secondary commontextsize" href="javascript:void(null);" onclick="window.open('threads_input.php?cat_cd=<?php echo $category_cd;?>&cid=<?php echo $cid;?>', 'INV','width=870,height=550,scrollbars=yes');" >
+      <i class="bi bi-plus-square" style="margin-right: 10px;"></i>     Add Tasks</a> 
+<a class="btn btn-secondary commontextsize" href="javascript:void(null);" onclick="window.open('category.php?cat_cd=<?php echo $category_cd;?>&cid=<?php echo $cid;?>', 'INV','width=870,height=550,scrollbars=yes');" > 
+      <i class="bi bi-plus-square" style="margin-right: 10px;"></i>     Add Category</a> 	
 <?php if($parent_cd!=0){?>
-<a href="javascript:void(null);" onclick="window.open('upload_report.php?cat_cd=<?php echo $_REQUEST["cat_cd"];?>&category_cd=<?php echo $category_cd;?>&cid=<?php echo $cid;?>', 'INV','width=550,height=400,scrollbars=yes');" >
-<img src="<?php echo SITE_URL;?>images/doc.ico" border="0" width="32"/>Add File</a>
+<a class="btn btn-secondary commontextsize" href="javascript:void(null);" onclick="window.open('upload_report.php?cat_cd=<?php echo $_REQUEST["cat_cd"];?>&category_cd=<?php echo $category_cd;?>&cid=<?php echo $cid;?>', 'INV','width=550,height=400,scrollbars=yes');" >
+      <i class="bi bi-plus-square" style="margin-right: 10px;"></i>     Add File</a>
 <?php
 }
 ?>
-</td>
+</div><!-- Action Buttons -->
 
-</tr>
 <?php
 }
 else if($_REQUEST['category_cd'])
@@ -614,17 +508,13 @@ $cattid=$_REQUEST['category_cd'];
 			if($p_cdd==0)
 			{
 			?>
+			<table width="100%"  align="center" border="0"  > 
 			<tr>
 <td height="40" colspan="2" align="center" style=" padding-bottom:15px;padding-left:125px;" width="50%"></td>
 <td align="right" width="20%">
 <!--<a href="javascript:void(null);" onclick="window.open('threads_input.php?cat_cd=<?php echo $category_cd;?>&cid=<?php echo $cid;?>', 'INV','width=870,height=550,scrollbars=yes');" ><img src="<?php echo SITE_URL;?>images/folder.ico" border="0" 
 width="32" height="32" />Add Tasks</a> &nbsp;&nbsp;-->
 </td>
-<!--<td align="right" width="18%">
-<a href="javascript:void(null);" onclick="window.open('category.php?cat_cd=<?php /*echo $category_cd;?>&cid=<?php echo $cid;?>', 'INV','width=870,height=550,scrollbars=yes');" ><img src="<?php echo SITE_URL;?>images/folder.ico" border="0" 
-width="32" height="32" />Add Category</a></td>
-<td align="right" width="12%"><a href="javascript:void(null);" onclick="window.open('upload_report.php?cat_cd=<?php echo $_REQUEST["cat_cd"];?>&category_cd=<?php echo $category_cd;?>&cid=<?php echo $cid;?>', 'INV','width=550,height=400,scrollbars=yes');" >
-<img src="<?php echo SITE_URL;*/?>images/doc.ico" border="0" width="32"/>Add File</a></td> -->
 </tr>
 			<?php
 			}
@@ -708,35 +598,37 @@ width="32" height="32" />Add Tasks</a> &nbsp;&nbsp;-->
 
 <span style="font-size:16px; font-weight:bold">Folders</span>
 <form name="form_order" id="form_order" method="post" > 
-
-<table class="report_tbl" border="1px"  align="left" cellspacing="0" style="margin-top:5px; margin-bottom:20px" >
-
+<div class="table-responsive commontextsize">
+<table class="report_tbl table " id="customers"  cellspacing="0" style="margin-top:5px; margin-bottom:20px" >
+<thead>
 <tr >
 
-<td style="color:#000066" width="2%">S#</td>
+<th class="semibold" scope="col"  width="2%">S#</th>
 <?php
  $temp2="select * from rs_tbl_category_template where cat_id='$category_cd' order by cat_temp_order asc";
  $res_temp=$objDb->dbCon->query($temp2);
 $res_temp2=$res_temp->fetch();
  $res_temp2['cat_title_text'];
 ?>
-<td style="color:#000066" width="40%"><?php echo $res_temp2['cat_title_text'] ?></td>
-<td style="color:#000066" width="25%">Created By</td>
-<td style="color:#000066" width="25%">Last Modified By</td>
+<th class="semibold" scope="col"  width="30%"><?php echo $res_temp2['cat_title_text'] ?></th>
+<th class="semibold " scope="col" width="25%">Created By</th>
+<th class="semibold" scope="col"  width="25%">Last Modified By</th>
 <?php 
 if($user_type=='1' || $user_type=='2')
 {				
 ?>
- <td ><input type="submit" id="update_order" name="update_order"  value="Order"/></td>
+ <th class="semibold text-center" width="8%" >  <button class="hover-zoom" type="submit" id="update_order" name="update_order"  value="Order" style= " background: none; color: inherit; border: none; padding: 0; font: inherit; cursor: pointer; outline: inherit;"> 
+	Order by <i class="bi bi-caret-down-fill"></i> </button> </th>
  <?php
  }
  ?>
-<td style="color:#000066" colspan="2">Actions</td>
+<th class="semibold text-center" width="5%" scope="col"  colspan="2">Actions</th>
 <?php
 
 ?>
 
  </tr>
+</thead>
  <?php
  $y=1;
  while($row2=$res2->fetch())
@@ -756,13 +648,13 @@ if($user_type=='1' || $user_type=='2')
 				?>
 				<tr>
 <td style="color:#000066"><?php echo $y;?><input type="hidden" id="cat_cd[]" name="cat_cd[]" value="<?php echo $subcategory_id;?>" /></td>
-<td style="color:#000066"><img  src="./images/folder1.png"/>&nbsp;<a href="?p=reports&category_cd=<?php echo $subcategory_id; ?>&cat_cd=<?php echo $category_cd; ?>&cid=<?php echo $cid; ?>"><?php echo $report_subcategory?></a></td>
+<td style="color:#000066"><i class="bi bi-folder-fill iconblue" style="margin-right: 5px;"></i><a href="?p=reports&category_cd=<?php echo $subcategory_id; ?>&cat_cd=<?php echo $category_cd; ?>&cid=<?php echo $cid; ?>"><?php echo $report_subcategory?></a></td>
 <td><?php echo $row2['creater'];?><br /><font size="-5"><?php echo "folders: ".$total_subfolder."&nbsp;&nbsp; Files: ".$total_files; ?></font></td>
 <td><?php echo $row2['last_modified_by'];?></td>
-<td><input type="text" value="<?php echo $category_order;?>"  id="category_order[]" name="category_order[]" style="width:25px"/></td>
-<td style="color:#000066" align="right"><a href="javascript:void(null);" onclick="window.open('category.php?category_cd=<?php echo $subcategory_id; ?>&cid=<?php echo $cid;?>', 'INV','width=850,height=700,scrollbars=yes');" >
-<img src="./images/edit.gif" border="0" /></a></td>
-<td style="color:#000066" align="right">&nbsp;<a href="?p=reports&sel_category_cd=<?php echo $subcategory_id; ?>&cid=<?php echo $_REQUEST['cid']; ?>&cat_cd=<?php if($_REQUEST['cat_cd'])
+<td ><input class="form-control d-flex justify-content-center" type="text" value="<?php echo $category_order;?>"  id="category_order[]" name="category_order[]" style="width:90%; padding: 0; margin 0; padding-right:30%; text-align : right;" /></td> 
+<td class="text-center" style="color:#000066" align="right"><a href="javascript:void(null);" onclick="window.open('category.php?category_cd=<?php echo $subcategory_id; ?>&cid=<?php echo $cid;?>', 'INV','width=850,height=700,scrollbars=yes');" >
+<i class="bi bi-pencil-fill iconorange" style="margin-right: 10px;"></i></a>
+ <a href="?p=reports&sel_category_cd=<?php echo $subcategory_id; ?>&cid=<?php echo $_REQUEST['cid']; ?>&cat_cd=<?php if($_REQUEST['cat_cd'])
 			 {
 			 echo $_REQUEST['cat_cd'];
 			 }
@@ -770,7 +662,7 @@ if($user_type=='1' || $user_type=='2')
 			 {
 			 $cat=0;
 			 
-			 } ?>&category_cd=<?php echo $_REQUEST['category_cd']; ?>&mode=cat_delete"  onclick="return confirm('Are you sure, You want to delete category?')"><img  src="./images/delete.gif"/></a></td>
+			 } ?>&category_cd=<?php echo $_REQUEST['category_cd']; ?>&mode=cat_delete"  onclick="return confirm('Are you sure, You want to delete category?')"><i class="bi bi-trash-fill iconred"></i> </a></td>
 
  </tr>
 				<?php
@@ -799,28 +691,23 @@ if($user_type=='1' || $user_type=='2')
 							else if($arightr[1]==3)
 							{
 							$read_right=3;
-							}
-						
-						
-					
-			
+							}					
 				?>
 				<tr>
-<td style="color:#000066"><?php echo $y;?></td>
-<td style="color:#000066"><img  src="./images/folder1.png"/>&nbsp;<a href="?p=reports&category_cd=<?php echo $subcategory_id; ?>&cat_cd=<?php echo $category_cd; ?>&cid=<?php echo $cid; ?>"><?php echo $report_subcategory?></a></td>
+<td style="color:#000066"><?php echo $y;?></td> <!-- user's view -->
+<td style="color:#000066"><i class="bi bi-folder-fill iconblue" style="margin-right: 5px;"></i>&nbsp;<a href="?p=reports&category_cd=<?php echo $subcategory_id; ?>&cat_cd=<?php echo $category_cd; ?>&cid=<?php echo $cid; ?>"><?php echo $report_subcategory?></a></td>
 <td><?php echo $row2['creater'];?><br /><font size="-5"><?php echo "folders: ".$total_subfolder."&nbsp;&nbsp; Files: ".$total_files; ?></font></td>
 <td><?php echo $row2['last_modified_by'];?></td>
 <?php if($read_right==1)
 { ?>
 <td colspan="2" style="color:#000066" align="right"><a href="javascript:void(null);" onclick="window.open('category.php?category_cd=<?php echo $subcategory_id; ?>&cid=<?php echo $cid;?>', 'INV','width=850,height=700,scrollbars=yes');" >
-<img src="./images/edit.gif" border="0" /></a></td>
+<i class="bi bi-pencil-fill iconorange" style="margin-right: 10px;"></i> </a></td>
 <?php
 }
 if($read_right==3)
 { ?>
-<td  style="color:#000066" align="right"><a href="javascript:void(null);" onclick="window.open('category.php?category_cd=<?php echo $subcategory_id; ?>&cid=<?php echo $cid;?>', 'INV','width=850,height=700,scrollbars=yes');" >
-<img src="./images/edit.gif" border="0" /></a></td>
-<td style="color:#000066" align="right">&nbsp;<a href="?p=reports&sel_category_cd=<?php echo $subcategory_id; ?>&cid=<?php echo $_REQUEST['cid']; ?>&cat_cd=<?php if($_REQUEST['cat_cd'])
+<td  class="text-center" style="color:#000066" align="right"><a href="javascript:void(null);" onclick="window.open('category.php?category_cd=<?php echo $subcategory_id; ?>&cid=<?php echo $cid;?>', 'INV','width=850,height=700,scrollbars=yes');" >
+<i class="bi bi-pencil-fill iconorange" style="margin-right: 10px;"></i></a><a style ="text-decoration: none; " href="?p=reports&sel_category_cd=<?php echo $subcategory_id; ?>&cid=<?php echo $_REQUEST['cid']; ?>&cat_cd=<?php if($_REQUEST['cat_cd'])
 			 {
 			 echo $_REQUEST['cat_cd'];
 			 }
@@ -828,7 +715,7 @@ if($read_right==3)
 			 {
 			 $cat=0;
 			 
-			 } ?>&category_cd=<?php echo $_REQUEST['category_cd']; ?>&mode=cat_delete"  onclick="return confirm('Are you sure, You want to delete category?')"><img  src="./images/delete.gif"/></a></td>
+			 } ?>&category_cd=<?php echo $_REQUEST['category_cd']; ?>&mode=cat_delete"  onclick="return confirm('Are you sure, You want to delete category?')"> <i class="bi bi-trash-fill iconred"></i> </a></td>
 <?php
 }
 else if($read_right==2)
@@ -850,6 +737,7 @@ else if($read_right==2)
 			}
  ?>
 </table>
+		</div>
 </form>
 </td>
 </tr>
@@ -862,8 +750,8 @@ else if($read_right==2)
 <tr>	
 
 <td  colspan="5"  style="line-height:18px; text-align:justify">
-<form name="reports_cat" id="reports_cat" method="post" action="" onsubmit="return atleast_onecheckbox(event)"> </form>
-<span style=" font-size:16px; font-weight:bold">Files</span>
+<form name="reports_cat" class="mt-4 " id="reports_cat" method="post" action="" onsubmit="return atleast_onecheckbox(event)"> </form>
+<span class=" bold ">Files</span>
 <?php if($category_status==1){ ?>
 <span style="font-size:16px; font-weight:bold; float:right">
 <?php if(isset($_GET['cat_cd']))
@@ -871,31 +759,35 @@ else if($read_right==2)
 $cat_cd1="&cat_cd=".$_GET['cat_cd'];
 } ?>
 <form name="filter_1" id="filter_1" method="post" action="?p=reports&cid=<?php echo $_GET['cid']; ?>&category_cd=<?php echo $_GET['category_cd']?><?php echo $cat_cd1; ?>"> 
-<select name="report_status" >
-		<option value="6" <?php if(!isset($_GET['status']))echo "selected";?>>All Files</option>
-		 <option value="1" <?php if($_GET['status']=='1')echo "selected";?>>Initiated</option>
-  		<option value="2" <?php if($_GET['status']=='2')echo "selected";?>>Approved</option>
-  		<option value="3" <?php if($_GET['status']=='3')echo "selected";?>>Not Approved</option>
-  		<option value="4" <?php if($_GET['status']=='4')echo "selected";?>>Under Review</option>
- 		 <option value="5" <?php if($_GET['status']=='5')echo "selected";?>>Response Awaited</option>
-		 <option value="7" <?php if($_GET['status']=='7')echo "selected";?>>Responded</option>
-         <option value="8" <?php if($_GET['status']=='8')echo "selected";?>>For Information Only</option>
+<select name="report_status" class="form-select-sm" >
+		<option value="6" <?php if(!isset($_GET['status']))echo "selected"; ?>>All Files			</option>
+		<option value="1" <?php if($_GET['status']=='1')echo "selected"; 	?>>Initiated			</option>
+  		<option value="2" <?php if($_GET['status']=='2')echo "selected";	?>>Approved				</option>
+  		<option value="3" <?php if($_GET['status']=='3')echo "selected";	?>>Not Approved			</option>
+  		<option value="4" <?php if($_GET['status']=='4')echo "selected";	?>>Under Review			</option>
+ 	    <option value="5" <?php if($_GET['status']=='5')echo "selected";	?>>Response Awaited 	</option>
+		<option value="7" <?php if($_GET['status']=='7')echo "selected";	?>>Responded			</option>
+        <option value="8" <?php if($_GET['status']=='8')echo "selected";	?>>For Information Only	</option>
 </select> 
 		
-		<input type="submit" form="filter_1" name="go_submit" id="go_submit" value="GO" /> </form>
+		<input type="submit" class="btn btn-primary btn-sm commontextsize" form="filter_1" name="go_submit" id="go_submit" value="GO" /> </form>
 </span>
 <?php
 }
 ?>
 <?php if($category_status==1){?> <span style="float:right; padding-right:50px;"><?php } else { ?>
-<span style="font-size:16px; font-weight:bold; float:right"><?php } ?><input type="submit" name="download_submit" id="download_submit" value="Download Files" form="reports_cat" /></span>
+<span style="font-size:16px; font-weight:bold; float:right"><?php } ?>     <button type="submit" class="btn btn-success commontextsize" id="download_submit" name="download_submit"  value="Download Files"  form="reports_cat" > 
+<i class="bi bi-download" style="margin-right: 10px;"  ></i> Download Files  </button>     </span>
 
-<table class="report_tbl" align="right" cellspacing="0" style="margin-top:5px; margin-bottom:20px"  >
+<div style="margin-top: 20px; margin-bottom: 50px;">
+<div class="table-responsive commontextsize ">
+<table class="report_tbl table " id="customers"  cellspacing="0" style="margin-top:5px; margin-bottom:20px" >
+<thead>
+<tr >
 
-<tr>
-<td style="color:#000066" width="2%">S#</td>
-<td style="color:#000066" width="2%"><input  type="checkbox" name="chkAll" id=
-          "chkAll" value="1" form="reports_cat" onclick="selectAllUnSelectAll(this,'file_download[]',reports_cat);"/></td>
+<th class="semibold"  width="2%">S#</th>
+<th class="semibold"  width="2%"><input  type="checkbox" name="chkAll" id=
+          "chkAll" value="1" form="reports_cat" onclick="selectAllUnSelectAll(this,'file_download[]',reports_cat);"/></th>
 
 <?php
 $templ="select * from rs_tbl_category_template where cat_id='$category_cd' order by cat_temp_order asc";
@@ -909,27 +801,28 @@ while($res_temp1=$res_temp->fetch())
 {
 $stats="&status=".$_GET['status'];
 } ?>
-<td style="color:#000066" width="12%"><?php echo $res_temp1['cat_title_text'] ?> 
+<th class="semibold"  width="12%"><?php echo $res_temp1['cat_title_text'] ?> 
  <a href="?p=reports&category_cd=<?php echo $category_cd; ?>&<?php if($cat_cd=="")
 {
 }
 else
-{ ?>cat_cd=<?php echo $cat_cd;}?>&cid=<?php echo $cid;?><?php echo $stats; ?>&field=<?php echo $res_temp1['cat_field_name'];?>&sort=<?php echo $order;?>"><?php if($order=="asc"){?><img src="images/asc.png" title="Ascending" alt="Ascending"/><?php }else{?> <img src="images/desc.png" title="Descending" alt="Descending"/><?php } ?> </a></td>
+{ ?>cat_cd=<?php echo $cat_cd;}?>&cid=<?php echo $cid;?><?php echo $stats; ?>&field=<?php echo $res_temp1['cat_field_name'];?>&sort=<?php echo $order;?>"><?php if($order=="asc"){?><img src="images/asc.png" title="Ascending" alt="Ascending"/><?php }else{?> <img src="images/desc.png" title="Descending" alt="Descending"/><?php } ?> </a></th>
 
 <?php
 }
 
 ?>
-<td style="color:#000066" width="10%">Uploaded Date</td>
-<td style="color:#000066" width="12%">Created By</td>
-<td style="color:#000066" width="12%">Last Modified By</td>
+<th class="semibold"  width="10%">Uploaded Date</th>
+<th class="semibold"  width="12%">Created By</th>
+<th class="semibold"  width="12%">Last Modified By</th>
 <?php if($category_status==1){ ?>
-<td style="color:#000066" width="14%">Status</td>
+<th class="semibold"  width="14%">Status</th>
 <?php
 }
 ?>
-<td width="2%" colspan="2">Action </td>
+<th class="semibold text-center" width="1.6%" colspan="2">Action </th>
  </tr>
+ </thead>
  
  <?php
 	$objProduct->resetProperty();
@@ -1159,8 +1052,8 @@ $total_numdd=$res2doc->rowCount();
 			 if($user_type==1 || $user_type==2)
 			 {
 			 ?>
-			 <td><a href="javascript:void(null);" onclick="window.open('upload_report.php?report_id=<?php echo $rows['report_id']; ?>', 'INV','width=650,height=400,scrollbars=yes');" ><img src="./images/edit.gif" border="0" /></a></td>
-			 <td style="color:#000066" align="right">&nbsp;<a href="?p=reports&report_cd=<?php echo $rows['report_id']; ?>&cid=<?php echo $_REQUEST['cid']; ?>&cat_cd=<?php if($_REQUEST['cat_cd'])
+			 <td class="text-center"><a href="javascript:void(null);" onclick="window.open('upload_report.php?report_id=<?php echo $rows['report_id']; ?>', 'INV','width=650,height=400,scrollbars=yes');" ><i class="bi bi-pencil-fill iconorange" style="margin-right: 10px;"></i> /></a>
+			  &nbsp;<a href="?p=reports&report_cd=<?php echo $rows['report_id']; ?>&cid=<?php echo $_REQUEST['cid']; ?>&cat_cd=<?php if($_REQUEST['cat_cd'])
 			 {
 			 echo $_REQUEST['cat_cd'];
 			 }
@@ -1168,14 +1061,14 @@ $total_numdd=$res2doc->rowCount();
 			 {
 			 $cat=0;
 			 echo $cat;
-			 } ?>&category_cd=<?php echo $_REQUEST['category_cd']; ?>&mode=delete"  onclick="return confirm('Are you sure, You want to delete this record?')"><img  src="./images/delete.gif"/></a></td>
+			 } ?>&category_cd=<?php echo $_REQUEST['category_cd']; ?>&mode=delete"  onclick="return confirm('Are you sure, You want to delete this record?')"> <i class="bi bi-trash-fill iconred"></i> </a></td>
 			 <?php
 			 }
 			 else if($row2doc['parent_cd']==0)
 			 {
 			 ?>
 			<td colspan="2"></td> 
-			 <!--<td colspan="2"><a href="javascript:void(null);" onclick="window.open('upload_report.php?report_id=<?php //echo $rows['report_id']; ?>', 'INV','width=550,height=400,scrollbars=yes');" ><img src="./images/edit.gif" border="0" /></a></td>--> 
+			 <!--<td colspan="2"><a href="javascript:void(null);" onclick="window.open('upload_report.php?report_id=<?php //echo $rows['report_id']; ?>', 'INV','width=550,height=400,scrollbars=yes');" > <i class="bi bi-pencil-fill iconorange" style="margin-right: 10px;"></i> </a></td>--> 
 			 <?php
 			 }
 			
@@ -1195,7 +1088,7 @@ $total_numdd=$res2doc->rowCount();
 							
 							
 ?>
-<td colspan="2"><a href="javascript:void(null);" onclick="window.open('upload_report.php?report_id=<?php echo $rows['report_id']; ?>', 'INV','width=650,height=400,scrollbars=yes');" ><img src="./images/edit.gif" border="0" /></a></td>
+<td colspan="2"><a href="javascript:void(null);" onclick="window.open('upload_report.php?report_id=<?php echo $rows['report_id']; ?>', 'INV','width=650,height=400,scrollbars=yes');" > <i class="bi bi-pencil-fill iconorange" style="margin-right: 10px;"></i></a></td>
 						
 <?php
 }
@@ -1204,8 +1097,8 @@ $total_numdd=$res2doc->rowCount();
 							
 							
 ?>
-<td ><a href="javascript:void(null);" onclick="window.open('upload_report.php?report_id=<?php echo $rows['report_id']; ?>', 'INV','width=650,height=400,scrollbars=yes');" ><img src="./images/edit.gif" border="0" /></a></td>
-<td style="color:#000066" align="right">&nbsp;<a href="?p=reports&report_cd=<?php echo $rows['report_id']; ?>&cid=<?php echo $_REQUEST['cid']; ?>&cat_cd=<?php if($_REQUEST['cat_cd'])
+<td class="text-center"><a href="javascript:void(null);" onclick="window.open('upload_report.php?report_id=<?php echo $rows['report_id']; ?>', 'INV','width=650,height=400,scrollbars=yes');" > <i class="bi bi-pencil-fill iconorange" style="margin-right: 10px;"></i></a></td>
+  <a href="?p=reports&report_cd=<?php echo $rows['report_id']; ?>&cid=<?php echo $_REQUEST['cid']; ?>&cat_cd=<?php if($_REQUEST['cat_cd'])
 			 {
 			 echo $_REQUEST['cat_cd'];
 			 }
@@ -1213,7 +1106,7 @@ $total_numdd=$res2doc->rowCount();
 			 {
 			 $cat=0;
 			 echo $cat;
-			 } ?>&category_cd=<?php echo $_REQUEST['category_cd']; ?>&mode=delete"  onclick="return confirm('Are you sure, You want to delete this record?')"><img  src="./images/delete.gif"/></a></td>
+			 } ?>&category_cd=<?php echo $_REQUEST['category_cd']; ?>&mode=delete"  onclick="return confirm('Are you sure, You want to delete this record?')"> <i class="bi bi-trash-fill iconred"></i> </a></td>
 						
 <?php
 }
@@ -1251,6 +1144,8 @@ $total_numdd=$res2doc->rowCount();
         }
         ?>
 </table>
+	</div>
+	</div>
 </td>
 </tr>
 <?php
@@ -1272,8 +1167,8 @@ if($temp_t1->rowCount()>=1)
 $cat_cd12="&cat_cd=".$_GET['cat_cd'];
 } ?>
 <form name="filter_12" id="filter_12" method="post" action="?p=reports&cid=<?php echo $_GET['cid']; ?>&category_cd=<?php echo $_GET['category_cd']?><?php echo $cat_cd12; ?>"> 
-<select name="task_status" >
-		<option value="7" <?php if(!isset($_GET['t_status']))echo "selected";?>>All Files</option>
+<select name="task_status" class="form-select-sm" >
+		<option value="7" <?php  if(!isset($_GET['t_status']))echo "selected";?>>All Files</option>
 		 <option value="1" <?php if($_GET['t_status']=='1')echo "selected";?>>Initiated</option>
   		<option value="2" <?php if($_GET['t_status']=='2')echo "selected";?>>Approved</option>
   		<option value="3" <?php if($_GET['t_status']=='3')echo "selected";?>>Not Approved</option>
@@ -1282,7 +1177,7 @@ $cat_cd12="&cat_cd=".$_GET['cat_cd'];
 		 <option value="6" <?php if($_GET['t_status']=='6')echo "selected";?>>Replied</option>
 </select> 
 		
-		<input type="submit" name="go_submit1" id="go_submit1" value="GO" /> </form></span>
+		<input type="submit" class="btn btn-primary btn-sm commontextsize" name="go_submit1" id="go_submit1" value="GO" /> </form></span>
 
 <table class="report_tbl" align="right" cellspacing="0" style="margin-top:5px;"  >
 
@@ -1375,16 +1270,7 @@ if(($read_right_task==1) || ($user_type=='1'))
 					
 					
 					 <td colspan="2" style="background:none;"><a href="javascript:void(null);" onclick="window.open('threads_input.php?task_id=<?php echo $res_t['tt_id']; ?>&cat_cd=<?php echo $res_t['category_cd']; ?>', 'INV','width=550,height=400,scrollbars=yes');" ><img src="images/edit.gif" border="0" /></a></td>
-			 <!--<td style="background:none;"><a href="?p=reports&sel_task_id=<?php /*echo $res_t['tt_id']; ?>&cid=<?php echo $_REQUEST['cid']; ?>&cat_cd=<?php if($_REQUEST['cat_cd'])
-			 {
-			 echo $_REQUEST['cat_cd'];
-			 }
-			 else
-			 {
-			 $cat=0;
-			 
-			 } ?>&category_cd=<?php echo $_REQUEST['category_cd'];*/ ?>&mode=task_delete"  onclick="return confirm('Are you sure, You want to delete this task?')"><img  src="./images/delete.gif"/></a>		 </td>-->
-			 <?php
+		 <?php
 			 }
 			 
 			
@@ -1397,7 +1283,6 @@ if(($read_right_task==1) || ($user_type=='1'))
 { 
 				?>
 				<td colspan="2" style="background:none;">
-				<!--<a href="javascript:void(null);" onclick="window.open('threads_input.php?task_id=<?php //echo $res_t['tt_id']; ?>&cat_cd=<?php //echo $res_t['category_cd']; ?>', 'INV','width=550,height=400,scrollbars=yes');" ><img src="images/edit.gif" border="0" /></a>--></td>
 <?php
 }
 else if($read_right_task==2)
@@ -1507,4 +1392,7 @@ $colorr="#FFFFFF";
   
 </div>
 
+</body>
+
+</html>
       
