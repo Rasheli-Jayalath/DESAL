@@ -147,6 +147,7 @@ else{
 	if($objAdminUser->is_login == true){
 		
 		require_once("pages/default.php");	
+    
 		include ("includes/footer.php"); 
 	}
 	else{

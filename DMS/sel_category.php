@@ -14,8 +14,8 @@ $objProduct 	= new Product;
 $objValidate 	= new Validate;
 //$objOrder 		= new Order;
 $objLog 		= new Log;
-require_once('rs_lang.admin.php');
-require_once('rs_lang.website.php');
+require_once('requires/rs_lang.admin.php');
+require_once('requires/rs_lang.website.php');
 
 ?>
 <?php

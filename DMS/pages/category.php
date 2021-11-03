@@ -276,6 +276,7 @@ function frmValidate(frm){
 	});
 	//-->
 	</script>
+	
 <div id="wrapperPRight">
 <!--<div id="wrapperPRight">-->
 <div id="containerContent" class="box" style="min-height:80px;padding:0px">
