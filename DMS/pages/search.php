@@ -235,8 +235,8 @@ function getsubcat(catid) {
 		
 			$cquery = "select * from  rs_tbl_category";
 			
-			$cresult = mysql_query($cquery);
-			while ($cdata = mysql_fetch_array($cresult)) {	
+			$cresult = $objDb->dbCon->query($cquery);  
+			while ($cdata = $cresult->fetch() ) {	
 			$cat_id=$cdata['category_cd'];	
 
 			?>
@@ -251,8 +251,8 @@ function getsubcat(catid) {
 		
 			$cqueryg = "select * from  rs_tbl_category";
 			
-			$cresultg = mysql_query($cqueryg);
-			while ($cdatag = mysql_fetch_array($cresultg)) {	
+			$cresultg = $objDb->dbCon->query($cqueryg); 
+			while ($cdatag = $cresultg->fetch() ) {	
 			$cat_idg=$cdatag['category_cd'];	
 
 			?>
@@ -322,8 +322,8 @@ function subcatlisting(subcatid,catid,parent_cd) {
 		  var subcat=myArray[len-1];
 		   <?php
 		 $cquery2 = "select * from  rs_tbl_category";			
-			$cresult2 = mysql_query($cquery2);
-			while ($cdata2 = mysql_fetch_array($cresult2)) {	
+			$cresult2 = $objDb->dbCon->query($cquery2); 
+			while ($cdata2 = $cresult2->fetch()  ) {	
 			$cat_id2=$cdata2['category_cd'];
 			?>
 		    document.getElementById("subcatdiv_"+<?php echo $cdata2['category_cd']?>).style.display="none";
@@ -345,8 +345,8 @@ function subcatlisting(subcatid,catid,parent_cd) {
 		  var subcat=myArray1[len1-1];
 		   <?php
 		 $cquery2 = "select * from  rs_tbl_category";			
-			$cresult2 = mysql_query($cquery2);
-			while ($cdata2 = mysql_fetch_array($cresult2)) {	
+			$cresult2 = $objDb->dbCon->query($cquery2); 
+			while ( $cdata2 = $cresult2->fetch() ) {	
 			$cat_id2=$cdata2['category_cd'];
 			?>
 		    document.getElementById("subcatdiv_"+<?php echo $cdata2['category_cd']?>).style.display="none";
@@ -465,8 +465,8 @@ echo   " [" ;
   		<option value=0  ><?php echo "Select Category.."; ?> </option>
 		 <?php
 		$cquery = "select * from  rs_tbl_category WHERE parent_cd = 0";
-		$cresult = mysql_query($cquery);
-		while ($cdata = mysql_fetch_array($cresult)) {
+		$cresult = $objDb->dbCon->query($cquery); 
+		while ($cdata = $cresult->fetch() ) {
 
 ?>
 		
@@ -484,8 +484,8 @@ echo   " [" ;
 			<?php
 $cquery = "select category_cd from  rs_tbl_category";
 		
-		$cresult = mysql_query($cquery);
-		while ($cdata = mysql_fetch_array($cresult)) {	
+		$cresult = $objDb->dbCon->query($cquery); 
+		while ($cdata = $cresult->fetch() ) {	
 		$cat_id2=$cdata['category_cd'];	
 		?>
 <div id="<?php echo "subcatdiv_".$cdata['category_cd']?>" style="display:block" >

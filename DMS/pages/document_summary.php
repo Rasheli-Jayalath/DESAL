@@ -41,39 +41,39 @@ if($user_type==1 || $user_type==2)
 
 	////// For All Files
 	$sql2d_pa="Select count(*) as total_file_p, sum(file_size) as file_size_p from rs_tbl_documents";
-$res2d_pa=mysql_query($sql2d_pa);
-$row2d_pa=mysql_fetch_array($res2d_pa);
+$res2d_pa=$objDb->dbCon->query($sql2d_pa);
+$row2d_pa=$res2d_pa->fetch();	
 $totala=$row2d_pa['total_file_p'];
 $total_sizea=$row2d_pa['file_size_p'];	
 /////pdf
 $extension="'pdf' or extension='PDF'";
    
    $sql2d_pdfa="Select count(*) as total_file_pdf, sum(file_size) as file_size_pdf from rs_tbl_documents where (extension=$extension)"; 
-   	$res2d_pdfa=mysql_query($sql2d_pdfa);
-	$row2d_pdfa=mysql_fetch_array($res2d_pdfa);
+    $res2d_pdfa=$objDb->dbCon->query($sql2d_pdfa);
+	$row2d_pdfa=$res2d_pdfa->fetch();
 	$totalpdfa=$row2d_pdfa['total_file_pdf'];
 	$totalpdf_sizea=$row2d_pdfa['file_size_pdf'];
 /////DOC	
 	 $extension="'doc' or extension='DOC' or extension='DOCX' or extension='docx' or extension='txt' or extension='TXT' or extension='xls' or extension='xlsx' or extension='XLS' or extension='XLSX'";
    $sql2d_doca="Select count(*) as total_file_doc, sum(file_size) as file_size_doc from rs_tbl_documents where (extension=$extension)"; 
-   	$res2d_doca=mysql_query($sql2d_doca);
-	$row2d_doca=mysql_fetch_array($res2d_doca);
+   	$res2d_doca=$objDb->dbCon->query($sql2d_doca);
+	$row2d_doca=$res2d_doca->fetch();
 	$totaldoca=$row2d_doca['total_file_doc'];
 	$totaldoc_sizea=$row2d_doca['file_size_doc'];
 	
 	 //////All Images Files
   $extension="'jpg' or extension='jpeg' or extension='JPG' or extension='JPEG' or extension='GIF' or extension='gif' or extension='png' or extension='PNG'";
    $sql2d_imga="Select count(*) as total_file_img, sum(file_size) as file_size_img from rs_tbl_documents where (extension=$extension)"; 
-   	$res2d_imga=mysql_query($sql2d_imga);
-	$row2d_imga=mysql_fetch_array($res2d_imga);
+   	$res2d_imga=$objDb->dbCon->query($sql2d_imga);
+	$row2d_imga=$res2d_imga->fetch();
 	$totalimga=$row2d_imga['total_file_img'];
 	$totalimg_sizea=$row2d_imga['file_size_img'];
 	
 	//////All Drawing Files
   $extension="'dwg' or extension='DWG'";
    $sql2d_dwga="Select count(*) as total_file_dwg, sum(file_size) as file_size_dwg from rs_tbl_documents where (extension=$extension)"; 
-   	$res2d_dwga=mysql_query($sql2d_dwga);
-	$row2d_dwga=mysql_fetch_array($res2d_dwga);
+   	$res2d_dwga=$objDb->dbCon->query($sql2d_dwga);
+	$row2d_dwga=$res2d_dwga->fetch();
 	$totaldwga=$row2d_dwga['total_file_dwg'];
 	$totaldwg_sizea=$row2d_dwga['file_size_dwg'];
 	
@@ -82,39 +82,39 @@ $extension="'pdf' or extension='PDF'";
 	$totalother_sizea=$total_sizea-($totalpdf_sizea+$totaldoc_sizea+$totalimg_sizea+$totaldwg_sizea);
 	/////// For Weekly Files			
  $sql2d_p="Select count(*) as total_file_p, sum(file_size) as file_size_p from rs_tbl_documents where uploading_file_date between '$first_date' and '$last_date'";
-$res2d_p=mysql_query($sql2d_p);
-$row2d_p=mysql_fetch_array($res2d_p);
+$res2d_p=$objDb->dbCon->query($sql2d_p);
+$row2d_p=$res2d_p->fetch();
 $total=$row2d_p['total_file_p'];
 $total_size=$row2d_p['file_size_p'];	
 /////pdf
 $extension="'pdf' or extension='PDF'";
    
    $sql2d_pdf="Select count(*) as total_file_pdf, sum(file_size) as file_size_pdf from rs_tbl_documents where (extension=$extension) and (uploading_file_date between '$first_date' and '$last_date') "; 
-   	$res2d_pdf=mysql_query($sql2d_pdf);
-	$row2d_pdf=mysql_fetch_array($res2d_pdf);
+   	$res2d_pdf=$objDb->dbCon->query($sql2d_pdf);
+	$row2d_pdf=$res2d_pdf->fetch();
 	$totalpdf=$row2d_pdf['total_file_pdf'];
 	$totalpdf_size=$row2d_pdf['file_size_pdf'];
 /////DOC	
 	 $extension="'doc' or extension='DOC' or extension='DOCX' or extension='docx' or extension='txt' or extension='TXT' or extension='xls' or extension='xlsx' or extension='XLS' or extension='XLSX'";
    $sql2d_doc="Select count(*) as total_file_doc, sum(file_size) as file_size_doc from rs_tbl_documents where (extension=$extension) and (uploading_file_date between '$first_date' and '$last_date') "; 
-   	$res2d_doc=mysql_query($sql2d_doc);
-	$row2d_doc=mysql_fetch_array($res2d_doc);
+   	$res2d_doc=$objDb->dbCon->query($sql2d_doc);
+	$row2d_doc=$res2d_doc->fetch();
 	$totaldoc=$row2d_doc['total_file_doc'];
 	$totaldoc_size=$row2d_doc['file_size_doc'];
 	
 	 //////All Images Files
   $extension="'jpg' or extension='jpeg' or extension='JPG' or extension='JPEG' or extension='GIF' or extension='gif' or extension='png' or extension='PNG'";
    $sql2d_img="Select count(*) as total_file_img, sum(file_size) as file_size_img from rs_tbl_documents where (extension=$extension) and (uploading_file_date between '$first_date' and '$last_date') "; 
-   	$res2d_img=mysql_query($sql2d_img);
-	$row2d_img=mysql_fetch_array($res2d_img);
+   	$res2d_img=$objDb->dbCon->query($sql2d_img);
+	$row2d_img=$res2d_img->fetch();
 	$totalimg=$row2d_img['total_file_img'];
 	$totalimg_size=$row2d_img['file_size_img'];
 	
 	//////All Drawing Files
   $extension="'dwg' or extension='DWG'";
    $sql2d_dwg="Select count(*) as total_file_dwg, sum(file_size) as file_size_dwg from rs_tbl_documents where (extension=$extension) and (uploading_file_date between '$first_date' and '$last_date') "; 
-   	$res2d_dwg=mysql_query($sql2d_dwg);
-	$row2d_dwg=mysql_fetch_array($res2d_dwg);
+   	$res2d_dwg=$objDb->dbCon->query($sql2d_dwg);
+	$row2d_dwg=$res2d_dwg->fetch();
 	$totaldwg=$row2d_dwg['total_file_dwg'];
 	$totaldwg_size=$row2d_dwg['file_size_dwg'];
 	
@@ -127,8 +127,8 @@ else
 {
 
 $sSQL_1 = "SELECT * FROM rs_tbl_category";
-$my_query=mysql_query($sSQL_1);
-while($my_query_r=mysql_fetch_array($my_query))
+$my_query= $objDb->dbCon->query($sSQL_1);  
+while( $my_query_r= $my_query->fetch() )
 {
 
 $total_pa=0;
@@ -164,40 +164,40 @@ $total_othersize=0;
 	{
 	//// For All files
 	$sql2d_pa="Select count(*) as total_file_p, sum(file_size) as file_size_p from rs_tbl_documents where report_category=$category_cd";
-	$res2d_pa=mysql_query($sql2d_pa);
-	$row2d_pa=mysql_fetch_array($res2d_pa);
+	$res2d_pa=$objDb->dbCon->query($sql2d_pa);
+	$row2d_pa=$res2d_pa->fetch() ; 
 	$total_pa=$row2d_pa['total_file_p'];
 	$total_psizea=$row2d_pa['file_size_p'];
 	
 	 //////All PDF files
 	  $extension="'pdf' or extension='PDF'";
       $sql2d_pdfa="Select count(*) as total_file_pdf, sum(file_size) as file_size_pdf from rs_tbl_documents where report_category=$category_cd and (extension=$extension)"; 
-   	$res2d_pdfa=mysql_query($sql2d_pdfa);
-	$row2d_pdfa=mysql_fetch_array($res2d_pdfa);
+   	$res2d_pdfa=$objDb->dbCon->query($sql2d_pdfa);
+	$row2d_pdfa=$res2d_pdfa->fetch() ; 
 	 $total_pdfa=$row2d_pdfa['total_file_pdf'];
 	  $total_pdfsizea=$row2d_pdfa['file_size_pdf'];
 	 
 	  //////All Doc Files
   $extension="'doc' or extension='DOC' or extension='DOCX' or extension='docx' or extension='txt' or extension='TXT' or extension='xls' or extension='xlsx' or extension='XLS' or extension='XLSX'";
    $sql2d_doca="Select count(*) as total_file_doc, sum(file_size) as file_size_doc from rs_tbl_documents where report_category=$category_cd and (extension=$extension)"; 
-   	$res2d_doca=mysql_query($sql2d_doca);
-	$row2d_doca=mysql_fetch_array($res2d_doca);
+   	$res2d_doca=$objDb->dbCon->query($sql2d_doca);
+	$row2d_doca=$res2d_doca->fetch() ; 
 	$total_doca=$row2d_doca['total_file_doc'];
 	 $total_docsizea=$row2d_doca['file_size_doc'];
 	 
 	   //////All Images
 	  $extension="'jpg' or extension='jpeg' or extension='JPG' or extension='JPEG' or extension='GIF' or extension='gif' or extension='png' or extension='PNG'";
    $sql2d_imga="Select count(*) as total_file_img, sum(file_size) as file_size_img from rs_tbl_documents where report_category=$category_cd and (extension=$extension)"; 
-   	$res2d_imga=mysql_query($sql2d_imga);
-	$row2d_imga=mysql_fetch_array($res2d_imga);
+   	$res2d_imga=$objDb->dbCon->query($sql2d_imga);
+	$row2d_imga=$res2d_imga->fetch() ; 
 	$total_imga=$row2d_imga['total_file_img'];
 	$total_imgsizea=$row2d_imga['file_size_img'];
 	
 	 //////All Drawing Files
   $extension="'dwg' or extension='DWG'";
    $sql2d_dwga="Select count(*) as total_file_dwg, sum(file_size) as file_size_dwg from rs_tbl_documents where report_category=$category_cd and (extension=$extension)"; 
-   	$res2d_dwga=mysql_query($sql2d_dwga);
-	$row2d_dwga=mysql_fetch_array($res2d_dwga);
+   	$res2d_dwga=$objDb->dbCon->query($sql2d_dwga);
+	$row2d_dwga=$res2d_dwga->fetch() ; 
 	$total_dwga=$row2d_dwga['total_file_dwg'];
 	$total_dwgsizea=$row2d_dwga['file_size_dwg'];
 	
@@ -205,40 +205,40 @@ $total_othersize=0;
 	
 	////For Weekly
 	$sql2d_p="Select count(*) as total_file_p, sum(file_size) as file_size_p from rs_tbl_documents where report_category=$category_cd and uploading_file_date between '$first_date' and '$last_date'";
-	$res2d_p=mysql_query($sql2d_p);
-	$row2d_p=mysql_fetch_array($res2d_p);
+	$res2d_p=$objDb->dbCon->query($sql2d_p);
+	$row2d_p=$res2d_p->fetch() ; 
 	$total_p=$row2d_p['total_file_p'];
 	$total_psize=$row2d_p['file_size_p'];
 	
 	 //////All PDF files
 	  $extension="'pdf' or extension='PDF'";
       $sql2d_pdf="Select count(*) as total_file_pdf, sum(file_size) as file_size_pdf from rs_tbl_documents where report_category=$category_cd and (extension=$extension) and (uploading_file_date between '$first_date' and '$last_date') "; 
-   	$res2d_pdf=mysql_query($sql2d_pdf);
-	$row2d_pdf=mysql_fetch_array($res2d_pdf);
-	 $total_pdf=$row2d_pdf['total_file_pdf'];
+   	$res2d_pdf=$objDb->dbCon->query($sql2d_pdf);
+	$row2d_pdf=$res2d_pdf->fetch() ; 	 
+	$total_pdf=$row2d_pdf['total_file_pdf'];
 	  $total_pdfsize=$row2d_pdf['file_size_pdf'];
 	 
 	  //////All Doc Files
   $extension="'doc' or extension='DOC' or extension='DOCX' or extension='docx' or extension='txt' or extension='TXT' or extension='xls' or extension='xlsx' or extension='XLS' or extension='XLSX'";
    $sql2d_doc="Select count(*) as total_file_doc, sum(file_size) as file_size_doc from rs_tbl_documents where report_category=$category_cd and (extension=$extension) and (uploading_file_date between '$first_date' and '$last_date') "; 
-   	$res2d_doc=mysql_query($sql2d_doc);
-	$row2d_doc=mysql_fetch_array($res2d_doc);
+   	$res2d_doc=$objDb->dbCon->query($sql2d_doc);
+	$row2d_doc=$res2d_doc->fetch() ; 	
 	$total_doc=$row2d_doc['total_file_doc'];
 	 $total_docsize=$row2d_doc['file_size_doc'];
 	 
 	   //////All Images
 	  $extension="'jpg' or extension='jpeg' or extension='JPG' or extension='JPEG' or extension='GIF' or extension='gif' or extension='png' or extension='PNG'";
    $sql2d_img="Select count(*) as total_file_img, sum(file_size) as file_size_img from rs_tbl_documents where report_category=$category_cd and (extension=$extension) and (uploading_file_date between '$first_date' and '$last_date') "; 
-   	$res2d_img=mysql_query($sql2d_img);
-	$row2d_img=mysql_fetch_array($res2d_img);
+   	$res2d_img=$objDb->dbCon->query($sql2d_img);
+	$row2d_img=$res2d_img->fetch() ; 	
 	$total_img=$row2d_img['total_file_img'];
 	$total_imgsize=$row2d_img['file_size_img'];
 	
 	 //////All Drawing Files
   $extension="'dwg' or extension='DWG'";
    $sql2d_dwg="Select count(*) as total_file_dwg, sum(file_size) as file_size_dwg from rs_tbl_documents where report_category=$category_cd and (extension=$extension) and (uploading_file_date between '$first_date' and '$last_date') "; 
-   	$res2d_dwg=mysql_query($sql2d_dwg);
-	$row2d_dwg=mysql_fetch_array($res2d_dwg);
+   	$res2d_dwg=$objDb->dbCon->query($sql2d_dwg);
+	$row2d_dwg=$res2d_dwg->fetch() ; 	
 	$total_dwg=$row2d_dwg['total_file_dwg'];
 	$total_dwgsize=$row2d_dwg['file_size_dwg'];
 	}
@@ -259,78 +259,78 @@ $total_othersize=0;
 		{
 		////// For All files
 		$sql2d_pa="Select count(*) as total_file_p, sum(file_size) as file_size_p from rs_tbl_documents where report_category=$category_cd";
-	$res2d_pa=mysql_query($sql2d_pa);
-	$row2d_pa=mysql_fetch_array($res2d_pa);
-	 $total_pa=$row2d_pa['total_file_p'];
+	$res2d_pa=$objDb->dbCon->query($sql2d_pa);
+	$row2d_pa=$res2d_pa->fetch() ;  
+	$total_pa=$row2d_pa['total_file_p'];
 	 $total_psizea=$row2d_pa['file_size_p'];
 	 
 	 //////All PDF files
 	  $extension="'pdf' or extension='PDF'";
       $sql2d_pdfa="Select count(*) as total_file_pdf, sum(file_size) as file_size_pdf from rs_tbl_documents where report_category=$category_cd and (extension=$extension)"; 
-   	$res2d_pdfa=mysql_query($sql2d_pdfa);
-	$row2d_pdfa=mysql_fetch_array($res2d_pdfa);
+   	$res2d_pdfa=$objDb->dbCon->query($sql2d_pdfa);
+	$row2d_pdfa=$res2d_pdfa->fetch() ; 
 	 $total_pdfa=$row2d_pdfa['total_file_pdf'];
 	 $total_pdfsizea=$row2d_pdfa['file_size_pdf'];
 	 
 	  //////All Doc Files
   $extension="'doc' or extension='DOC' or extension='DOCX' or extension='docx' or extension='txt' or extension='TXT' or extension='xls' or extension='xlsx' or extension='XLS' or extension='XLSX'";
    $sql2d_doca="Select count(*) as total_file_doc, sum(file_size) as file_size_doc from rs_tbl_documents where report_category=$category_cd and (extension=$extension) "; 
-   	$res2d_doca=mysql_query($sql2d_doca);
-	$row2d_doca=mysql_fetch_array($res2d_doca);
+   	$res2d_doca=$objDb->dbCon->query($sql2d_doca);
+	$row2d_doca=$res2d_doca->fetch() ; 
 	$total_doca=$row2d_doca['total_file_doc'];
 	 $total_docsizea=$row2d_doca['file_size_doc'];
 	 
 	   //////All Images
 	  $extension="'jpg' or extension='jpeg' or extension='JPG' or extension='JPEG' or extension='GIF' or extension='gif' or extension='png' or extension='PNG'";
    $sql2d_imga="Select count(*) as total_file_img, sum(file_size) as file_size_img from rs_tbl_documents where report_category=$category_cd and (extension=$extension) "; 
-   	$res2d_imga=mysql_query($sql2d_imga);
-	$row2d_imga=mysql_fetch_array($res2d_imga);
+   	$res2d_imga=$objDb->dbCon->query($sql2d_imga);
+	$row2d_imga=$res2d_imga->fetch() ; 
 	$total_imga=$row2d_imga['total_file_img'];
 	$total_imgsizea=$row2d_imga['file_size_img'];
 	
 	 //////All Drawing Files
   $extension="'dwg' or extension='DWG'";
    $sql2d_dwga="Select count(*) as total_file_dwg, sum(file_size) as file_size_dwg from rs_tbl_documents where report_category=$category_cd and (extension=$extension) "; 
-   	$res2d_dwga=mysql_query($sql2d_dwga);
-	$row2d_dwga=mysql_fetch_array($res2d_dwga);
+   	$res2d_dwga=$objDb->dbCon->query($sql2d_dwga);
+	$row2d_dwga=$res2d_dwga->fetch() ; 
 	$total_dwga=$row2d_dwga['total_file_dwg'];
 	$total_dwgsizea=$row2d_dwga['file_size_dwg'];
 		////For weekly Files
 	$sql2d_p="Select count(*) as total_file_p, sum(file_size) as file_size_p from rs_tbl_documents where report_category=$category_cd and uploading_file_date between '$first_date' and '$last_date'";
-	$res2d_p=mysql_query($sql2d_p);
-	$row2d_p=mysql_fetch_array($res2d_p);
-	 $total_p=$row2d_p['total_file_p'];
+	$res2d_p=$objDb->dbCon->query($sql2d_p);
+	$row2d_p=$res2d_p->fetch() ; 
+	$total_p=$row2d_p['total_file_p'];
 	 $total_psize=$row2d_p['file_size_p'];
 	 
 	 //////All PDF files
 	  $extension="'pdf' or extension='PDF'";
       $sql2d_pdf="Select count(*) as total_file_pdf, sum(file_size) as file_size_pdf from rs_tbl_documents where report_category=$category_cd and (extension=$extension) and (uploading_file_date between '$first_date' and '$last_date') "; 
-   	$res2d_pdf=mysql_query($sql2d_pdf);
-	$row2d_pdf=mysql_fetch_array($res2d_pdf);
-	 $total_pdf=$row2d_pdf['total_file_pdf'];
+   	$res2d_pdf=$objDb->dbCon->query($sql2d_pdf);
+	$row2d_pdf=$res2d_pdf->fetch() ; 	 
+	$total_pdf=$row2d_pdf['total_file_pdf'];
 	 $total_pdfsize=$row2d_pdf['file_size_pdf'];
 	 
 	  //////All Doc Files
   $extension="'doc' or extension='DOC' or extension='DOCX' or extension='docx' or extension='txt' or extension='TXT' or extension='xls' or extension='xlsx' or extension='XLS' or extension='XLSX'";
    $sql2d_doc="Select count(*) as total_file_doc, sum(file_size) as file_size_doc from rs_tbl_documents where report_category=$category_cd and (extension=$extension) and (uploading_file_date between '$first_date' and '$last_date') "; 
-   	$res2d_doc=mysql_query($sql2d_doc);
-	$row2d_doc=mysql_fetch_array($res2d_doc);
+   	$res2d_doc=$objDb->dbCon->query($sql2d_doc);
+	$row2d_doc=$res2d_doc->fetch() ; 	
 	$total_doc=$row2d_doc['total_file_doc'];
 	 $total_docsize=$row2d_doc['file_size_doc'];
 	 
 	   //////All Images
 	  $extension="'jpg' or extension='jpeg' or extension='JPG' or extension='JPEG' or extension='GIF' or extension='gif' or extension='png' or extension='PNG'";
    $sql2d_img="Select count(*) as total_file_img, sum(file_size) as file_size_img from rs_tbl_documents where report_category=$category_cd and (extension=$extension) and (uploading_file_date between '$first_date' and '$last_date') "; 
-   	$res2d_img=mysql_query($sql2d_img);
-	$row2d_img=mysql_fetch_array($res2d_img);
+   	$res2d_img=$objDb->dbCon->query($sql2d_img);
+	$row2d_img=$res2d_img->fetch() ; 	
 	$total_img=$row2d_img['total_file_img'];
 	$total_imgsize=$row2d_img['file_size_img'];
 	
 	 //////All Drawing Files
   $extension="'dwg' or extension='DWG'";
    $sql2d_dwg="Select count(*) as total_file_dwg, sum(file_size) as file_size_dwg from rs_tbl_documents where report_category=$category_cd and (extension=$extension) and (uploading_file_date between '$first_date' and '$last_date') "; 
-   	$res2d_dwg=mysql_query($sql2d_dwg);
-	$row2d_dwg=mysql_fetch_array($res2d_dwg);
+   	$res2d_dwg=$objDb->dbCon->query($sql2d_dwg);
+	$row2d_dwg=$res2d_dwg->fetch() ; 	
 	$total_dwg=$row2d_dwg['total_file_dwg'];
 	$total_dwgsize=$row2d_dwg['file_size_dwg'];
 	
@@ -400,8 +400,8 @@ $totalother_size=$total_size-($totalpdf_size+$totaldoc_size+$totalimg_size+$tota
   <?php 
 
  				$sql2d_all="Select count(*) as total_file, sum(file_size) as file_size from rs_tbl_documents";
-				$res2d_all=mysql_query($sql2d_all);
-				$row2d_all=mysql_fetch_array($res2d_all);	?>
+				$res2d_all=  $objDb->dbCon->query($sql2d_all) ;
+				$row2d_all=  $res2d_all->fetch()  ;	?>
   <tr>
   <td align="center" >1</td>
   <td ><?php echo "All Files" ?></td>
