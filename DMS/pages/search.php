@@ -155,25 +155,7 @@ document.getElementById("revision").value=valuer;
 }
 </script>
 
-   <script>
-  $(function() {
-    $( "#doc_issue_date" ).datepicker();
-	
-  });
-  $(function() {
-    $( "#doc_upload_datef" ).datepicker();
-	
-  });
-   $(function() {
-    $( "#doc_upload_datet" ).datepicker();
-	
-  });
-   $(function() {
-    $( "#received_date" ).datepicker();
-	
-  });
- 
-  </script>
+
   <script>
 function selectAllUnSelectAll_1(chkAll, strSelecting, frm){
 
@@ -391,28 +373,31 @@ function subcatlisting(subcatid,catid,parent_cd) {
 //}
 ?>
 
- 
-<div id="wrapperPRight">
+<!DOCTYPE html>
+<html lang="en">
 
-<div id="containerContent" style="min-height:80px;padding:0px">
-<div style="text-align:right; padding:10px; text-decoration:none">
-<a  style="text-align:right; padding:10px; text-decoration:none" href="./?p=my_profile" title="header=[My Profile] body=[&nbsp;] fade=[on]">
-<?php 
-echo  "Welcome ".$objAdminUser->fullname_name." ".$objAdminUser->designation;   ?>
- 
-<?php 
-echo   " [" ;
-			if($objAdminUser->user_type==1)  
-			echo "SuperAdmin";
-			elseif($objAdminUser->user_type==2&&$objAdminUser->member_cd==0)
-			echo "SubAdmin";
-			else
-			echo "User";
-			echo "]";
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-	?> 
-   </a></div>
-<h2 align="center">Quick Search </h2>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+    </style>
+     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+    <link href="css/style.css" rel="stylesheet">
+
+    <title>DMS</title>
+</head>
+
+<body>
+<div id="">
+
+<div class="container" style="margin-top: 20px; margin-bottom: 130px;" >
+
+<h4 class="semibold"  style="text-align: center; margin: auto; margin-bottom: 20px;">Quick Search</h4>
 
 <?php echo $objCommon->displayMessage();?>
          
@@ -454,112 +439,240 @@ echo   " [" ;
 </form>
 </table>
 </div><?php */?>
-<div id="advance_search" >
-<form name="searchfrm" id="searchfrm" action="reports_search.php"  method="post"  style=" border:1px solid #FFFFFF" >
-     <table width="90%"  align="center" cellpadding="1" cellspacing="1" >      
-      <tr >
-	  
-	  <td width="14%" class="label" >Select Category: &nbsp;</td>
-	  <td width="38%" >
-	  <select  name="cat_id" id="cat_id" onchange="getsubcat(this.value)" >
-  		<option value=0  ><?php echo "Select Category.."; ?> </option>
-		 <?php
-		$cquery = "select * from  rs_tbl_category WHERE parent_cd = 0";
-		$cresult = $objDb->dbCon->query($cquery); 
-		while ($cdata = $cresult->fetch() ) {
+<div id="advance_search" class="form-inline" >
 
-?>
-		
-       <option value="<?php echo $cdata['category_cd']; ?>" <?php if ($cat_idm == $cdata['category_cd']) {echo ' selected="selected"';} ?>><?php echo $cdata['category_name']; ?></option>
-		<?php
-		}
-		?>
-</select>
-</td>
-<td width="14%" class="label">&nbsp;</td>
- <td width="38%" >&nbsp;</td>
-</tr>
-<tr>
-		<td colspan="2" style="padding:0px;">
-			<?php
+    <!-- Form -->
+    <form class="form-inline" name="searchfrm" id="searchfrm" action="reports_search.php"  method="post" >
+	<div class="row"  style="text-align: center; margin-bottom: 20px;">
+
+            
+		<div class="col-md-4"></div>
+
+		<div class="col-md-2 regular" style="text-align: center; margin: auto; ">
+		<label  class="sr-only" style="font-size: small;">Select Category</label>
+		</div>
+
+		<div class="col-md-2 regular" style="text-align: left; margin: auto; margin-top: 10px; ">
+		<select  class="form-select" style="font-size: small; " name="cat_id" id="cat_id" onchange="getsubcat(this.value)" >
+					<option value=0  ><?php echo "Select Category.."; ?> </option>
+					<?php
+					$cquery = "select * from  rs_tbl_category WHERE parent_cd = 0";
+					$cresult = $objDb->dbCon->query($cquery); 
+					while ($cdata = $cresult->fetch() ) {
+
+			?>
+					
+				<option value="<?php echo $cdata['category_cd']; ?>" <?php if ($cat_idm == $cdata['category_cd']) {echo ' selected="selected"';} ?>><?php echo $cdata['category_name']; ?></option>
+					<?php
+					}
+					?>
+		</select>
+
+		</div>
+		<div class="col-md-4"></div>
+   </div>   
+
+   <!--hidden  --> 
+   <?php
 $cquery = "select category_cd from  rs_tbl_category";
 		
 		$cresult = $objDb->dbCon->query($cquery); 
 		while ($cdata = $cresult->fetch() ) {	
 		$cat_id2=$cdata['category_cd'];	
 		?>
-<div id="<?php echo "subcatdiv_".$cdata['category_cd']?>" style="display:block" >
-		</div>
+<div id="<?php echo "subcatdiv_".$cdata['category_cd']?>" style="display:block" ></div>
+<input type="hidden" name="subcatidm" id="subcatidm" value=""/>    
 <?php
 }
 
 ?>
- <input type="hidden" name="subcatidm" id="subcatidm" value=""/>         
-</td>
-<td width="14%" class="label">&nbsp;</td>
- <td width="38%" >&nbsp;</td>
-</tr>
-	 
-	   <tr>
-	   
-         <td width="14%" class="label">Title: &nbsp;</td>
-         <td width="38%" > <input type="text" value="" name="titlee"  id="titlee" /></td>
-		 <td width="14%" class="label">Document No.: &nbsp;</td>
-         <td width="38%" ><input type="text" value="" name="document_no"  id="document_no" /></td>
-       </tr>
-	  
-	   <tr>
-         <td width="14%" class="label">Reference No.: &nbsp;</td>
-         <td width="38%" ><input type="text" value="" name="reference_no"  id="reference_no" /></td>
-		 <td width="14%" class="label">Reply Reference No.: &nbsp;</td>
-         <td width="38%" ><input type="text" value="" name="rep_reference_no"  id="rep_reference_no" /></td>
-		 
-       </tr>
-	   
-	   <tr>
-         <td width="14%" class="label">From: &nbsp;</td>
-         <td width="38%" ><input type="text" value="" name="file_from"  id="file_from" /></td>
-		 <td width="14%" class="label">To: &nbsp;</td>
-         <td width="38%" ><input type="text" value="" name="file_to"  id="file_to" /></td>
-       </tr>
-	   
-	   <tr>
-         <td width="14%" class="label">File No: &nbsp;</td>
-         <td width="38%" ><input type="text" value="" name="file_no"  id="file_no" /></td>
-		 <td width="14%" class="label">File Category: &nbsp;</td>
-         <td width="38%" ><input type="text" value="" name="file_category"  id="file_category" /></td>
-       </tr>
-	   
-	    <tr>
-         <td width="14%" class="label">Drawing Series: &nbsp;</td>
-         <td width="38%" ><input type="text" value="" name="drawing_series"  id="drawing_series" /></td>
-		 <td width="14%" class="label">Issue Date: &nbsp;</td>
-         <td width="38%" ><input type="text" value="" name="doc_issue_date"  id="doc_issue_date" /></td>
-       </tr>
-	   
-	   
-	   <tr>
-	   	 <td width="14%" class="label">Revision: &nbsp;</td>
-         <td width="38%" ><input type="text" value="" name="revision"  id="revision" /></td>
-         <td width="14%" class="label">Received Date: &nbsp;</td>
-         <td width="38%" ><input type="text" value="" name="received_date"  id="received_date" /></td>
-       </tr>
-	    <tr>
-         <td width="14%" class="label">Uploading Date: &nbsp;</td>
-         <td width="38%" ><input type="text" value="" name="doc_upload_datef"  id="doc_upload_datef" /><input type="text" value="" name="doc_upload_datet"  id="doc_upload_datet" /></td>
-       </tr>
-	    <tr>
-         <td width="14%" class="label">Remarks: &nbsp;</td>
-         <td width="38%" ><input type="text" value="" name="remarks"  id="remarks"  style="width:413px"/></td>
-       </tr>
-	    
-   <tr>
-         <td></td>
-         <td colspan="3">
-          <input type="button" onclick="advSearch(cat_id.value,subcatidm.value,titlee.value,document_no.value,reference_no.value,rep_reference_no.value,revision.value,file_from.value,file_to.value,file_no.value,file_category.value,drawing_series.value,doc_issue_date.value,received_date.value,doc_upload_datef.value,doc_upload_datet.value,remarks.value)" value="Go" /></td>
-       </tr>
-     </table>
-   </form>
+
+
+
+        <!-- <div class="row">
+
+            
+            <div class="col-md-2 regular" style="text-align: right; margin: auto;">
+              <label  class="sr-only" style="font-size: small;">Sub Category *</label>
+            </div>
+
+            <div class="col-md-3 regular" style="text-align: center; margin: auto; margin-top: 10px;">
+                <select class="form-select" style="font-size: small;">
+                <option selected>Select Sub Category..</option>
+                <option>Management Plans / Procedure</option>
+                <option>Progress Reports</option>
+                <option>Minutes of Meeting</option>
+                <option>Communication with client</option>
+                <option>Presentations</option>
+              </select>
+            </div>
+
+            <div class="col-md-2 regular" style="text-align: right; margin: auto;">
+                <label  class="sr-only" style="font-size: small;">Sub Category *</label>
+              </div>
+  
+              <div class="col-md-3 regular" style="text-align: center; margin: auto; margin-top: 10px;">
+                  <select class="form-select" style="font-size: small;">
+                  <option selected>Select Sub Category..</option>
+                  <option>Management Plans / Procedure</option>
+                  <option>Progress Reports</option>
+                  <option>Minutes of Meeting</option>
+                  <option>Communication with client</option>
+                  <option>Presentations</option>
+                </select>
+              </div>
+        </div> -->
+
+    
+        <div class="row">
+
+            
+            <div class="col-md-2 regular" style="text-align: right; margin: auto;">
+              <label  class="sr-only" style="font-size: small;">Title</label>
+            </div>
+
+            <div class="col-md-3 regular" style=" margin: auto; margin-top: 10px;">
+                <input class="form-control" type="text" placeholder="Title" style="font-size: small;" value="" name="titlee"  id="titlee">
+            </div>
+
+            <div class="col-md-2 regular" style="text-align: right; margin: auto;">
+                <label  class="sr-only" style="font-size: small;">Document No</label>
+              </div>
+  
+              <div class="col-md-3 regular" style=" margin: auto; margin-top: 10px;">
+                  <input class="form-control" type="text" placeholder="Document No" style="font-size: small;" value="" name="document_no"  id="document_no">
+              </div>
+        </div>
+
+        <div class="row">
+
+            
+            <div class="col-md-2 regular" style="text-align: right; margin: auto;">
+              <label  class="sr-only" style="font-size: small;">Reference No</label>
+            </div>
+
+            <div class="col-md-3 regular" style=" margin: auto; margin-top: 10px;">
+                <input class="form-control" type="text" placeholder="Reference No" style="font-size: small;" value="" name="reference_no"  id="reference_no">
+            </div>
+
+            <div class="col-md-2 regular" style="text-align: right; margin: auto;">
+                <label  class="sr-only" style="font-size: small;">Reply Reference No</label>
+              </div>
+  
+              <div class="col-md-3 regular" style=" margin: auto; margin-top: 10px;">
+                  <input class="form-control" type="text" placeholder="Reply Reference No" style="font-size: small;" value="" name="rep_reference_no"  id="rep_reference_no">
+              </div>
+        </div>
+
+        <div class="row">
+
+            <div class="col-md-2 regular" style="text-align: right; margin: auto;">
+              <label  class="sr-only" style="font-size: small;">From</label>
+            </div>
+
+            <div class="col-md-3 regular" style=" margin: auto; margin-top: 10px;">
+                <input class="form-control" type="text" placeholder="From" style="font-size: small;" value="" name="file_from"  id="file_from">
+            </div>
+
+            <div class="col-md-2 regular" style="text-align: right; margin: auto;">
+              <label  class="sr-only" style="font-size: small;">To</label>
+            </div>
+
+            <div class="col-md-3 regular" style=" margin: auto; margin-top: 10px;">
+                <input class="form-control" type="text" placeholder="To" style="font-size: small;" value="" name="file_to"  id="file_to">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-2 regular" style="text-align: right; margin: auto;">
+              <label  class="sr-only" style="font-size: small;">File No</label>
+            </div>
+
+            <div class="col-md-3 regular" style=" margin: auto; margin-top: 10px;">
+                <input class="form-control" type="text" placeholder="File No" style="font-size: small;"  value="" name="file_no"  id="file_no">
+            </div>
+
+            <div class="col-md-2 regular" style="text-align: right; margin: auto;">
+                <label  class="sr-only" style="font-size: small;">File Category</label>
+              </div>
+  
+              <div class="col-md-3 regular" style=" margin: auto; margin-top: 10px;">
+                  <input class="form-control" type="text" placeholder="File Category" style="font-size: small;"  value="" name="file_category"  id="file_category" >
+              </div>
+  
+        </div>
+
+        <div class="row">
+            <div class="col-md-2 regular" style="text-align: right; margin: auto;">
+              <label  class="sr-only" style="font-size: small;">Drawing Series</label>
+            </div>
+
+            <div class="col-md-3 regular" style=" margin: auto; margin-top: 10px;">
+                <input class="form-control" type="text" placeholder="Drawing Series" style="font-size: small;" value="" name="drawing_series"  id="drawing_series">
+            </div>
+
+            <div class="col-md-2 regular" style="text-align: right; margin: auto;">
+                <label  class="sr-only" style="font-size: small;">Issue Date</label>
+              </div>
+  
+              <div class="col-md-3 regular" style=" margin: auto; margin-top: 10px;">
+                  <input class="form-control" type="date" placeholder="Issue Date" style="font-size: small;" value="" name="doc_issue_date"  id="doc_issue_date">
+             
+              </div>
+            
+  
+        </div>
+
+        <div class="row">
+            <div class="col-md-2 regular" style="text-align: right; margin: auto;">
+              <label  class="sr-only" style="font-size: small;">Revision</label>
+            </div>
+
+            <div class="col-md-3 regular" style=" margin: auto; margin-top: 10px;">
+                <input class="form-control" type="text" placeholder="Revision" style="font-size: small;" value="" name="revision"  id="revision">
+            </div>
+
+            <div class="col-md-2 regular" style="text-align: right; margin: auto;">
+                <label  class="sr-only" style="font-size: small;">Received Date</label>
+              </div>
+  
+              <div class="col-md-3 regular" style=" margin: auto; margin-top: 10px;">
+                  <input class="form-control" type="date" placeholder="Received Date" style="font-size: small;" value="" name="received_date"  id="received_date">
+              </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-2 regular" style="text-align: right; margin: auto;">
+              <label  class="sr-only" style="font-size: small;">Uploading Date</label>
+            </div>
+
+            <div class="col-md-3 regular" style=" margin: auto; margin-top: 10px;">
+                <input class="form-control" type="date" placeholder="Uploading Date" style="font-size: small;"  value="" name="doc_upload_datef"  id="doc_upload_datef" >
+                <input class="form-control" type="date" placeholder="Uploading Date" style="font-size: small;"  value="" name="doc_upload_datet"  id="doc_upload_datet" >
+            </div>
+
+            <div class="col-md-2 regular" style="text-align: right; margin: auto;">
+                <label  class="sr-only" style="font-size: small;">Remarks</label>
+              </div>
+  
+              <div class="col-md-3 regular" style=" margin: auto; margin-top: 10px;">
+                  <input class="form-control" type="text" placeholder="Remarks" style="font-size: small;" value="" name="remarks"  id="remarks" >
+              </div>
+        </div>
+
+
+        <div class="row">
+
+            <div class="col-md-2 regular" style=" text-align: center; margin: auto; margin-top: 40px;">
+                <button type="button" class="btn btn-primary"  onclick="advSearch(cat_id.value,subcatidm.value,titlee.value,document_no.value,reference_no.value,rep_reference_no.value,revision.value,file_from.value,file_to.value,file_no.value,file_category.value,drawing_series.value,doc_issue_date.value,received_date.value,doc_upload_datef.value,doc_upload_datet.value,remarks.value)" 
+                value="Go"><i class="bi bi-search" style="margin-right: 10px;"></i>Search</button>
+            </div>
+
+        </div>
+
+</form>
+
+   
 </div>
 
 

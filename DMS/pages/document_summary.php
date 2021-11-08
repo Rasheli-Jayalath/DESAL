@@ -1,6 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
 
-<div id="wrapperPRight">
-   <div style="margin-top:20px;">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+    </style>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/table-styling.css" rel="stylesheet">
+
+
+    <title>DMS</title>
+</head>
+
+<body>
+<div class="container" style="margin-top: 20px; margin-bottom: 50px;">
+   <div style="" class="table-responsive commontextsize"> 
   <?php 
  $user_type=$objAdminUser->user_type;
 $user_cd	= $objAdminUser->user_cd;  
@@ -385,18 +406,20 @@ $totalother_size=$total_size-($totalpdf_size+$totaldoc_size+$totalimg_size+$tota
  
  
   
-<table align="center" class="reference" style="width:70%; border-collapse:separate" >
-<tr><th style="font-weight:bold; vertical-align:middle; background-color:#006; text-align:center; height:30px; font-size:18px"  colspan="7">Documents Summary</th>
+<table class="reference table" style=" "  id="customers">
+<thead>
+<tr><th style="font-weight:bold; vertical-align:middle; text-align:center; height:30px; font-size:18px"  colspan="7">Documents Summary</th>
   </tr> 
 <tr><th style="font-weight:bold; vertical-align:middle; text-align:center" rowspan="2" width="2%">Sr.#</th>
-  <th style="font-weight:bold; vertical-align:middle; text-align:center" rowspan="2" width="20%">Description</th>
-  <th  style="font-weight:bold;vertical-align:middle; text-align:center" colspan="2" width="25%">Files Uploaded during Date <br /> <?php echo $first_date." : ".$last_date ?></th>
-  <th  style="font-weight:bold;vertical-align:middle; text-align:center" colspan="2" width="23%">Total Files</th></tr>
+  <th class="semibold" style="font-weight:bold; vertical-align:middle; text-align:center" rowspan="2" width="20%">Description</th>
+  <th class="semibold" style="font-weight:bold;vertical-align:middle; text-align:center" colspan="2" width="25%">Files Uploaded during Date <br /> <?php echo $first_date." : ".$last_date ?></th>
+  <th class="semibold"  style="font-weight:bold;vertical-align:middle; text-align:center" colspan="2" width="23%">Total Files</th></tr>
   <tr>
-  <th  style="font-weight:bold; text-align:center" >No.</th>
+  <th class="semibold"   style="font-weight:bold; text-align:center" >No.</th>
   <th  style="font-weight:bold; text-align:center">Size (MBs)</th>
    <th  style="font-weight:bold; text-align:center" >No.</th>
   <th  style="font-weight:bold; text-align:center">Size (MBs)</th></tr>
+</thead>
   <?php 
 
  				$sql2d_all="Select count(*) as total_file, sum(file_size) as file_size from rs_tbl_documents";
@@ -446,3 +469,7 @@ $totalother_size=$total_size-($totalpdf_size+$totaldoc_size+$totalimg_size+$tota
 </div>
 	</div>
 	<div class="clear"></div>
+
+	</body>
+
+</html>
