@@ -1,5 +1,6 @@
 <?php 
 require_once("config/config.php");
+$objDb		= new Database;
 $objCommon 		= new Common;
 $objMenu 		= new Menu;
 //$objNews 		= new News;
@@ -322,8 +323,8 @@ if($objAdminUser->is_login == true){
 			{
 			$category_cd=$_REQUEST["cat_cd"];
 			$sql="Select * from rs_tbl_category where category_cd=".$_REQUEST["cat_cd"];
-			$res=mysql_query($sql);
-			$row3=mysql_fetch_array($res);
+			$res=$objDb->dbCon->query($sql);
+			$row3= $res->fetch() ;
 			
 				$report_category=$row3['category_name'];
 				$parent_cd=$_REQUEST["cat_cd"];
@@ -381,8 +382,8 @@ if($objAdminUser->is_login == true){
 		 $categoryy_cd=$_REQUEST['cat_cd'];
 		 $cquery = "select * from  rs_tbl_category  where category_cd='$categoryy_cd'";
 		//$cquery = "select * from   rs_tbl_threads_titles  where tt_id='$categoryy_cd'";
-			$cresult = mysql_query($cquery);
-			$cdata = mysql_fetch_array($cresult);
+			$cresult = $objDb->dbCon->query ($cquery);
+			$cdata =  $cresult->fetch() ;
 			$u_ids=$cdata['user_ids'];	
 			$u_idscat=explode(",",$u_ids);
 			$len_u=count($u_idscat);
@@ -402,21 +403,21 @@ else if($j=$len_u-1)
  else if($_REQUEST['category_cd'])
 		{
 			//echo "category_cd";
-			$categoryy_cd1=$_REQUEST['category_cd'];
-		    $cquery1 = "select * from  rs_tbl_category  where category_cd='$categoryy_cd1'";
-			$cresult1 = mysql_query($cquery1);
-			$cdata1 = mysql_fetch_array($cresult1);
-			$parent_group1=$cdata1['parent_group'];
-			$parent_group12=explode("_",$parent_group1);
-			$len_pg=count($parent_group12);
-			$pgg=$parent_group12[$len_pg-2];
-			$cquery2 = "select * from  rs_tbl_category  where category_cd='$pgg'";
-			$cresult2 = mysql_query($cquery2);
-			$cdata2 = mysql_fetch_array($cresult2);
+			$categoryy_cd1  =  $_REQUEST['category_cd'];
+		    $cquery1        =  "select * from  rs_tbl_category  where category_cd='$categoryy_cd1'";
+			$cresult1       =  $objDb->dbCon->query ($cquery1);
+			$cdata1			=  $cresult1->fetch() ;
+			$parent_group1  =  $cdata1['parent_group'];
+			$parent_group12 =  explode("_",$parent_group1);
+			$len_pg         =  count($parent_group12);
+			$pgg            =  $parent_group12[$len_pg-2];
+			$cquery2        =  "select * from  rs_tbl_category  where category_cd='$pgg'";
+			$cresult2       =  $objDb->dbCon->query($cquery2);
+			$cdata2         =  $cresult2->fetch() ;
 				
-			$u_idst=$cdata2['user_ids'];	
-			$u_idscat1=explode(",",$u_idst);
-			$len_u1=count($u_idscat1);
+			$u_idst         =  $cdata2['user_ids'];	
+			$u_idscat1      =  explode(",",$u_idst);
+			$len_u1         =  count($u_idscat1);
 		 
 		 for($t=0;$t<$len_u1;$t++)
  {

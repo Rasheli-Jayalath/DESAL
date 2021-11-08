@@ -1052,8 +1052,8 @@ $total_numdd=$res2doc->rowCount();
 			 if($user_type==1 || $user_type==2)
 			 {
 			 ?>
-			 <td class="text-center"><a href="javascript:void(null);" onclick="window.open('upload_report.php?report_id=<?php echo $rows['report_id']; ?>', 'INV','width=650,height=400,scrollbars=yes');" ><i class="bi bi-pencil-fill iconorange" style="margin-right: 10px;"></i> /></a>
-			  &nbsp;<a href="?p=reports&report_cd=<?php echo $rows['report_id']; ?>&cid=<?php echo $_REQUEST['cid']; ?>&cat_cd=<?php if($_REQUEST['cat_cd'])
+			 <td class="text-center"><a href="javascript:void(null);" style= "text-decoration: none;" onclick="window.open('upload_report.php?report_id=<?php echo $rows['report_id']; ?>', 'INV','width=650,height=400,scrollbars=yes');" ><i class="bi bi-pencil-fill iconorange" ></i> </a>
+			 <a href="?p=reports&report_cd=<?php echo $rows['report_id']; ?>&cid=<?php echo $_REQUEST['cid']; ?>&cat_cd=<?php if($_REQUEST['cat_cd']) 
 			 {
 			 echo $_REQUEST['cat_cd'];
 			 }
@@ -1061,7 +1061,7 @@ $total_numdd=$res2doc->rowCount();
 			 {
 			 $cat=0;
 			 echo $cat;
-			 } ?>&category_cd=<?php echo $_REQUEST['category_cd']; ?>&mode=delete"  onclick="return confirm('Are you sure, You want to delete this record?')"> <i class="bi bi-trash-fill iconred"></i> </a></td>
+			 } ?>&category_cd=<?php echo $_REQUEST['category_cd']; ?>&mode=delete"  onclick="return confirm('Are you sure, You want to delete this record?')"> <i class="bi bi-trash-fill iconred" style="margin-left: 10px;" ></i> </a></td>
 			 <?php
 			 }
 			 else if($row2doc['parent_cd']==0)
