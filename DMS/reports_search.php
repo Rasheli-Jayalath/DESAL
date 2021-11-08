@@ -1,6 +1,6 @@
 <?php    
 require_once("config/config.php");
-
+$objDb		= new Database;
 $objCommon 		= new Common;
 $objMenu 		= new Menu;
 //$objNews 		= new News;
@@ -30,8 +30,8 @@ $user_type	= $objAdminUser->user_type;
 	else
 	{
 	$sSQL_p = "SELECT parent_group FROM rs_tbl_category WHERE category_cd=".$last_subcat;
-	$sSQL_p1=mysql_query($sSQL_p);
-	$sSQL_p2=mysql_fetch_array($sSQL_p1);
+	$sSQL_p1=$objDb->dbCon->query($sSQL_p);
+	$sSQL_p2=$sSQL_p1->fetch() ; 
 	$parent_group_p=$sSQL_p2['parent_group'];
 	}
 
@@ -311,8 +311,8 @@ if($titlee=="" && $document_no==""&& $reference_no=="" && $rep_reference_no=="" 
 else
 {
 $sSQL1 = "SELECT * FROM rs_tbl_documents WHERE ".$sCondition.$orderby;
-$sSQL12=mysql_query($sSQL1);
-$iCount = mysql_num_rows($sSQL12);
+$sSQL12=$objDb->dbCon->query($sSQL1);
+$iCount =$sSQL12->rowCount() ;
 if($iCount>0)
 {
 ?>
@@ -349,7 +349,7 @@ if($iCount>0)
 
 <?php
 $i=0;
-	while($sSQL3=mysql_fetch_array($sSQL12))
+	while($sSQL3=$sSQL12->fetch() )
 	{
 		$report_category 			= $sSQL3['report_category'];
 		$report_id 					= $sSQL3['report_id'];
@@ -378,8 +378,8 @@ $i=0;
 		
 	$sSQL2 = "SELECT * FROM rs_tbl_category WHERE category_cd=".$report_category." and INSTR(parent_group, '$parent_group_p')>0";
 	}
-	$sSQL13=mysql_query($sSQL2);
-	$sSQL4=mysql_fetch_array($sSQL13);
+	$sSQL13=$objDb->dbCon->query($sSQL2);
+	$sSQL4=$sSQL13->fetch() ;
 	$category_name=$sSQL4['category_name'];
 	$user_ids=$sSQL4['user_ids'];
 	$parent_cd=$sSQL4['parent_cd'];
@@ -387,7 +387,7 @@ $i=0;
 	$parent_group=$sSQL4['parent_group'];
 		if($user_type==1)
 		{
-		if(mysql_num_rows($sSQL13)>=1)	
+		if($sSQL13->rowCount()>=1)	
 		{	
 		?>
 		<tr <?php echo $style; ?>>
@@ -421,7 +421,7 @@ $i=0;
 
 	if($user_ids=="" && $parent_cd==0)
 	{
-	if(mysql_num_rows($sSQL13)>=1)	
+	if($sSQL13->rowCount() >=1)	
 	{
 	?>
 	<tr <?php echo $style; ?>>
@@ -455,8 +455,8 @@ $i=0;
 	{
 	$cat_id=$group_arr[$k];
 	$sSQL_loop = "SELECT * FROM rs_tbl_category WHERE category_cd=".$cat_id;
-	$sSQLloop=mysql_query($sSQL_loop);
-	$sSQLloop1=mysql_fetch_array($sSQLloop);
+	$sSQLloop= $objDb->dbCon->query($sSQL_loop);
+	$sSQLloop1=$sSQLloop->fetch() ; 
 
 	$user_p_ids=$sSQLloop1['user_ids'];
 	
@@ -494,7 +494,7 @@ $i=0;
 }
 if($count_group_arr==$sign)
 {
-if(mysql_num_rows($sSQL13)>=1)	
+if($sSQL13->rowCount() >=1)	
 {
 ?>
 <tr <?php echo $style; ?>>

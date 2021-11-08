@@ -1,6 +1,6 @@
 <?php
 require_once("config/config.php");
-
+$objDb		= new Database;
 $objCommon 		= new Common;
 $objMenu 		= new Menu;
 //$objNews 		= new News;
@@ -33,16 +33,16 @@ if($cat_id!="")
 if($user_type==1)
 {
  $tquery = "select * from  rs_tbl_category where parent_cd = ".$cat_id . " order by category_cd ASC";
-$tresult = mysql_query($tquery);
-$mysql_rows=mysql_num_rows($tresult);
+$tresult = $objDb->dbCon->query($tquery);
+$mysql_rows= $tresult->rowCount() ;
 }
 else
 {
 $tquery1 = "select * from  rs_tbl_category where parent_cd = ".$cat_id . " order by category_cd ASC";
-$tresult1 = mysql_query($tquery1);
+$tresult1 = $objDb->dbCon->query($tquery1);
 $c_id1="";
 $g=0;
-while($cddata2=mysql_fetch_array($tresult1))
+while($cddata2= $tresult1->fetch())
 {
 $catt_cdd=$cddata2['category_cd'];
 $arr_rst1=explode(",",$cddata2['user_ids']);
@@ -74,8 +74,8 @@ $g=$g+1;
 	if($c_id1!="")
 	{
 	$tquery = "select * from  rs_tbl_category where ".$c_id1." order by category_cd ASC";
-	$tresult = mysql_query($tquery);
-	$mysql_rows=mysql_num_rows($tresult);
+	$tresult = $objDb->dbCon->query($tquery); 
+	$mysql_rows= $tresult->rowCount() ;
 	}
 	else
 	{
@@ -92,15 +92,22 @@ if($mysql_rows>0)
 ?>
 
 
-<tr>
-<td width="12%" class="label"><?php echo "Sub Category";?> 
-       <span style="color:#FF0000;">*</span>:</td>
-<td width="38%">
-<select name="subcatid_<?php echo $cat_id; ?>" id="subcatid_<?php echo $cat_id; ?>"  onchange="subcatlisting(this.value,'<?php echo $cat_id?>',<?php echo $cat_id; ?>)">
+<div class="row"  style="text-align: center; margin-bottom: 20px;">
+
+            
+<div class="col-md-4"></div>
+
+<div class="col-md-2 regular" style="text-align: center; margin: auto; ">
+<label  class="sr-only" style="font-size: small;"><?php echo "Sub Category";?> </label>
+</div>
+
+<div class="col-md-2 regular" style="text-align: left; margin: auto; margin-top: 10px; ">
+<select class="form-select" style="font-size: small; " name="subcatid_<?php echo $cat_id; ?>" id="subcatid_<?php echo $cat_id; ?>"  onchange="subcatlisting(this.value,'<?php echo $cat_id?>',<?php echo $cat_id; ?>)">
+
 <option value="0">Select Sub Category..</option>
 <?php
 
-while ($tdata = mysql_fetch_array($tresult)) {
+while ($tdata =  $tresult->fetch()  ) {
 
 ?>
 <option value="<?php echo $tdata['category_cd']; ?>"><?php echo $tdata['category_name']; ?></option>
@@ -109,8 +116,15 @@ while ($tdata = mysql_fetch_array($tresult)) {
 }
 ?>
 </select>
-</td>
-</tr>
+
+</div>
+<div class="col-md-4"></div>
+ </div> 
+
+
+
+
+
 <?php
 
 }
