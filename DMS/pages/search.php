@@ -23,10 +23,10 @@ $report_path = REPORT_PATH;
 		foreach ($all_download as $selected_file_id) {
 
 $getquery="SELECT report_title,report_file,doc_issue_date,report_status,doc_upload_date,doc_creater,doc_last_modified_by FROM rs_tbl_documents where report_id=$selected_file_id";
- $result=mysql_query($getquery);
-$num_rows = mysql_num_rows($result);
+ $result=     $objDb->dbCon->query($getquery);
+ $num_rows =  $result->rowCount() ;
 
-  $l = mysql_fetch_array($result);
+ $l =  $result->fetch() ;
   
 	$results[] = $l['report_file'];
   //  $cat_name=preg_replace('/\s+/','_',$l['category_name']);
