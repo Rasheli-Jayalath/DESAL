@@ -1,6 +1,6 @@
 <?php    
 require_once("config/config.php");
-
+$objDb		    = new Database;
 $objCommon 		= new Common;
 $objMenu 		= new Menu;
 //$objNews 		= new News;
@@ -30,8 +30,8 @@ $user_type	= $objAdminUser->user_type;
 	else
 	{
 	$sSQL_p = "SELECT parent_group FROM rs_tbl_category WHERE category_cd=".$last_subcat;
-	$sSQL_p1=mysql_query($sSQL_p);
-	$sSQL_p2=mysql_fetch_array($sSQL_p1);
+	$sSQL_p1=$objDb->dbCon->query($sSQL_p);
+	$sSQL_p2= $sSQL_p1->fetch() ;
 	$parent_group_p=$sSQL_p2['parent_group'];
 	}
 
@@ -42,10 +42,10 @@ $user_type	= $objAdminUser->user_type;
 function reference_list($ref)
 {
 $sql="select distinct a.ref_list from (select rep_reference_no as ref_list from rs_tbl_documents where reference_no like '%$ref%' union select reference_no as ref_list from rs_tbl_documents where rep_reference_no like '%$ref%') a";
-$res=mysql_query($sql);
+$res=$objDb->dbCon->query($sql);
 $ref_list=array();
 $i=0;
-while($res_test=mysql_fetch_array($res))
+while($res_test=$res->fetch() )
 {
 
 $ref_list[$i]= $res_test['ref_list'];
@@ -116,8 +116,8 @@ $final_ids=array();
 foreach($final_list as $final_value)
 {
 $sql_i="select distinct report_id as rid from rs_tbl_documents where reference_no ='$final_value' or rep_reference_no='$final_value'";
-$res_i=mysql_query($sql_i);
-while($final_res=mysql_fetch_array($res_i))
+$res_i=$objDb->dbCon->query($sql_i);
+while($final_res= $res_i->fetch() )
 {
 	if(!in_array($final_res['rid'],$final_ids,true))
 	{
@@ -129,7 +129,7 @@ while($final_res=mysql_fetch_array($res_i))
 if(count($final_ids)>=1)
 {
 $sSQL1 = "select * from rs_tbl_documents where report_id in  (".implode(",",$final_ids).") order by doc_issue_date";
-$sSQL12=mysql_query($sSQL1);
+$sSQL12=$objDb->dbCon->query($sSQL1);
 
 ?>
 <form action="" method="post"  name="report_cat" id="report_cat" onsubmit="return atleast_onecheckbox(event)">
@@ -158,7 +158,7 @@ $sSQL12=mysql_query($sSQL1);
 
 <?php
 $i=0;
-	while($sSQL3=mysql_fetch_array($sSQL12))
+	while($sSQL3=$sSQL12->fetch() )
 	{
 		$report_category 			= $sSQL3['report_category'];
 		$report_id 					= $sSQL3['report_id'];
@@ -187,8 +187,8 @@ $i=0;
 		
 	$sSQL2 = "SELECT * FROM rs_tbl_category WHERE category_cd=".$report_category." and INSTR(parent_group, '$parent_group_p')>0";
 	}
-	$sSQL13=mysql_query($sSQL2);
-	$sSQL4=mysql_fetch_array($sSQL13);
+	$sSQL13=$objDb->dbCon->query($sSQL2);
+	$sSQL4= $sSQL13->fetch() ;
 	$category_name=$sSQL4['category_name'];
 	$user_ids=$sSQL4['user_ids'];
 	$parent_cd=$sSQL4['parent_cd'];
@@ -196,7 +196,7 @@ $i=0;
 	$parent_group=$sSQL4['parent_group'];
 		if($user_type==1 || $user_type==2)
 		{
-		if(mysql_num_rows($sSQL13)>=1)	
+		if( $sSQL13->rowCount()>=1)	
 		{	
 		?>
 		<tr <?php echo $style; ?>>
@@ -229,7 +229,7 @@ $i=0;
 
 	if($user_ids=="" && $parent_cd==0)
 	{
-	if(mysql_num_rows($sSQL13)>=1)	
+	if($sSQL13->rowCount()>=1)	
 	{
 	?>
 	<tr <?php echo $style; ?>>
@@ -263,8 +263,8 @@ $i=0;
 	{
 	$cat_id=$group_arr[$k];
 	$sSQL_loop = "SELECT * FROM rs_tbl_category WHERE category_cd=".$cat_id;
-	$sSQLloop=mysql_query($sSQL_loop);
-	$sSQLloop1=mysql_fetch_array($sSQLloop);
+	$sSQLloop=$objDb->dbCon->query($sSQL_loop);
+	$sSQLloop1= $sSQLloop->fetch() ;
 
 	$user_p_ids=$sSQLloop1['user_ids'];
 	
@@ -302,7 +302,7 @@ $i=0;
 }
 if($count_group_arr==$sign)
 {
-if(mysql_num_rows($sSQL13)>=1)	
+if($sSQL13->rowCount()>=1)	
 {
 ?>
 <tr <?php echo $style; ?>>

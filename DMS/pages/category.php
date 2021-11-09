@@ -1,4 +1,30 @@
-<?php
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+    </style>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/table-styling.css" rel="stylesheet">
+
+
+    <!---  due to navbar not visible // <link type="text/css" href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet" media="all" /> --->
+	<link type="text/css" href="<?php echo SITE_URL;?>/jquery.mcdropdown/css/docs.css" rel="stylesheet" media="all" />
+	<link type="text/css" href="<?php echo SITE_URL;?>/jquery.mcdropdown/css/jquery.mcdropdown.min.css" rel="stylesheet" media="all" />
+
+    <title>DMS</title>
+</head>
+
+<body>
+	<?php
 //loadLang("product");
 $objDb		= new Database;
 $objProductM= new Product;
@@ -191,22 +217,7 @@ else{
 	}
 }
 ?>
-<!DOCTYPE html>
-<html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
-    </style>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
-    <link href="css/style.css" rel="stylesheet">
-    <link href="css/table-styling.css" rel="stylesheet">
 
 <script language="javascript" type="text/javascript">
 function frmValidate(frm){
@@ -274,9 +285,6 @@ function frmValidate(frm){
 	
 }
   </script>
-    <!---  due to navbar not visible // <link type="text/css" href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet" media="all" /> --->
-	<link type="text/css" href="<?php echo SITE_URL;?>/jquery.mcdropdown/css/docs.css" rel="stylesheet" media="all" />
-	<link type="text/css" href="<?php echo SITE_URL;?>/jquery.mcdropdown/css/jquery.mcdropdown.min.css" rel="stylesheet" media="all" />
 
 	<!---// load jQuery from the GoogleAPIs CDN //--->
 	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
@@ -295,15 +303,14 @@ function frmValidate(frm){
 	</script>
 
 
-</head>
 
-<body>
 	
 <div id="wrapperPRight" class="container" style="margin-top: 20px; margin-bottom: 50px;"> 
 <!--<div id="wrapperPRight">-->
-<div id="containerContent" class="box" style="min-height:80px;padding:0px">
-		<div id="pageContentName" class="shadowWhite"><div align="left"><strong><?php echo ($mode == "U")? "Update Category" : "Add New Category";?></strong></div></div>
-         
+
+		<div id="pageContentName" class="shadowWhite"><div align="left"><h4 class="semibold"  style="text-align: center; margin: auto; margin-bottom: 20px; margin-top: 25PX;"><?php echo ($mode == "U")? "Update Category" : "Add New Category";?></h4></div></div>
+		
+	<div id="containerContent" class="container" style="margin-top: 20px; margin-bottom: 50px;  border-radius: 15px; border: 2px solid #dfdfdf;padding: 20px; ">         
 		<!--<div id="pageContentRight">
 			<div class="menu1">
 				<ul>
@@ -313,43 +320,71 @@ function frmValidate(frm){
 			</div>
 		</div>-->
 		<div class="clear"></div>
-				<form name="frmCategory" id="frmCategory" action="" method="post" onSubmit="return frmValidate(this);">
+				<form name="frmCategory" id="frmCategory" action="" method="post" onSubmit="return frmValidate(this); " class="form-inline">
         <input type="hidden" name="mode" id="mode" value="<?php echo $mode;?>" />
         <input type="hidden" name="category_cd" id="category_cd" value="<?php echo $category_cd;?>" />
         
          <div id="tableContainer" class="table" style="border-left:1px;">
         
           <table width="70%" border="0" cellspacing="0" cellpadding="0" align="center">
-		   <tr>
-      
-        <td>
-	    <?php echo "Add Category In";?> <span style="color:#FF0000;">*</span>:
-        </td>
-        <td>
-        <div class="frmElement"><select name="cid" id="cid" class="rr_select">
-			<option value="0" selected>--select---</option>
-			<option value="1" <?php if($cid==1) echo 'selected="selected"';?>> Project Data</option>
-			<option value="2" <?php if($cid==2) echo 'selected="selected"';?>>DMS</option>
-		</select></div>
-		</td>
-        </tr>
-		  <tr>
-      
-        <td >
-	    <?php echo PRD_CAT_NAME;?> <span style="color:#FF0000;">*</span>:
-        </td>
-        <td>
-        <div class="frmElement"><input class="rr_input" type="text" name="category_name" id="category_name" value="<?php echo $category_name;?>" style="width:200px;" /></div>
-		</td>
-        </tr>
+			 <div class="row" style="margin-top: 20px;">
+
+                    <div class="col-md-4" style="text-align: right; margin: auto; font-size: small;">
+                      <label  class="sr-only bold"><?php echo "Add Category In";?> <span style="color:#FF0000;">*</span></label>
+                    </div>
+
+                    <div class=" col-md-4 regular frmElement" style="text-align: left; margin: auto;">
+                        <select class="form-select rr_select" style="font-size: small;" name="cid" id="cid">
+						<option value="0" selected>--select---</option>
+			   			<option value="1" <?php if($cid==1) echo 'selected="selected"';?>> Project Data</option>
+						<option value="2" <?php if($cid==2) echo 'selected="selected"';?>>DMS</option>
+                          </select>
+                    </div>
+
+                    <div class="col-md-4">
+                    </div>
+
+            </div>
+
+			<div class="row" style="margin-top: 10px;">
+
+				<div class="col-md-4" style="text-align: right; margin: auto; font-size: small;">
+				<label  class="sr-only bold">   <?php echo PRD_CAT_NAME;?> <span style="color:#FF0000;">*</span> </label>
+				</div>
+
+				<div class=" col-md-4 regular frmElement" style="text-align: left; margin: auto;">
+					<input class="form-control commontextsize rr_input" type="text" placeholder="Category Name" name="category_name" id="category_name" value="<?php echo $category_name;?>">
+				</div>
+
+				<div class="col-md-4">
+				</div>
+
+			</div>
+
   
-        </tr>
-		 <tr>
+  
+		 
       
-        <td >
-	    Template <span style="color:#FF0000;"></span>:
-        </td>
-        <td>
+        <!-- Template -->
+        <div class="row" style="margin-top: 30px; margin-bottom: 20px;">
+
+            <div class=" col-md-4">
+               
+            </div>
+
+            <div class="col-md-4 regular" style=" margin: auto; font-size: small;">
+                <p class="bold"  style="text-align: left; margin: auto; font-size: 20px;">Template</p>
+       
+            </div>
+
+            
+
+            <div class="col-md-4">
+            </div>
+
+        </div>
+		
+        <th   style="  border: 1px solid white;"> 
 		<table>
 		
 		<?php
@@ -362,7 +397,7 @@ $res=$objDb->dbCon->query($sqll);
 while($ress=$res->fetch())
 {
 ?>
-<tr>
+<tr>     
 
 <?php
  $column_name1=$ress['COLUMN_NAME'];
@@ -394,13 +429,15 @@ elseif($column_name1=="cid")
 {
 }
 else
-{
+{ 
  ?>
  <td>
  <?php
+ echo " <div class=\"col-md-7 regular\" style=\"text-align: right;  width: 200px; margin: auto; font-size: small;\">
+ <label  class=\"sr-only bold\">  ";
 if($column_name1=="report_title")
 {
-echo $column_name="Title";
+echo $column_name="Title"; 
 }
 
 if($column_name1=="doc_issue_date")
@@ -467,7 +504,7 @@ if($column_name1=="file_category")
 {
 echo $column_name="File Category";
 }
-
+echo "</label> </div>";
 ?>	
 </td>
 <?php
@@ -504,8 +541,9 @@ else
 ?>
 
 		<td>
+		<div class=" " style="text-align: left; margin: auto; margin-right: 20px">
         <input class="rr_input" type="hidden" name="cat_field_name[]" id="cat_field_name[]" value="<?php echo $column_name1;?>" style="width:200px;" />
-		<input class="rr_input" type="text" name="cat_title_text[]" id="cat_title_text[]" value="<?php
+		<input class="rr_input form-control commontextsize " type="text" name="cat_title_text[]" id="cat_title_text[]" value="<?php
 		if(isset($_GET['category_cd']))
 		{
 		$sql3="Select * from rs_tbl_category_template where cat_id=".$category_cd;
@@ -513,7 +551,7 @@ else
 		while($row3=$res3->fetch())
 		{
 			
-			 $cat_fieldname=$row3['cat_field_name'];
+			  $cat_fieldname=$row3['cat_field_name'];
 			  $cat_titletext=$row3['cat_title_text'];
 			if ($column_name1==$cat_fieldname)
 		{
@@ -527,8 +565,8 @@ else
 			{
 			}
 		
-		 ?>" style="width:200px;" />
-		 
+		 ?>"  style = "width: 300px; margin-left: 35px"/>
+		 </div>
 		</td>
 		<?php
 		}
@@ -562,8 +600,8 @@ elseif($column_name1=="report_status")
 else
 {
 		?>
-		<td>
-		<input name="order[]" type="text" class="rr_input" id="order[]" tabindex="<?php echo $i;?>" value="<?php
+		<td style = "  padding : 5px;" >
+		<input name="order[]" type="text" class="rr_input form-control commontextsize" id="order[]" tabindex="<?php echo $i;?>" value="<?php
 		if(isset($_GET['category_cd']))
 		{
 		$sql3="Select * from rs_tbl_category_template where cat_id=".$category_cd;
@@ -585,7 +623,7 @@ else
 			{
 			}
 		
-		 ?>" style="width:40px" />
+		 ?>" style="width:75px" placeholder="Order #" />
 						
          <input name="field_name[]" type="hidden" id="field_name[]" value="<?php echo $column_name1;?>"  />
 		</td>
@@ -595,44 +633,59 @@ else
 		<!--<td>
 		<input class="rr_input"  type="checkbox" name="check_id[]" id="check_id[]" value="<?php //$column_name1?>" style="width:10px;" />
 		</td>-->
-		</tr>
+		
 		
 		
 		<?php
 		}
 		?>
-		<tr><td>
-		Do you need Status of Documents? </td><td><input type="checkbox" name="category_status" id="category_status" value="1" <?php if($category_status==1){ echo 'checked="checked"';} ?> /></td></tr>
-		</table>
-		</td>
-        </tr>
-		
-        <tr >
-        <td colspan="2" align="center">
-          
-        <div id="div_button">
-            <input type="submit" class="rr_button" value="<?php echo ($mode == "U") ? _BTN_UPDATE : _BTN_SAVE;?>" />
-            <!--<input type="button" class="rr_button" value="<?php //echo _BTN_CANCEL;?>" onClick="document.location='./?p=category';" />-->
+		  </table>
+	
+		<div class="row" style="margin-top: 10px;">
+
+            <div class="col-md-7 regular" style="text-align: right; margin: auto; font-size: small;">
+              <label  class="sr-only bold">Do you need Status of Documents?</label>
+            </div>
+
+            <div class="col-md-5 form-check" style="text-align: right;">
+				<input class="form-check-input"  type="checkbox" name="category_status" id="category_status" value="1" <?php if($category_status==1){ echo 'checked="checked"';} ?> />
+              </div>
+
+            <div class="col-md-2">
+            </div>
+
         </div>
-        </td>
-        </tr>
-        </table>
+	
+		
+		<div class="row">
+
+			<div class="regular" style=" text-align: center; margin: auto; margin-top: 40px; margin-top: 10px; ">
+				<button type="submit" class="btn btn-success" value="<?php echo ($mode == "U") ? _BTN_UPDATE : _BTN_SAVE;?>"> <i class="bi bi-arrow-bar-up" style="margin-right: 10px;"></i>Save</button>
+
+			</div>
+
+         </div>
       
+	</table>
       </div>
 	</form>
+	</div>
 	
 	
  			
 		<?php echo $objCommon->displayMessage();?>
 		
-        <div id="tableContainer" class="table" style="border-left:1px;">
-		<table  width="100%" border="0" cellspacing="0" cellpadding="0">
-    <tr>
-      <td style="width:60%; font-weight:bold; background:#ededed" class="clsleft"><?php echo PRD_CAT_NAME;?></td>
-       <td style="width:20%; font-weight:bold; background:#ededed" class="clsleft"><?php echo "Component";?></td>
-      <td colspan="2" style="width:20%; font-weight:bold; background:#ededed"><?php echo "Action";?></td>
-      
-    </tr>
+        <div id="tableContainer" class="table" style="border-left:1px;" class="container" style="margin-top: 20px; margin-bottom: 100px;">
+		<div class="table-responsive commontextsize">
+		<table  width="100%"  id="customers" class="table">
+		<thead>
+				<tr>
+				<th style="width:60%;  " class="semibold"><?php echo PRD_CAT_NAME;?></th>
+				<th style="width:20%;  " class="semibold"><?php echo "Component";?></th>
+				<th colspan="2" style="width:20%;  text-align: center;" class="semibold"><?php echo "Action";?></th> 
+				
+				</tr>
+	    </thead>
     <?php
 	$objProduct->resetProperty();
 	$objProduct->setProperty("limit", PERPAGE);
@@ -654,8 +707,8 @@ else
 					  echo "DMS";
 				}
 				 ?></td>
-                <td><a href="./?p=category&category_cd=<?php echo $rows['category_cd'];?>" title="Edit"><img src="<?php echo SITE_URL;?>images/edit.gif" border="0" /></a></td>
-                <td><a href="./?p=category&mode=category_delete&category_cd=<?php echo $rows['category_cd'];?>" onClick="return doConfirm('Are you sure you want to delete this category?');" title="Delete"><img src="<?php echo SITE_URL;?>images/delete.gif" border="0" alt="Delete" title="Delete" /></a></td>
+                <td style="text-align: center;"><a href="./?p=category&category_cd=<?php echo $rows['category_cd'];?>" title="Edit"><i class="bi bi-pencil-fill iconorange" style="margin-right: 20px;"></i></a>
+                <a href="./?p=category&mode=category_delete&category_cd=<?php echo $rows['category_cd'];?>" onClick="return doConfirm('Are you sure you want to delete this category?');" title="Delete"> <i class="bi bi-trash-fill iconred"></i> </a></td>
     		</tr>
     		<?php
 			//getSub($rows['category_cd']);
@@ -670,12 +723,13 @@ else
 	}
 	?>
   </table>
+</div>
 		</div>
 		
-	</div> 
+
 	<!--</div>
 -->
-</div>
+
 
         <?php
 function getSub($parent_cd, $spaces = ''){
@@ -700,7 +754,7 @@ function getSub($parent_cd, $spaces = ''){
 				 ?></td>
                 
                 <td><a href="./?p=category&category_cd=<?php echo $rows_sub['category_cd'];?>" title="Edit"><img src="<?php echo SITE_URL;?>images/edit.gif" border="0" title="Edit" alt="Edit" /></a></td>
-                <td><a href="./?p=category&mode=Delete&category_cd=<?php echo $rows_sub['category_cd'];?>" onClick="return doConfirm('Are you sure you want to delete this category?');" title="Delete" ><img src="<?php echo SITE_URL;?>images/delete.gif" border="0" alt="Delete" title="Delete" /></a></td>
+                <td><a href="./?p=category&mode=Delete&category_cd=<?php echo $rows_sub['category_cd'];?>" onClick="return doConfirm('Are you sure you want to delete this category?');" title="Delete" > <i class="bi bi-trash-fill iconred"></i> </a></td>
     		</tr>
     		<?php
     		getSub($rows_sub['category_cd'], $spaces);
@@ -730,3 +784,6 @@ function getSubMM($parent_cd){
     }
 }
 ?>
+</div>
+</body>
+</html>
