@@ -48,7 +48,7 @@ extract($data);
                   </div>
 
                 <div class=" col-md-3 regular mobileclass2" style="font-size: small;">
-                    <label  class="sr-only"><?php echo $email;?>/label>
+                    <label  class="sr-only"><?php echo $email;?></label>
                    </div>  
                    
                    <div class="col-md-3">

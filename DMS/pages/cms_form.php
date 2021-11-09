@@ -54,14 +54,14 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
 			$objCommon->setMessage("CMS page is updated successfully",'Update');
 			$activity="CMS page is updated successfully";
 			$sSQLlog_log = "INSERT INTO rs_tbl_user_log(user_id, epname, logintime, user_ip, user_pcname, url_capture) VALUES ('$uid', '$nameuser', '$nowdt', '$ipadd', '$hostname','$activity')";
-				mysql_query($sSQLlog_log);		
+				$objDb->dbCon->query($sSQLlog_log);		
 			}
 			else
 			{
 			$objCommon->setMessage("CMS page is saved successfully",'Info');
 			$activity="CMS page is added successfully";
 			$sSQLlog_log = "INSERT INTO rs_tbl_user_log(user_id, epname, logintime, user_ip, user_pcname, url_capture) VALUES ('$uid', '$nameuser', '$nowdt', '$ipadd', '$hostname','$activity')";
-				mysql_query($sSQLlog_log);	
+				$objDb->dbCon->query($sSQLlog_log);	
 			}
 			redirect('./?p=cms_mgmt');
 		}

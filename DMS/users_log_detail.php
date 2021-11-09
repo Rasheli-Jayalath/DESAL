@@ -1,6 +1,6 @@
 <?php
 require_once("config/config.php");
-
+$objDb		    = new Database;
 $objCommon 		= new Common;
 $objMenu 		= new Menu;
 //$objNews 		= new News;
@@ -29,6 +29,15 @@ $user_type	= $objAdminUser->user_type;
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <title><?php echo HOME_MAIN_TITLE?></title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+    </style>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/table-styling.css" rel="stylesheet">
 <head>
 
 <link href="css/style.css" rel="stylesheet" type="text/css">
@@ -52,42 +61,44 @@ if($objAdminUser->is_login == true){
 	<?php /*?><script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script><?php */?>
 </head>
 <body>
-<div id="wrap">
+<h4 class="semibold"  style="text-align: center; margin: auto; margin-bottom: 20px; margin-top: 100px;">Users Log Detail</h4>
+<div id="wrap" class="container" style=" margin-top: 20px; margin-bottom: 50px;  ">
 <?php include ('includes/saveurl.php');?>
 <div id="wrapperPRight_log">
 <div id="tableContainer_log"  style="border-left:1px;">
-<div id="containerContent" class="box" style="min-height:80px;padding:0px">
-		<div id="pageContentName" class="shadowWhite"><div align="left"><strong><?php echo "Users Log Detail" ?></strong></div></div> 
+<div id="containerContent"  class="table-responsive commontextsize">
+
 		 <?php
         $prSQL = "select DISTINCT user_id, epname from rs_tbl_user_log where url_capture=''";
-        $queryres=mysql_query($prSQL);
-        $piCount = mysql_num_rows($queryres);
+        $queryres=$objDb->dbCon->query($prSQL);
+        $piCount =  $queryres->rowCount();
 	
     ?> 
-<table width="100%"  border="1"  align="center"  class="CSSTableGenerator" style="margin-top:60px;" >
-<tr align="left" style="background-color:#666666" >
-            <td width="5%" >Sr.#</td> 
-            <td width="30%" >User Name</td>
-			<td width="30%" >Name</td>
-			<td width="35%" >Number of times login</td>
-            </tr>
-             
-            <?
+	<table width="100%" id="customers" class="table"  >
+		<thead>
+			<tr align="left" style="background-color:#666666" >
+						<th  class="semibold" width="5%" >Sr.#                   </th> 
+						<th  class="semibold" width="30%" >User Name             </th>
+						<th  class="semibold" width="30%" >Name                  </th>
+						<th  class="semibold" width="35%" >Number of times login </th>
+			</tr>
+		</thead>
+            <?php
         if($piCount>0)
         {
 			$i=0;
-            while($abc_result=mysql_fetch_array($queryres))
+            while($abc_result= $queryres->fetch() )
             {
 			$i=$i+1;
             $user_id  		= $abc_result['user_id'];
             $epname  		= $abc_result['epname'];
 			$prSQL_w = "select count(user_id) as num_of_login from rs_tbl_user_log where user_id=".$user_id." and url_capture=''";
-        	$queryres_w=mysql_query($prSQL_w);
-        	$pres = mysql_fetch_array($queryres_w);
+        	$queryres_w=$objDb->dbCon->query($prSQL_w);
+        	$pres =  $queryres_w->fetch() ; 
 			$num_of_login=$pres['num_of_login'];		
 			$prSQL_n = "select first_name, last_name from mis_tbl_users where user_cd=".$user_id;
-        	$queryres_n=mysql_query($prSQL_n);
-			$abc_result_n=mysql_fetch_array($queryres_n);
+        	$queryres_n=$objDb->dbCon->query($prSQL_n);
+			$abc_result_n= $queryres_n->fetch() ; 
 			$fullname=$abc_result_n['first_name']." ".$abc_result_n['last_name'];
             ?>
             
@@ -97,7 +108,7 @@ if($objAdminUser->is_login == true){
 			<td ><?=$fullname?></td>
             <td ><a href="log_detail.php?uno=<?php echo $user_id; ?>" style="text-decoration:none" target="_blank"><?=$num_of_login;?></a></td>
             </tr>
-				   <?
+				   <?php
 					}
 				}
 				?>

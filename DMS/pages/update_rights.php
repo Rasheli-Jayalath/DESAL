@@ -11,8 +11,8 @@ redirect('./?p=update_rights&user_cd='.$u_id);
 
  $u_id= $_GET["user_cd"];
  $sql_name="Select first_name, last_name from mis_tbl_users where user_cd=".$u_id;
- $sql_name_q=mysql_query($sql_name);
- $sql_name_res=mysql_fetch_array($sql_name_q);
+ $sql_name_q=$objDb->dbCon->query($sql_name);
+ $sql_name_res= $sql_name_q->fetch() ; 
  $firstnam=$sql_name_res['first_name'];
  $lastnam=$sql_name_res['last_name'];
  $name_full=$firstnam." ".$lastnam;
@@ -22,8 +22,8 @@ if(($_SERVER['REQUEST_METHOD'] == "POST") && ($_POST['save']=="Save"))
  $u_id= $_GET["user_cd"];
 
 $sql = "SELECT * FROM rs_tbl_category order by parent_group, parent_cd";
-$sqlresult = mysql_query($sql);
-while ($data = mysql_fetch_array($sqlresult)) {
+$sqlresult = $objDb->dbCon->query($sql);
+while ($data = $sqlresult->fetch() ) {
 
 	$cdlist = array();
 	$items = 0;
@@ -32,12 +32,12 @@ while ($data = mysql_fetch_array($sqlresult)) {
 	$cdlist = explode("_",$path);
 	$items = count($cdlist);
 	$cdsql = "select * from rs_tbl_category where category_cd = ".$cdlist[0];
-	$cdsqlresult = mysql_query($cdsql);
-	$cddata = mysql_fetch_array($cdsqlresult);
+	$cdsqlresult = $objDb->dbCon->query($cdsql);
+	$cddata = $cdsqlresult->fetch() ; 
 	$category_name = $cddata['category_name'];
 	$cdsql3 = "select category_cd,user_ids,user_right from rs_tbl_category where category_cd = ".$cdlist[$items-1];
-		$cdsqlresult3 = mysql_query($cdsql3);
-		$cddata3 = mysql_fetch_array($cdsqlresult3);
+		$cdsqlresult3 = $objDb->dbCon->query($cdsql3);
+		$cddata3 = $cdsqlresult3->fetch() ; 
 		$catsid = $cddata3['category_cd'];
 		
 		 $status_r = trim($_POST['status'.$catsid]);
@@ -204,7 +204,7 @@ while ($data = mysql_fetch_array($sqlresult)) {
 				}
 				
 				$sqlu="UPDATE rs_tbl_category set user_ids='$concatids',user_right='$concatrights' where category_cd=$catsid"; 
-				$sql_run=mysql_query($sqlu);
+				$sql_run=$objDb->dbCon->query($sqlu);
 				$concatids="";
 				$concatrights="";
 				$concatids1="";
@@ -218,7 +218,7 @@ while ($data = mysql_fetch_array($sqlresult)) {
 	}
 	$activity="User rights updated successfully";
 	$sSQLlog_log = "INSERT INTO rs_tbl_user_log(user_id, epname, logintime, user_ip, user_pcname, url_capture) VALUES ('$uid', '$nameuser', '$nowdt', '$ipadd', '$hostname','$activity')";
-	mysql_query($sSQLlog_log);		
+	$objDb->dbCon->query($sSQLlog_log);		
 	redirect('./?p=user_mgmt');
 
 }
@@ -274,8 +274,8 @@ var status_value=s_value;
 		<?php
 		
 		$sql = "SELECT * FROM rs_tbl_category";
-$sqlresult = mysql_query($sql);
-while ($data = mysql_fetch_array($sqlresult)) {
+$sqlresult = $objDb->dbCon->query($sql);
+while ($data = $sqlresult->fetch()  ) {
 	$category_cdd = $data['category_cd'];
 		?>
 	if(category_cd==<?php echo $category_cdd ?>)
@@ -283,8 +283,8 @@ while ($data = mysql_fetch_array($sqlresult)) {
 	
 	<?php
 	$sql2 = "SELECT * FROM rs_tbl_category where parent_cd=$category_cdd";
-$sqlresult2 = mysql_query($sql2);
-while ($data1 = mysql_fetch_array($sqlresult2)) {
+$sqlresult2 = $objDb->dbCon->query($sql2);
+while ($data1 =  $sqlresult2->fetch()) {
 	$category_cd_main = $data1['category_cd'];
 	//$category_cd_main1=strlen($category_cd_main);
 	if(strlen($category_cd_main)==1)
@@ -329,11 +329,11 @@ while ($data1 = mysql_fetch_array($sqlresult2)) {
 						
 						<?php
 						$sql3 = "SELECT * FROM rs_tbl_category where parent_cd=$category_cd_main";
-$sqlresult3 = mysql_query($sql3);
-$t_rows=mysql_num_rows($sqlresult3);
+$sqlresult3 = $objDb->dbCon->query($sql3);
+$t_rows= $sqlresult3->rowCount();
 if($t_rows>=1)
 {
-$data6 = mysql_fetch_array($sqlresult3);
+$data6 =  $sqlresult3->fetch();
 $path6 = $data6['parent_group'];
 $cdlist6 = explode("_",$path6);
 	$items6 = count($cdlist6)-1;
@@ -419,8 +419,8 @@ var req= getXMLHTTP();
 		<div id="all">
 		<?php
 		$sql = "SELECT * FROM rs_tbl_category order by parent_group, parent_cd";
-$sqlresult = mysql_query($sql);
-while ($data = mysql_fetch_array($sqlresult)) {
+$sqlresult = $objDb->dbCon->query($sql);
+while ($data =  $sqlresult->fetch()) {
 	$cdlist = array();
 	$items = 0;
 	$path = $data['parent_group'];
@@ -428,8 +428,8 @@ while ($data = mysql_fetch_array($sqlresult)) {
 	$cdlist = explode("_",$path);
 	$items = count($cdlist);
 	$cdsql = "select * from rs_tbl_category where category_cd = ".$cdlist[0];
-	$cdsqlresult = mysql_query($cdsql);
-	$cddata = mysql_fetch_array($cdsqlresult);
+	$cdsqlresult = $objDb->dbCon->query($cdsql);
+	$cddata = $cdsqlresult->fetch();
 	$category_name = $cddata['category_name'];
 	//	echo $cdlist[0];
 	?>
@@ -447,8 +447,8 @@ while ($data = mysql_fetch_array($sqlresult)) {
 		
 	
 		$cdsql = "select category_cd,category_name from rs_tbl_category where category_cd = ".$cdlist[$items-1];
-		$cdsqlresult = mysql_query($cdsql);
-		$cddata = mysql_fetch_array($cdsqlresult);
+		$cdsqlresult = $objDb->dbCon->query($cdsql);
+		$cddata =  $cdsqlresult->fetch();
 		$category_cd = $cddata['category_cd'];
 
 			?>
@@ -527,14 +527,14 @@ while ($data = mysql_fetch_array($sqlresult)) {
 		{
 		  $abc= $_GET["user_cd"];
 		$cdsql2 = "select category_cd,parent_cd,user_ids,user_right from rs_tbl_category where category_cd = ".$cdlist[$items-1];
-		$cdsqlresult2 = mysql_query($cdsql2);
-		$cddata2 = mysql_fetch_array($cdsqlresult2);
+		$cdsqlresult2 = $objDb->dbCon->query($cdsql2);
+		$cddata2 = $cdsqlresult2->fetch();
 		$category_cd2 = $cddata2['category_cd'];
 		$parent_cdd = $cddata2['parent_cd'];
 		
 		$cdsqlt = "select category_cd,parent_cd,user_ids,user_right from rs_tbl_category where category_cd = ".$parent_cdd;
-		$cdsqlresult = mysql_query($cdsqlt);
-		$cddatat = mysql_fetch_array($cdsqlresult);
+		$cdsqlresult = $objDb->dbCon->query($cdsqlt);
+		$cddatat = $cdsqlresult->fetch();
 		$category_cdt = $cddatat['category_cd'];
 		
 		

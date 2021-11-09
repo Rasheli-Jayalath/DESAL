@@ -35,7 +35,7 @@ if(isset($_GET['mode']) && $_GET['mode'] == "delete"){
 				$objCommon->setMessage("Record deleted Successfully", 'Info');
 				$activity="File deleted successfully";
 	$sSQLlog_log = "INSERT INTO rs_tbl_user_log(user_id, epname, logintime, user_ip, user_pcname, url_capture) VALUES ('$uid', '$nameuser', '$nowdt', '$ipadd', '$hostname','$activity')";
-	mysql_query($sSQLlog_log);	
+	$objDb->dbCon->query($sSQLlog_log);	
 				redirect('./?p=reports&category_cd='.$category_cd_del.'&cat_cd='.$cat_cd_del.'&cid='.$cid_del);
 	
 	
@@ -1137,7 +1137,7 @@ $total_numdd=$res2doc->rowCount();
 	else{
 	?>
     <tr>
-	<?php $colspn=$total+6;?>
+	<?php $colspn=$total+7;?>
     	<td colspan="<?php echo $colspn; ?>" align="center" style="background-color:white"><?php echo "No record Found";?></td>
     </tr>
 		<?php
@@ -1191,7 +1191,7 @@ $cat_cd12="&cat_cd=".$_GET['cat_cd'];
  </tr>
 
 <?php
-while($res_t=mysql_fetch_array($temp_t1))
+while($res_t=$temp_t1->fetch())
 {
 
 
