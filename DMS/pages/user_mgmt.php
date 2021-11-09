@@ -1,3 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+    </style>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/table-styling.css" rel="stylesheet">
+
+
+
+    <title>DMS</title>
+</head>
+
+<body>
+
 <?php
 if($_GET['mode'] == 'Delete')
 {
@@ -8,7 +32,7 @@ if($_GET['mode'] == 'Delete')
 	$objCommon->setMessage('User\'s account deleted successfully.', 'Error');
 	$activity="User deleted successfully";
 	$sSQLlog_log = "INSERT INTO rs_tbl_user_log(user_id, epname, logintime, user_ip, user_pcname, url_capture) VALUES ('$uid', '$nameuser', '$nowdt', '$ipadd', '$hostname','$activity')";
-	mysql_query($sSQLlog_log);		
+	$objDb->dbCon->query($sSQLlog_log);		
 	redirect('./?p=user_mgmt');
 	
 }
@@ -51,7 +75,7 @@ if($_GET['mode'] == 'Suspend'){
 		$objCommon->setMessage('User\'s account suspended successfully.', 'Error');
 		$activity="User suspended successfully";
 	$sSQLlog_log = "INSERT INTO rs_tbl_user_log(user_id, epname, logintime, user_ip, user_pcname, url_capture) VALUES ('$uid', '$nameuser', '$nowdt', '$ipadd', '$hostname','$activity')";
-	mysql_query($sSQLlog_log);		
+	$objDb->dbCon->query($sSQLlog_log);		
 		
 		redirect('./?p=user_mgmt');
 	}
@@ -98,7 +122,7 @@ if($_GET['mode'] == 'Activate'){
 		$objCommon->setMessage('User\'s account activated successfully.', 'Info');
 		$activity="User activated successfully";
 	$sSQLlog_log = "INSERT INTO rs_tbl_user_log(user_id, epname, logintime, user_ip, user_pcname, url_capture) VALUES ('$uid', '$nameuser', '$nowdt', '$ipadd', '$hostname','$activity')";
-	mysql_query($sSQLlog_log);		
+	$objDb->dbCon->query($sSQLlog_log);		
 		redirect('./?p=user_mgmt');
 	}
 }
@@ -118,45 +142,52 @@ function doFilter(frm){
 }
 </script>
 
-<div id="wrapperPRight">
-		<div id="pageContentName"><?php echo "User Management";?></div>
-		<div id="pageContentRight">
-			<div class="menu1">
-				<ul>
-				<li><a href="./?p=update_profile" class="lnkButton"><?php echo "Add New User";?>
-					</a></li>
-					</ul>
+<h4 class="semibold"  style="text-align: center; margin: auto; margin-bottom: 20px; margin-top: 25PX;">User Management</h4>
+<div id="wrapperPRight"class="container" style="margin-top: 20px; margin-bottom: 50px;  padding-bottom: 30px ; ">
+		
+		<div id="pageContentRight" class="container" style="text-align: right;">
+			
+			<a href="./?p=update_profile" class="btn btn-warning commontextsize"><i class="bi bi-person-plus-fill" style="margin-right: 10px;"></i>Add New User
+					</a>
 				<br style="clear:left"/>
-			</div>
+		
 		</div>
 		<div class="clear"></div>
-			<form name="frmCustomer" id="frmCustomer">
-<div id="divfilteration">
-    <div class="holder">
-        
-        <div>
-        	<label>User Name</label>
-			<input type="text" size="40" name="user_name" id="user_name" value="<?php echo $_GET['user_name'];?>" />
-        </div>
-    </div>
-    <div class="holder">
-       
-        <div><input type="button" onClick="doFilter(this.form);" class="rr_buttonsearch" name="Submit" id="Submit" value=" GO " /></div>
-    </div>
-</div>
-</form>
+			<form name="frmCustomer" id="frmCustomer" class="form-inline">
+				<div class="row" id="divfilteration" style ="border-radius: 15px; border: 2px solid #dfdfdf;padding: 20px; text-align: center; margin: auto; margin-bottom: 20px; margin-top: 25PX;">
+				
+						
+						<div class="col-md-4 regular" style="text-align: right; margin: auto; font-size: small;">
+							<label  class="sr-only">User Name</label>
+						</div>
+
+						<div class=" col-md-4 regular" style="text-align: center; margin: auto; margin-top: 10px;">
+						<input type="text" size="40" name="user_name" id="user_name" value="<?php echo $_GET['user_name'];?>" style="font-size: small;" class="form-control" placeholder="User Name"/>
+                      </div>
+				
+					
+					  <div class=" col-md-4 regular" style="text-align: left;  margin-top: 8px;">
+                        <button type="button" onClick="doFilter(this.form);"  name="Submit" id="Submit" value=" GO "  class="btn btn-primary mb-2 commontextsize"><i class="bi bi-search" style="margin-right: 10px;"></i>Search</button>
+                      </div>
+	
+				
+				</div>
+			</form>
 		<?php echo $objCommon->displayMessage();?>
         
 		<form name="prd_frm" id="prd_frm" method="post" action="">	
-		<table id="tblList" width="100%" border="0" cellspacing="1" cellpadding="5" style="padding:3px; margin:3px">
-        <tr>
-		<th style="text-align:left"><?php echo "User Name";?></th>
-		<th style="text-align:left"><?php echo "Designation";?></th>
-        <th style="text-align:left"><?php echo "Role";?></th>
-		<!--<th><?php //echo "Right";?></th>-->
-		<!--<th>CMS </th>-->
-		<th colspan="3">Action</th>
-		</tr>
+		<div class="table-responsive commontextsize      ">
+		<table id="customers" class="table" style= "">
+		<thead>
+			<tr>
+			<th class="semibold" style="text-align:left"><?php echo "User Name";?></th>
+			<th class="semibold" style="text-align:left"><?php echo "Designation";?></th>
+			<th class="semibold" style="text-align:left"><?php echo "Role";?></th>
+			<!--<th><?php //echo "Right";?></th>-->
+			<!--<th>CMS </th>-->
+			<th class="semibold" colspan="3" style="text-align:center">Action</th>
+			</tr>
+       </thead>
 		<?php
 	//$objAdminUser->setProperty("ORDER BY", "a.first_name");
 	$objAdminUser->setProperty("limit", PERPAGE);
@@ -211,17 +242,17 @@ function doFilter(frm){
 					}
 					else
 					{?>
-			 <a href="./?p=update_rights&user_cd=<?php echo $rows['user_cd'];?>" title="Manage Rights"><img src="images/right.png" border="0" /></a><?php } ?></td>
+			 <a href="./?p=update_rights&user_cd=<?php echo $rows['user_cd'];?>" title="Manage Rights"><i class="bi bi-gear-fill" style="color:#000" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Manage Right"></i></a><?php } ?></td>
 		<td align="center">
-			 <a href="./?p=update_profile&user_cd=<?php echo $rows['user_cd'];?>" title="Edit"><img src="images/iconedit.png" border="0" /></a></td>
+			 <a href="./?p=update_profile&user_cd=<?php echo $rows['user_cd'];?>" title="Edit"><i class="bi bi-pencil-fill iconorange" style="padding-right:10px" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Edit"></i> </a>
 			 <!--<td align="center">
 					<?php if($rows['is_active'] != 1){?>
 				<a href="./?p=user_mgmt&mode=Activate&user_cd=<?php echo $rows['user_cd'];?>" onClick="return doConfirm('Are you sure you want to activate the user?');" title="Activate Customer's Account"><img src="images/icons/action_download.gif" border="0" title="Activate" alt="Activate"  /></a>
 				<?php }else{?>
 				<a href="./?p=user_mgmt&mode=Suspend&user_cd=<?php echo $rows['user_cd'];?>" onClick="return doConfirm('Are you sure you want to suspend the user?');" title="Suspend Customer's Account">
 					<img src="images/icons/action_block.gif" border="0" title="Suspend" alt="Suspend" /></a><?php }?></td>-->
-					<td align="center">
-				<a class="lnk" href="./?p=user_mgmt&amp;mode=Delete&amp;user_cd=<?php echo $rows['user_cd'];?>" onclick="return doConfirm('Are you sure you want to Delete Permanently this user ?');" title="Delete"><img src="<?php echo IMAGES_URL;?>icondelete.png" border="0" /></a>
+					
+				<a class="lnk" href="./?p=user_mgmt&amp;mode=Delete&amp;user_cd=<?php echo $rows['user_cd'];?>" onclick="return doConfirm('Are you sure you want to Delete Permanently this user ?');" title="Delete"><i class="bi bi-trash-fill iconred" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Delete"></i></a>
 				</td>
 				</tr>
 			<?php
@@ -242,16 +273,25 @@ function doFilter(frm){
 	<div id="tblFooter">
 			<?php
 if($objAdminUser->totalRecords() >= 1){
-	$objPaginate = new Paginate($Sql, PERPAGE, OFFSET, "./?p=user_mgmt");
+	//$objPaginate = new Paginate($Sql, PERPAGE, OFFSET, "./?p=user_mgmt");
 	?>
 	
-	<div style="float:left;width:170px;font-weight:bold"><?php $objPaginate->recordMessage();?></div>
+	<div style="float:left;width:170px;font-weight:bold">
+	     <?php //$objPaginate->recordMessage();?>
+   </div>
 	<div id="paging" style="float:right;text-align:right; padding-right:5px;  font-weight:bold">
-	    <?php $objPaginate->showpages();?>
+	<!--  <?php// $objPaginate->showpages(); ?> -->
 	</div>
 <?php }?>
 			</div>
 	</td></tr>
 		 </table>
+</div>
 	  </form>
+	  
 	</div>
+
+
+
+</body>
+</html>

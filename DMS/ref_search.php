@@ -1,6 +1,8 @@
-<?php    
-require_once("config/config.php");
 
+
+	<?php    
+require_once("config/config.php");
+$objDb		    = new Database;
 $objCommon 		= new Common;
 $objMenu 		= new Menu;
 //$objNews 		= new News;
@@ -30,8 +32,8 @@ $user_type	= $objAdminUser->user_type;
 	else
 	{
 	$sSQL_p = "SELECT parent_group FROM rs_tbl_category WHERE category_cd=".$last_subcat;
-	$sSQL_p1=mysql_query($sSQL_p);
-	$sSQL_p2=mysql_fetch_array($sSQL_p1);
+	$sSQL_p1=$objDb->dbCon->query($sSQL_p);
+	$sSQL_p2= $sSQL_p1->fetch() ;
 	$parent_group_p=$sSQL_p2['parent_group'];
 	}
 
@@ -41,11 +43,13 @@ $user_type	= $objAdminUser->user_type;
 
 function reference_list($ref)
 {
+	$objDb		    = new Database;
 $sql="select distinct a.ref_list from (select rep_reference_no as ref_list from rs_tbl_documents where reference_no like '%$ref%' union select reference_no as ref_list from rs_tbl_documents where rep_reference_no like '%$ref%') a";
-$res=mysql_query($sql);
+
+$res=$objDb->dbCon->query($sql);
 $ref_list=array();
 $i=0;
-while($res_test=mysql_fetch_array($res))
+while($res_test=$res->fetch() )
 {
 
 $ref_list[$i]= $res_test['ref_list'];
@@ -88,6 +92,17 @@ return $final_list;
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Interactive Search</title>
 <link rel="stylesheet" type="text/css" href="css/style.css">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+	integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+<style>
+	@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+</style>
+ <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+<link href="css/style.css" rel="stylesheet">
+<link href="css/table-styling.css" rel="stylesheet">
+
 
 <script language="JavaScript">
 function toggle(source) {
@@ -116,8 +131,8 @@ $final_ids=array();
 foreach($final_list as $final_value)
 {
 $sql_i="select distinct report_id as rid from rs_tbl_documents where reference_no ='$final_value' or rep_reference_no='$final_value'";
-$res_i=mysql_query($sql_i);
-while($final_res=mysql_fetch_array($res_i))
+$res_i=$objDb->dbCon->query($sql_i);
+while($final_res= $res_i->fetch() )
 {
 	if(!in_array($final_res['rid'],$final_ids,true))
 	{
@@ -129,36 +144,37 @@ while($final_res=mysql_fetch_array($res_i))
 if(count($final_ids)>=1)
 {
 $sSQL1 = "select * from rs_tbl_documents where report_id in  (".implode(",",$final_ids).") order by doc_issue_date";
-$sSQL12=mysql_query($sSQL1);
+$sSQL12=$objDb->dbCon->query($sSQL1);
 
 ?>
+<div class="table-responsive commontextsize">
 <form action="" method="post"  name="report_cat" id="report_cat" onsubmit="return atleast_onecheckbox(event)">
    
-	<table class="reference" style="width:100%" > 
-    <tr bgcolor="#333333" style="text-decoration:inherit; color:#CCC">
+	<table  style="width:100%" id="customers" class="table"> 
+    <tr >
     
-      <th align="center" width="2%"><strong>Sr. No.</strong></th>
-	  <th align="center" width="15%"><strong>Title</strong></th>
-      <th align="center" width="10%"><strong>Document No.</strong></th>
-	  <th align="center" width="10%"><strong>Reference No.</strong></th>
-	  <th align="center" width="10%"><strong>Reply Reference No.</strong></th>
-      <th align="center" width="5%"><strong>Revision No.</strong></th>
-	  <th align="center" width="5%"><strong>From</strong></th>
-	  <th align="center" width="5%"><strong>To</strong></th>
-	  <th align="center" width="5%"><strong>File No.</strong></th>
-	  <th align="center" width="10%"><strong>File Category</strong></th>
-	  <th align="center" width="10%"><strong>Drawing Series</strong></th>
-	 <th align="center" width="5%"><strong>Issue Date</strong></th>
-	 <th align="center" width="5%"><strong>Received Date</strong></th>
-	 <th align="center" width="6%"><strong>Document Upload Date</strong></th>
-	 <th align="center" width="10%"><strong>Remarks</strong></th>
+      <th class="semibold" width="2%" >  Sr. No.               </th>
+	  <th class="semibold" width="15%">  Title                 </th>
+      <th class="semibold" width="10%">  Document No.          </th>
+	  <th class="semibold" width="10%">  Reference No.         </th>
+	  <th class="semibold" width="10%">  Reply Reference No.   </th>
+      <th class="semibold" width="5%" >  Revision No.          </th>
+	  <th class="semibold" width="5%" >  From                  </th>
+	  <th class="semibold" width="5%" >  To                    </th>
+	  <th class="semibold" width="5%" >  File No.              </th>
+	  <th class="semibold" width="10%">  File Category  	   </th>
+	  <th class="semibold" width="10%">  Drawing Series        </th>
+	  <th class="semibold" width="5%" >  Issue Date            </th>
+	  <th class="semibold" width="5%" >  Received Date         </th>
+	  <th class="semibold" width="6%" >  Document Upload Date  </th>
+	  <th class="semibold" width="10%">  Remarks               </th>
     </tr>
   
 
 
 <?php
 $i=0;
-	while($sSQL3=mysql_fetch_array($sSQL12))
+	while($sSQL3=$sSQL12->fetch() )
 	{
 		$report_category 			= $sSQL3['report_category'];
 		$report_id 					= $sSQL3['report_id'];
@@ -187,8 +203,8 @@ $i=0;
 		
 	$sSQL2 = "SELECT * FROM rs_tbl_category WHERE category_cd=".$report_category." and INSTR(parent_group, '$parent_group_p')>0";
 	}
-	$sSQL13=mysql_query($sSQL2);
-	$sSQL4=mysql_fetch_array($sSQL13);
+	$sSQL13=$objDb->dbCon->query($sSQL2);
+	$sSQL4= $sSQL13->fetch() ;
 	$category_name=$sSQL4['category_name'];
 	$user_ids=$sSQL4['user_ids'];
 	$parent_cd=$sSQL4['parent_cd'];
@@ -196,7 +212,7 @@ $i=0;
 	$parent_group=$sSQL4['parent_group'];
 		if($user_type==1 || $user_type==2)
 		{
-		if(mysql_num_rows($sSQL13)>=1)	
+		if( $sSQL13->rowCount()>=1)	
 		{	
 		?>
 		<tr <?php echo $style; ?>>
@@ -229,7 +245,7 @@ $i=0;
 
 	if($user_ids=="" && $parent_cd==0)
 	{
-	if(mysql_num_rows($sSQL13)>=1)	
+	if($sSQL13->rowCount()>=1)	
 	{
 	?>
 	<tr <?php echo $style; ?>>
@@ -263,8 +279,8 @@ $i=0;
 	{
 	$cat_id=$group_arr[$k];
 	$sSQL_loop = "SELECT * FROM rs_tbl_category WHERE category_cd=".$cat_id;
-	$sSQLloop=mysql_query($sSQL_loop);
-	$sSQLloop1=mysql_fetch_array($sSQLloop);
+	$sSQLloop=$objDb->dbCon->query($sSQL_loop);
+	$sSQLloop1= $sSQLloop->fetch() ;
 
 	$user_p_ids=$sSQLloop1['user_ids'];
 	
@@ -302,7 +318,7 @@ $i=0;
 }
 if($count_group_arr==$sign)
 {
-if(mysql_num_rows($sSQL13)>=1)	
+if($sSQL13->rowCount()>=1)	
 {
 ?>
 <tr <?php echo $style; ?>>
@@ -334,6 +350,7 @@ if(mysql_num_rows($sSQL13)>=1)
 ?>
 </table>
 </form>
+</div>
 
 <?php
 

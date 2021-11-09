@@ -1,6 +1,6 @@
 	<!-- start footer -->         
   
-    <div class="container-fluid" style="margin-top: -250px; background-color: #222666; position: fixed; bottom: 0;">
+    <div class="container-fluid" style=" background-color: #222666; position: fixed; bottom: -12px;">
         <div class="row">
             <div class="col-md">
                 <p class="light basicfontsize" style="text-align: center; color:#fff; margin-top: 10px;">

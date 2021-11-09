@@ -6,52 +6,135 @@ $data = $objAdminUser->dbFetchArray(1);
 $mode	= "U";
 extract($data);
 ?>
-<div id="wrapperPRight">
-		<div id="pageContentName" class="shadowWhite"><?php echo USER_VIEW_BRD;?></div>
-		
-        <div id="pageContentRight">
-			<div class="menu1">
-				<ul>
-				<li><a href="./?p=update_profile&user_cd=<?php echo $objAdminUser->user_cd;?>" class="lnkButton"><?php echo USER_BTN_UPDATE;?>
-					</a></li>
-					</ul>
-				<br style="clear:left"/>
-			</div>
-		</div>
+<h4 class="semibold"  style="text-align: center; margin: auto; margin-bottom: 20px; margin-top: 20px;"><?php echo USER_VIEW_BRD;?></h4>
+<div id="wrapperPRight" class="container" style="margin-top: 20px; margin-bottom: 50px;  border-radius: 15px; border: 2px solid #dfdfdf;padding: 20px; ">
+
+
 		<div class="clear"></div>
 		
 		<div id="tableContainer">
-			<!--<div class="formheading shadowWhite">--><?php echo $objCommon->displayMessage();?><!--</div>-->
+			<!--<div class="formheading shadowWhite">--><?php echo $objCommon->displayMessage();?><!--</>-->
 			<div class="clear"></div>			
 	  	    <form id="form1" name="form1" method="post" action="">
 			
-			<div class="formfield b shadowWhite"><?php echo USER_FLD_FULLNAME;?>:</div>
-			<div class="formvalue"><?php echo $first_name." ".$middle_name." ".$last_name;?></div>
-			<div class="clear"></div>
-			
-			<div class="formfield b shadowWhite"><?php echo USER_FLD_EMAIL;?>:</div>
-			<div class="formvalue"><?php echo $email;?></div>
-			<div class="clear"></div>
-			
-			<div class="formfield b shadowWhite"><?php echo USER_FLD_PHONE;?>:</div>
-			<div class="formvalue"><?php echo $phone;?></div>
-			<div class="clear"></div>
-			
-			<div class="formfield b shadowWhite"><?php echo USER_FLD_DESIGNATION;?>:</div>
-			<div class="formvalue" style="width:50%"><?php 
-			
-			echo $designation;
-			?></div>
-			<div class="clear"></div>
-			<div class="formfield b shadowWhite"><?php echo "Role";?>:</div>
-			<div class="formvalue"><?php 
+	
+		  <?php echo $objCommon->displayMessage();?>
+
+		              <div class="row" >
+
+                <div class="col-md-3">
+                </div>
+
+                    <div class="col-md-3 mobileclass" style="font-size: small;">
+                      <label  class="sr-only semibold"><?php echo USER_FLD_FULLNAME;?>:</label>
+                      </div>
+
+                    <div class=" col-md-3 regular mobileclass2" style="font-size: small;">
+                        <label  class="sr-only"><?php echo $first_name." ".$middle_name." ".$last_name;?></label>
+                       </div>   
+
+                       <div class="col-md-3">
+                        </div>
+
+            </div>
+
+            <div class="row" style="margin-top: 20px;">
+
+                <div class="col-md-3">
+                </div>
+
+                <div class="col-md-3 mobileclass" style="font-size: small;">
+                  <label  class="sr-only semibold"><?php echo USER_FLD_EMAIL;?>:</label>
+                  </div>
+
+                <div class=" col-md-3 regular mobileclass2" style="font-size: small;">
+                    <label  class="sr-only"><?php echo $email;?></label>
+                   </div>  
+                   
+                   <div class="col-md-3">
+                </div>
+
+        </div>
+
+        <div class="row" style="margin-top: 20px;">
+
+            <div class="col-md-3">
+            </div>
+
+            <div class="col-md-3 mobileclass" style="font-size: small;">
+              <label  class="sr-only semibold"><?php echo USER_FLD_PHONE;?>:</label>
+              </div>
+
+            <div class=" col-md-3 regular mobileclass2" style="font-size: small; ">
+                <label  class="sr-only"><?php echo $phone;?></label>
+               </div> 
+
+               <div class="col-md-3">
+            </div>  
+
+        </div>
+
+        <div class="row" style="margin-top: 20px;">
+
+            <div class="col-md-3">
+            </div>
+
+            <div class="col-md-3 mobileclass" style="font-size: small;">
+              <label  class="sr-only semibold"><?php echo USER_FLD_DESIGNATION;?>:</label>
+              </div>
+
+            <div class=" col-md-3 regular mobileclass2" style="font-size: small; ">
+                <label  class="sr-only"><?php echo $designation;?></label>
+               </div>   
+
+               <div class="col-md-3">
+            </div>
+
+        </div>
+
+        <div class="row" style="margin-top: 20px;">
+
+            <div class="col-md-3">
+            </div>
+
+            <div class="col-md-3 mobileclass" style="font-size: small;">
+              <label  class="sr-only semibold"><?php echo "Role";?>:</label>
+              </div>
+
+            <div class=" col-md-3 regular mobileclass2" style="font-size: small; ">
+                <label  class="sr-only"><?php 
 			if($user_type==1) 
 			echo "Super Admin";
 			else
-			echo "User";?></div>
+			echo "User";?></label>
+               </div>   
+
+               <div class="col-md-3">
+            </div>
+
+        </div>
+
+       <!-- Update Button -->
+        <div class="row" style="margin-top: 20px;">
+
+            <div class="col-md-3">
+            </div>
+
+            <div class="col-md-3">
+            </div>
+
+            <div class="col-md-3 regular" style="font-size: small;text-align: left;">
+                <a  class="btn btn-warning mb-2" style="font-size: 13px;" href="./?p=update_profile&user_cd=<?php echo $objAdminUser->user_cd;?>"> <?php echo USER_BTN_UPDATE;?> </a>
+        
+               </div>   
+
+               <div class="col-md-3">
+            </div>
+
+        </div>
+		</form>
 			<div class="clear"></div>
-			
-            </form>
-			<div class="clear"></div>
+
   	    </div>
+
 	</div>

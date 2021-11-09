@@ -1,3 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+    </style>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/table-styling.css" rel="stylesheet">
+
+
+
+    <title>DMS</title>
+</head>
+
+<body>
 <?php
 $mode	= "I";
 if($_SERVER['REQUEST_METHOD'] == "POST"){
@@ -39,8 +62,8 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
 	}
 	# Check user name should not be same.
 	$sqlCN="select username from mis_tbl_users where username='$username' ";		
-	$sqlrCN=mysql_query($sqlCN);
-	if(mysql_num_rows($sqlrCN)>=1)
+	$sqlrCN= $objDb->dbCon->query($sqlCN);
+	if($sqlrCN->rowCount() >=1)
 	{
 	$flag 	= false;
 			$objCommon->setMessage("User Name already exist",'Error');
@@ -87,7 +110,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
 			$objCommon->setMessage(USER_FLD_MSG_SUCCESSFUL_UPDATE,'Update');
 			$activity="User updated successfully";
 	$sSQLlog_log = "INSERT INTO rs_tbl_user_log(user_id, epname, logintime, user_ip, user_pcname, url_capture) VALUES ('$uid', '$nameuser', '$nowdt', '$ipadd', '$hostname','$activity')";
-	mysql_query($sSQLlog_log);		
+	$objDb->dbCon->query($sSQLlog_log);		
 			}
 			else
 			{
@@ -95,7 +118,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
 			$objCommon->setMessage("New User added successfully",'Info');
 			$activity="User added successfully";
 	$sSQLlog_log = "INSERT INTO rs_tbl_user_log(user_id, epname, logintime, user_ip, user_pcname, url_capture) VALUES ('$uid', '$nameuser', '$nowdt', '$ipadd', '$hostname','$activity')";
-	mysql_query($sSQLlog_log);		
+	$objDb->dbCon->query($sSQLlog_log);		
 			}
 			
 				if($objAdminUser->user_type==1)
@@ -143,8 +166,9 @@ function frmValidate(frm){
 	}
 }
 </script>
-<div id="wrapperPRight">
-		<div id="pageContentName" class="shadowWhite"><?php echo ($mode == "U") ? USER_UPDATE_BRD : USER_ADD_BRD;?></div>
+<h4 class="semibold"  style="text-align: center; margin: auto; margin-bottom: 20px; margin-top: 20px;"><?php echo ($mode == "U") ? USER_UPDATE_BRD : USER_ADD_BRD;?></h4>
+<div id="wrapperPRight" class="container" style="margin-top: 20px; margin-bottom: 50px;  border-radius: 15px; border: 2px solid #dfdfdf;padding: 20px; ">
+	
 		<!--<div id="pageContentRight">
 			<div class="menu">
 				<ul>
@@ -165,24 +189,64 @@ function frmValidate(frm){
         <input type="hidden" name="mode" id="mode" value="<?php echo $mode;?>" />
         <input type="hidden" name="user_cd" id="user_cd" value="<?php echo $user_cd;?>" />
 			
-			<div class="formfield b shadowWhite"><?php echo "First Name";?>:</div>
-			<div class="formvalue">
-			<input class="rr_input" type="text" name="first_name" id="first_name" value="<?php echo 
-			$first_name;?>" size="50"/></div>
-			<div class="clear"></div>
-			<div class="formfield b shadowWhite"><?php echo "Last Name";?>:</div>
-			<div class="formvalue"><input class="rr_input" type="text" name="last_name" id=
-			"last_name" value="<?php echo $last_name;?>" size="50"/></div>
-			<div class="clear"></div>
-			<div class="formfield b shadowWhite"><?php echo "User Name";?>:</div>
-			<div class="formvalue"><input class="rr_input" type="text" name="username" id="username"
-			 value="<?php echo $username;?>" size="50" <?php if(isset($_GET['user_cd'])){?> readonly=""<?php } ?>/></div>
-			<div class="clear"></div>
+        <div class="row" style="margin-top: 20px;">
+
+            <div class="col-md-4 regular" style="text-align: right; font-size: small; margin: auto;">
+              <label  class="sr-only bold">First Name</label>
+            </div>
+
+            <div class=" col-md-4" style="text-align: left; ">
+                <input class="form-control commontextsize" type="text" placeholder="First Name" name="first_name" id="first_name" value="<?php echo $first_name;?>" size="50">
+                <!-- <label class="commontextsize">* Please avoid special characters</label> -->
+            </div>
+
+            <div class="col-md-1"></div>
+            <div class="col-md-3"></div>
+
+        </div>
+
+        <div class="row" style="margin-top: 20px;">
+
+            <div class="col-md-4 regular" style="text-align: right; font-size: small; margin: auto;">
+              <label  class="sr-only bold">Last Name</label>
+            </div>
+
+            <div class=" col-md-4" style="text-align: left; ">
+                <input class="form-control commontextsize" type="text" placeholder="Last Name" name="last_name" id="last_name" value="<?php echo $last_name;?>" size="50">
+                <!-- <label class="commontextsize">* Please avoid special characters</label> -->
+            </div>
+
+            <div class="col-md-1"></div>
+            <div class="col-md-3"></div>
+
+        </div>
+
+        <div class="row" style="margin-top: 20px;">
+
+            <div class="col-md-4 regular" style="text-align: right; font-size: small; margin: auto;">
+              <label  class="sr-only bold">User Name</label>
+            </div>
+
+            <div class=" col-md-4" style="text-align: left; ">
+                <input class="form-control commontextsize" type="text" placeholder="User Name" name="username" id="username"
+			 value="<?php echo $username;?>" <?php if(isset($_GET['user_cd'])){?> readonly=""<?php } ?> size="50">
+                <!-- <label class="commontextsize">* Please avoid special characters</label> -->
+            </div>
+
+            <div class="col-md-1"></div>
+            <div class="col-md-3"></div>
+
+        </div>
+
+        <div class="row" style="margin-top: 20px;">
+
 		<?php if($_SESSION['user_type']==1){?>
-			<div class="formfield b shadowWhite"><?php echo "Password";?>:</div>
-			<div class="formvalue"><input class="rr_input" type="text" name="passwd" id="passwd" 
+			<div class="col-md-4 regular" style="text-align: right; font-size: small; margin: auto;">
+              <label  class="sr-only bold">Password</label>
+            </div>
+			<div class=" col-md-4" style="text-align: left; "> <input class="form-control commontextsize" placeholder="Password" type="password" name="passwd" id="passwd" 
 			value="<?php echo $passwd;?>" size="50"/></div>
-			<div class="clear"></div>
+			
 			<?php
 			}
 			else
@@ -193,37 +257,90 @@ function frmValidate(frm){
 			<?php
 			}
 			?>
-			
-			<div class="formfield b shadowWhite"><?php echo USER_FLD_EMAIL;?>:</div>
-			<div class="formvalue"><input type="hidden" name="email_old" id="email_old" value="<?php 
-			echo $email;?>" />
-        <input class="rr_input" type="text" name="email" id="email" value="<?php echo $email;?>" 
-		<?php if(isset($_GET['user_cd'])){?> readonly=""<?php } ?> style="width:200px;" /></div>
-			<div class="clear"></div>
-            <div class="formfield b shadowWhite"><?php echo "Designation";?>:</div>
-			<div class="formvalue">
-        <input class="rr_input" type="text" name="designation" id="designation" value="<?php echo $designation;?>" 
-		style="width:200px;" /></div>
-			<div class="clear"></div>
-			
-			<div class="formfield b shadowWhite"><?php echo USER_FLD_PHONE;?>:</div>
-			<div class="formvalue"><input class="rr_input" type="text" name="phone" id="phone" value
-			="<?php echo $phone;?>" /></div>
-			<div class="clear"></div>
-			<?php if($objAdminUser->user_type==1&&$objAdminUser->member_cd==0)
+
+            <div class="col-md-1"></div>
+            <div class="col-md-3"></div>
+
+        </div>
+
+        <div class="row" style="margin-top: 20px;">
+
+            <div class="col-md-4 regular" style="text-align: right; font-size: small; margin: auto;">
+              <label  class="sr-only bold">E-mail</label>
+            </div>
+
+            <div class=" col-md-4" style="text-align: left; ">
+                <input class="form-control commontextsize" placeholder="E-mail" type="hidden" name="email_old" id="email_old" value="<?php echo $email;?>">
+				<input class="form-control commontextsize" placeholder="E-mail" type="text" name="email" id="email" value="<?php echo $email;?>" <?php if(isset($_GET['user_cd'])){?> readonly=""<?php } ?> style="width:200px;" />
+            </div>
+
+            <div class="col-md-1"></div>
+            <div class="col-md-3"></div>
+
+        </div>
+
+        <div class="row" style="margin-top: 20px;">
+
+            <div class="col-md-4 regular" style="text-align: right; font-size: small; margin: auto;">
+              <label  class="sr-only bold">Designation</label>
+            </div>
+
+            <div class=" col-md-4" style="text-align: left; ">
+                <input class="form-control commontextsize" type="text" placeholder="Designation"  name="designation" id="designation" value="<?php echo $designation;?>" >
+                <!-- <label class="commontextsize">* Please avoid special characters</label> -->
+            </div>
+
+            <div class="col-md-1"></div>
+            <div class="col-md-3"></div>
+
+        </div>
+
+        
+
+        <div class="row" style="margin-top: 20px;">
+
+            <div class="col-md-4 regular" style="text-align: right; font-size: small; margin: auto;">
+              <label  class="sr-only bold">Phone</label>
+            </div>
+
+            <div class=" col-md-4" style="text-align: left; ">
+                <input class="form-control commontextsize" type="text" placeholder="Phone" name="phone" id="phone" value="<?php echo $phone;?>" >
+                <!-- <label class="commontextsize">* Please avoid special characters</label> -->
+            </div>
+
+            <div class="col-md-1"></div>
+            <div class="col-md-3"></div>
+
+        </div>
+
+        <div class="row" style="margin-top: 20px;">
+
+
+
+
+		<?php if($objAdminUser->user_type==1&&$objAdminUser->member_cd==0)
 			{?>
-			<div class="formfield b shadowWhite"><?php 
-			echo USER_FLD_DESIGNATION;?>:</div>
-			<div class="formvalue" style="width:400px">
-		<input type="radio" id="user_type" name="user_type" value="1" checked="checked"/>
-			 SuperAdmin 
-			  <input type="radio" 
+			
+            <div class="col-md-4 regular" style="text-align: right; font-size: small; margin: auto;">
+              <label  class="sr-only bold"><?php echo USER_FLD_DESIGNATION;?></label>
+            </div>
+
+			<div class="btn-group col-md-4 " role="group" aria-label="Basic radio toggle button group">
+			<div class="form-check" style="margin-right: 30px;">
+		<input class="form-check-input" type="radio" id="user_type" name="user_type" value="1" checked="checked"/>
+			    <label class="form-check-label" for="user_type">SuperAdmin</label>
+				</div>
+				<div class="form-check" style="margin-right: 30px;">
+			  <input type="radio" class="form-check-input"
 			 id="user_type" name="user_type" value="2" <?php echo ($user_type==2) ? 'checked="checked"' : "";?>/>
-			SubAdmin
-             <input type="radio" 
+			 <label class="form-check-label" for="user_type">SubAdmin</label> </div>
+			 <div class="form-check" style="margin-right: 30px;">
+             <input type="radio" class="form-check-input"
 			 id="user_type" name="user_type" value="3" <?php echo ($user_type==3) ? 'checked="checked"' : "";?>/>
-			User</div>
-			<div class="clear"></div>
+			 <label class="form-check-label" for="user_type">User</label> </div>
+			
+			</div>
+		
 			<?php }
 			else
 			{
@@ -232,13 +349,25 @@ function frmValidate(frm){
                 <?php
 				
 			}?>
-			<div id="submit">
-			
-			  <input type="submit" class="SubmitButton" value="<?php echo ($mode == "U") ? " Update " : " Save ";?>" /></div>
-              &nbsp;
-			  <div id="submit2">
-            <input type="button" class="SubmitButton" value="Cancel" onClick="document.location='./index.php';" />
-			</div>
+
+
+
+            <div class="col-md-1"></div>
+            <div class="col-md-3"></div>
+
+        </div>
+
+        
+
+        <div class="row">
+
+            <div class=" regular commontextsize" style=" text-align: center; margin: auto; margin-top: 40px;">
+                <button id="submit"  type="submit" class="btn btn-success"><i class="bi bi-arrow-bar-up" style="margin-right: 10px;" value="<?php echo ($mode == "U") ? " Update " : " Save ";?>"></i>Save  </button>
+                <button id="submit2" type="button" class="btn btn-danger"> <i class="bi bi-x-circle"     style="margin-right: 10px;" value="Cancel" onClick="document.location='./index.php';"   ></i>Cancel </button>
+            </div>
+
+        </div>
+
 			
 			<div class="clear"></div>
 			
@@ -247,3 +376,6 @@ function frmValidate(frm){
 			<div class="clear"></div>
   	    </div>
 	</div>
+
+</body>
+</html>

@@ -144,6 +144,9 @@ if(isset($_GET['forgot']) && $_GET['forgot'] == "forgot"){
 	require_once("pages/forgot.passwd.php"); 
 }
 else{
+  ?></div>
+  
+  <?php
 	if($objAdminUser->is_login == true){
 		
 		require_once("pages/default.php");	
@@ -158,6 +161,6 @@ else{
 ?>
 
 
-</div>
+
 </body>
 </html>

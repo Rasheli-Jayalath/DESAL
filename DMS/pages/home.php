@@ -1,7 +1,7 @@
 <div id="wrapperPRight">
    
 
-<div class="container" style="margin-top: 20px; margin-bottom: 50px;">
+<div class="container" style="margin-top: 20px; margin-bottom: 40px;">
         <div class="row">
             <div class="col-md">
 				<?php $sql_cms="Select * from rs_tbl_cms where cms_cd=1";
@@ -47,7 +47,7 @@
 
     </div>
 	  
-<div style="padding-bottom:20px; text-decoration:none">
+<div class="" style="margin-bottom:40px; text-decoration:none">
 
 <span style="text-align:right;padding-right:20px;width:200px; float:right">
 <?php
