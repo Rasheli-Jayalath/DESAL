@@ -1052,7 +1052,7 @@ $total_numdd=$res2doc->rowCount();
 			 if($user_type==1 || $user_type==2)
 			 {
 			 ?>
-			 <td class="text-center"><a href="javascript:void(null);" style= "text-decoration: none;" onclick="window.open('upload_report.php?report_id=<?php echo $rows['report_id']; ?>', 'INV','width=650,height=400,scrollbars=yes');" ><i class="bi bi-pencil-fill iconorange" ></i> </a>
+			 <td class="text-center"><a href="javascript:void(null);" style= "text-decoration: none;" onclick="window.open('upload_report.php?report_id=<?php echo $rows['report_id']; ?>', 'INV','width=870,height=550,scrollbars=yes');" ><i class="bi bi-pencil-fill iconorange" ></i> </a>
 			 <a href="?p=reports&report_cd=<?php echo $rows['report_id']; ?>&cid=<?php echo $_REQUEST['cid']; ?>&cat_cd=<?php if($_REQUEST['cat_cd']) 
 			 {
 			 echo $_REQUEST['cat_cd'];
@@ -1088,7 +1088,7 @@ $total_numdd=$res2doc->rowCount();
 							
 							
 ?>
-<td colspan="2"><a href="javascript:void(null);" onclick="window.open('upload_report.php?report_id=<?php echo $rows['report_id']; ?>', 'INV','width=650,height=400,scrollbars=yes');" > <i class="bi bi-pencil-fill iconorange" style="margin-right: 10px;"></i></a></td>
+<td colspan="2"><a href="javascript:void(null);" onclick="window.open('upload_report.php?report_id=<?php echo $rows['report_id']; ?>', 'INV','width=870,height=550,scrollbars=yes');" > <i class="bi bi-pencil-fill iconorange" style="margin-right: 10px;"></i></a></td>
 						
 <?php
 }
@@ -1097,7 +1097,7 @@ $total_numdd=$res2doc->rowCount();
 							
 							
 ?>
-<td class="text-center"><a href="javascript:void(null);" onclick="window.open('upload_report.php?report_id=<?php echo $rows['report_id']; ?>', 'INV','width=650,height=400,scrollbars=yes');" > <i class="bi bi-pencil-fill iconorange" style="margin-right: 10px;"></i></a></td>
+<td class="text-center"><a href="javascript:void(null);" onclick="window.open('upload_report.php?report_id=<?php echo $rows['report_id']; ?>', 'INV','width=870,height=550,scrollbars=yes');" > <i class="bi bi-pencil-fill iconorange" style="margin-right: 10px;"></i></a></td>
   <a href="?p=reports&report_cd=<?php echo $rows['report_id']; ?>&cid=<?php echo $_REQUEST['cid']; ?>&cat_cd=<?php if($_REQUEST['cat_cd'])
 			 {
 			 echo $_REQUEST['cat_cd'];
@@ -1168,27 +1168,28 @@ $cat_cd12="&cat_cd=".$_GET['cat_cd'];
 } ?>
 <form name="filter_12" id="filter_12" method="post" action="?p=reports&cid=<?php echo $_GET['cid']; ?>&category_cd=<?php echo $_GET['category_cd']?><?php echo $cat_cd12; ?>"> 
 <select name="task_status" class="form-select-sm" >
-		<option value="7" <?php  if(!isset($_GET['t_status']))echo "selected";?>>All Files</option>
-		 <option value="1" <?php if($_GET['t_status']=='1')echo "selected";?>>Initiated</option>
-  		<option value="2" <?php if($_GET['t_status']=='2')echo "selected";?>>Approved</option>
-  		<option value="3" <?php if($_GET['t_status']=='3')echo "selected";?>>Not Approved</option>
-  		<option value="4" <?php if($_GET['t_status']=='4')echo "selected";?>>Under Review</option>
- 		 <option value="5" <?php if($_GET['t_status']=='5')echo "selected";?>>Response Awaited</option>
-		 <option value="6" <?php if($_GET['t_status']=='6')echo "selected";?>>Replied</option>
+		<option value="7" <?php  if(!isset($_GET['t_status'])) echo "selected";?>>All Files			</option>
+		<option value="1" <?php if($_GET['t_status']=='1')     echo "selected";?>>Initiated			</option>
+  	    <option value="2" <?php if($_GET['t_status']=='2')     echo "selected";?>>Approved			</option>
+  	    <option value="3" <?php if($_GET['t_status']=='3')     echo "selected";?>>Not Approved		</option>
+  		<option value="4" <?php if($_GET['t_status']=='4')     echo "selected";?>>Under Review		</option>
+ 		<option value="5" <?php if($_GET['t_status']=='5')     echo "selected";?>>Response Awaited	</option>
+		<option value="6" <?php if($_GET['t_status']=='6'     )echo "selected";?>>Replied			</option>
 </select> 
 		
 		<input type="submit" class="btn btn-primary btn-sm commontextsize" name="go_submit1" id="go_submit1" value="GO" /> </form></span>
-
-<table class="report_tbl" align="right" cellspacing="0" style="margin-top:5px;"  >
-
-<tr>
-<td style="color:#000066" width="2%">Task Code/Sr. #</td>
-<td width="40%"  colspan="2" style="color:#000066">Title</td>
-<td style="color:#000066" width="13%">Created By</td>
-<td style="color:#000066" width="15%">Date-Time</td>
-<td style="color:#000066" width="22%">Status</td>
-<td width="8%" colspan="2">Action </td>
- </tr>
+<div class=" commontextsize" >
+<table align="right" id="customers" class="table" >
+	<thead>
+		<tr>
+			<th class="semibold"             width="10%">               Task Code/Sr. #	</th>
+			<th class="semibold" 			 width="40%"  colspan="2" > Title			</th>
+			<th class="semibold"             width="15%">				Created By		</th>
+			<th class="semibold"			 width="15%">				Date-Time		</th>
+			<th class="semibold text-center" width="10%">				Status			</th>
+			<th class="semibold text-center" width="8%" >				Action 			</th>
+		</tr>
+	</thead>
 
 <?php
 while($res_t=$temp_t1->fetch())
@@ -1220,17 +1221,17 @@ $u_rightr_task=$res_t['user_right'];
 if(($has_right==1) || ($user_type=='1'))
 {
 ?>
-<tr style=" background-color: #FFFF00">
+<tr >
 <td style="background:none;" align="center"><?php echo $res_t['thread_code'];?></td>
 
 <td style="background:none; border-right:0; width:30%" > <?php echo $res_t['thread_heading']; ?></td>
 <td style="background:none; width:10%" ><?php if($res_t['status']==1){
 if(($read_right_task==1) || ($user_type=='1'))
 { 
- ?> <a href="javascript:void(null);" onclick="window.open('tasks_messages.php?task_id=<?php echo $res_t['tt_id']; ?>&cat_cd=<?php echo $res_t['category_cd']; ?>&cid=<?php echo $_GET['cid'];?>&p_mess_id=0', 'INV2','width=550,height=400,scrollbars=yes');" >Add Item</a><?php }} ?></td>
+ ?> <a href="javascript:void(null);" class="btn btn-sm btn-success commontextsize" onclick="window.open('tasks_messages.php?task_id=<?php echo $res_t['tt_id']; ?>&cat_cd=<?php echo $res_t['category_cd']; ?>&cid=<?php echo $_GET['cid'];?>&p_mess_id=0', 'INV2','width=550,height=400,scrollbars=yes');" ><i class="bi bi-plus-square" >&ensp; Add Item</a><?php }} ?></td>
 <td style="background:none;"><?php echo $res_t['thread_created_by']; ?></td>
 <td style="background:none;"><?php echo $res_t['date_time'];?></td>
-<td style="background:none;">
+<td class="text-center" style="background:none;">
 <?php if($res_t['status']=='1')
 {
 ?>
@@ -1269,7 +1270,7 @@ if(($read_right_task==1) || ($user_type=='1'))
 				?>	
 					
 					
-					 <td colspan="2" style="background:none;"><a href="javascript:void(null);" onclick="window.open('threads_input.php?task_id=<?php echo $res_t['tt_id']; ?>&cat_cd=<?php echo $res_t['category_cd']; ?>', 'INV','width=550,height=400,scrollbars=yes');" ><img src="images/edit.gif" border="0" /></a></td>
+					 <td class ="text-center" colspan="2" style="background:none;"><a href="javascript:void(null);" onclick="window.open('threads_input.php?task_id=<?php echo $res_t['tt_id']; ?>&cat_cd=<?php echo $res_t['category_cd']; ?>', 'INV','width=870,height=550,scrollbars=yes');" > <i class="bi bi-pencil-fill iconorange " ></i> </a></td>
 		 <?php
 			 }
 			 
@@ -1378,6 +1379,7 @@ $colorr="#FFFFFF";
 					
 ?>
 </table>
+   </div>
 </td>
 </tr>
 <?php

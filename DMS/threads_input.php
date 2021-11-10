@@ -292,6 +292,18 @@ var elements = document.getElementsByName("users[]");
 <html xmlns="http://www.w3.org/1999/xhtml">
 <title><?php echo HOME_MAIN_TITLE?></title>
 <head>
+<meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+    </style>
+     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/table-styling.css" rel="stylesheet">
 
 <link href="css/style.css" rel="stylesheet" type="text/css">
 <link rel="stylesheet" type="text/css" href="menu/chromestyle.css"/>
@@ -331,8 +343,10 @@ if($objAdminUser->is_login == true){
 			}
 				
 			?>
-<div id="containerContent" class="box" style="min-height:80px;padding:0px">
-		<div id="pageContentName" class="shadowWhite"><div align="left"><strong><?php echo ($mode == "U")? "Edit Task" : "Add New Task" ?></strong></div></div>
+			  <h4 class="semibold"  style="text-align: center; margin: auto; margin-bottom: 20px; margin-top: 25PX;"><?php echo ($mode == "U")? "Edit Task" : "Add New Task" ?></h4>
+			
+<div id="containerContent" class="container bg-light bg-gradient" style=" margin-bottom: 100px;  border-radius: 15px;  padding: 20px;  ">
+		
          
 		
 		<div class="clear"></div>
@@ -345,32 +359,37 @@ if($objAdminUser->is_login == true){
          <div id="tableContainer" class="table" style="border-left:1px;">
         
           <table width="70%" border="0" cellspacing="0" cellpadding="0" align="center">
-	 <tr>
-        		
-        <td >
-	    Task Code <span style="color:#FF0000;">*</span>:
-		
-        </td>
-        <td>
-        <div class="frmElement"><input class="rr_input" type="text" name="thread_code" id="thread_code" value="<?php echo $thread_code;?>" style="width:200px;" /></div>
-		</td>
-        </tr>	
-   <tr>
-        		
-        <td >
-	    Task Name <span style="color:#FF0000;">*</span>:
-		
-        </td>
-        <td>
-        <div class="frmElement">
-		<input class="rr_input" type="text" name="thread_heading" id="thread_heading" value="<?php echo $thread_heading;?>" style="width:200px;" /></div>
-		</td>
-        </tr>
+
+			<div class="row" style="margin-top: 20px;">
+				<div class="col-md-4 regular" style="text-align: right; font-size: small;">
+				<label  class="sr-only bold">Task Code <span style="color:#FF0000;">*</span></label>
+				</div>
+
+				<div class=" col-md-4" style="text-align: left; margin: auto;">
+					<input class="form-control commontextsize" placeholder="Task Code" type="text" name="thread_code" id="thread_code" value="<?php echo $thread_code;?>" />
+				</div>
+
+				<div class="col-md-1"></div>
+				<div class="col-md-3"></div>
+            </div>
+
+			<div class="row" style="margin-top: 20px; margin-bottom:20px">
+				<div class="col-md-4 regular" style="text-align: right; font-size: small;">
+				<label  class="sr-only bold">Task Name <span style="color:#FF0000;">*</span></label>
+				</div>
+
+				<div class=" col-md-4" style="text-align: left; margin: auto;">
+					<input class="form-control commontextsize" placeholder="Task Name" type="text" name="thread_heading" id="thread_heading" value="<?php echo $thread_heading;?>"  />
+				</div>
+
+				<div class="col-md-1"></div>
+				<div class="col-md-3"></div>
+            </div>
+
    
-		<tr>
-        <td>		</td>
+		<tr style=" border-style: none;">
        
-        <td>
+        <td > 
 		
 				<div id="users"	>
 		 
@@ -550,7 +569,7 @@ else if($t=$len_u1-1)
 	
 		?>
 		
-		<input type="checkbox"    name="users[]"  value="<?php echo $rows['user_cd'];?>"  <?php echo $disabled;?>   <?php echo $selected;?>   onclick="readWrite(this)"/><?php echo $rows['fullname'];?>
+		<input type="checkbox"  class="form-check-input"  name="users[]" style="margin-right: 15px; " value="<?php echo $rows['user_cd'];?>"  <?php echo $disabled;?>   <?php echo $selected;?>   onclick="readWrite(this)"/><?php echo $rows['fullname'];?>
 		<?php if($rows['user_cd']==$user_cd)
 		{
 		?>
@@ -566,8 +585,15 @@ else if($t=$len_u1-1)
 		}
 		?>
 		
-		<div  id="rights_<?php echo $rows['user_cd'];?>" <?php if($flag!=""){?>style=" text-align:right;margin-top:-20px;display:block;"<?php }else{ ?>style="display:none;text-align:right;margin-top:-20px;"<?php }?> ><input type="radio" name="rights<?php echo $rows['user_cd'];?>" value="1" <?php if($flag==1){ echo $selected;}?> /> R/W <input type="radio" name="rights<?php echo $rows['user_cd'];?>" value="2" <?php if($flag==2){ echo $selected;}?>/> R</div>
-		 <br />
+		<div  id="rights_<?php echo $rows['user_cd'];?>" <?php if($flag!=""){?>style=" text-align:right;margin-top:-20px;display:block;"<?php }else{ ?>style="display:none;text-align:right;margin-top:-20px;"<?php }?> >
+	
+			<input class="form-check-input" type="radio" name="rights<?php echo $rows['user_cd'];?>" value="1" <?php if($flag==1){ echo $selected;}?> style="margin-left:200px;" /> &ensp;
+			<label class="form-check-label text-white bg-secondary semibold px-1 py-1 " style="font-size:small; ">R / W</label> &emsp; 
+
+			<input class="form-check-input" type="radio" name="rights<?php echo $rows['user_cd'];?>" value="2" <?php if($flag==2){ echo $selected;}?>/> &ensp;
+			<label class="form-check-label text-white bg-secondary semibold px-1 py-1  " style="font-size:small;"> Read </label>
+		</div>
+		 <br/>
   
 	
 	<?php
@@ -583,13 +609,19 @@ else if($t=$len_u1-1)
         </td>
         </tr>
 		
-        <tr >
+        <tr style=" border-style: none;">
         <td colspan="2" align="center">
           
-        <div id="div_button">
-            <input type="submit" class="rr_button" value="<?php echo ($mode == "U") ? _BTN_UPDATE : _BTN_SAVE;?>" />
-            
+
+		
+        <div class="row" id="div_button">
+
+            <div class=" regular commontextsize" style=" text-align: center; margin: auto; margin-top: 40px;" >
+                <button type="submit" class="btn btn-success"><i class="bi bi-arrow-bar-up" style="margin-right: 10px;" value="<?php echo ($mode == "U") ? _BTN_UPDATE : _BTN_SAVE;?> "></i>Save</button>
+            </div>
+
         </div>
+
         </td>
         </tr>
         </table>
@@ -597,15 +629,8 @@ else if($t=$len_u1-1)
       </div>
 	</form>
 	
-	
- 			
-		
-		
-        
-		
 	</div> 
-	<!--</div>
--->
+
 </div>
 </body>
 </html>
