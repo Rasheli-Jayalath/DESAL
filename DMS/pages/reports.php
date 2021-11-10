@@ -1052,7 +1052,7 @@ $total_numdd=$res2doc->rowCount();
 			 if($user_type==1 || $user_type==2)
 			 {
 			 ?>
-			 <td class="text-center"><a href="javascript:void(null);" style= "text-decoration: none;" onclick="window.open('upload_report.php?report_id=<?php echo $rows['report_id']; ?>', 'INV','width=650,height=400,scrollbars=yes');" ><i class="bi bi-pencil-fill iconorange" ></i> </a>
+			 <td class="text-center"><a href="javascript:void(null);" style= "text-decoration: none;" onclick="window.open('upload_report.php?report_id=<?php echo $rows['report_id']; ?>', 'INV','width=870,height=550,scrollbars=yes');" ><i class="bi bi-pencil-fill iconorange" ></i> </a>
 			 <a href="?p=reports&report_cd=<?php echo $rows['report_id']; ?>&cid=<?php echo $_REQUEST['cid']; ?>&cat_cd=<?php if($_REQUEST['cat_cd']) 
 			 {
 			 echo $_REQUEST['cat_cd'];
@@ -1088,7 +1088,7 @@ $total_numdd=$res2doc->rowCount();
 							
 							
 ?>
-<td colspan="2"><a href="javascript:void(null);" onclick="window.open('upload_report.php?report_id=<?php echo $rows['report_id']; ?>', 'INV','width=650,height=400,scrollbars=yes');" > <i class="bi bi-pencil-fill iconorange" style="margin-right: 10px;"></i></a></td>
+<td colspan="2"><a href="javascript:void(null);" onclick="window.open('upload_report.php?report_id=<?php echo $rows['report_id']; ?>', 'INV','width=870,height=550,scrollbars=yes');" > <i class="bi bi-pencil-fill iconorange" style="margin-right: 10px;"></i></a></td>
 						
 <?php
 }
@@ -1097,7 +1097,7 @@ $total_numdd=$res2doc->rowCount();
 							
 							
 ?>
-<td class="text-center"><a href="javascript:void(null);" onclick="window.open('upload_report.php?report_id=<?php echo $rows['report_id']; ?>', 'INV','width=650,height=400,scrollbars=yes');" > <i class="bi bi-pencil-fill iconorange" style="margin-right: 10px;"></i></a></td>
+<td class="text-center"><a href="javascript:void(null);" onclick="window.open('upload_report.php?report_id=<?php echo $rows['report_id']; ?>', 'INV','width=870,height=550,scrollbars=yes');" > <i class="bi bi-pencil-fill iconorange" style="margin-right: 10px;"></i></a></td>
   <a href="?p=reports&report_cd=<?php echo $rows['report_id']; ?>&cid=<?php echo $_REQUEST['cid']; ?>&cat_cd=<?php if($_REQUEST['cat_cd'])
 			 {
 			 echo $_REQUEST['cat_cd'];
@@ -1270,7 +1270,7 @@ if(($read_right_task==1) || ($user_type=='1'))
 				?>	
 					
 					
-					 <td class ="text-center" colspan="2" style="background:none;"><a href="javascript:void(null);" onclick="window.open('threads_input.php?task_id=<?php echo $res_t['tt_id']; ?>&cat_cd=<?php echo $res_t['category_cd']; ?>', 'INV','width=550,height=400,scrollbars=yes');" > <i class="bi bi-pencil-fill iconorange " ></i> </a></td>
+					 <td class ="text-center" colspan="2" style="background:none;"><a href="javascript:void(null);" onclick="window.open('threads_input.php?task_id=<?php echo $res_t['tt_id']; ?>&cat_cd=<?php echo $res_t['category_cd']; ?>', 'INV','width=870,height=550,scrollbars=yes');" > <i class="bi bi-pencil-fill iconorange " ></i> </a></td>
 		 <?php
 			 }
 			 
