@@ -1,5 +1,6 @@
 <?php 
 require_once("config/config.php");
+$objDb		    = new Database;
 $objCommon 		= new Common;
 $objMenu 		= new Menu;
 //$objNews 		= new News;
@@ -43,15 +44,15 @@ $data = $objAdminUser->dbFetchArray(1);
  $user_type= $data['user_type'];
  
  $temp_w="Select * from rs_tbl_threads_titles where tt_id=".$_GET['task_id'];
-$temp_w1=mysql_query($temp_w);
-$res_w=mysql_fetch_array($temp_w1);
+$temp_w1=$objDb->dbCon->query($temp_w);
+$res_w= $temp_w1->fetch() ;
 
  
 /*$report_path = REPORT_PATH;
 $report_id = $_REQUEST['report_id'];
 $category_cd = $_REQUEST['category_cd'];
 $cquery11 = "select * from rs_tbl_documents WHERE report_id = '$report_id'";
-$cresult11 = mysql_query($cquery11);
+$cresult11 = $objDb->dbCon->query($cquery11);
 $cdata11 = mysql_fetch_array($cresult11);
 if($report_id!="")
 {
@@ -200,7 +201,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST" && isset($_REQUEST["save"])){
        
         foreach($files as $file)
 		{
-         $sql_pro=mysql_query("INSERT INTO rs_tbl_attachments (message_id, thread_no, file_name) Values(".$messg_id.",".$thread_no.", '".$file."')");
+         $sql_pro=$objDb->dbCon->query("INSERT INTO rs_tbl_attachments (message_id, thread_no, file_name) Values(".$messg_id.",".$thread_no.", '".$file."')");
 	if ($sql_pro == TRUE) {
 						$message=  "New record added successfully";
 						}
@@ -214,20 +215,20 @@ if($_SERVER['REQUEST_METHOD'] == "POST" && isset($_REQUEST["save"])){
 			
 			$sql_pro="UPDATE rs_tbl_threads SET thread_status='6' where message_id=".$_GET['p_mess_id'];
 	
-			$sql_proresult=mysql_query($sql_pro) or die(mysql_error());
+			$sql_proresult=$objDb->dbCon->query($sql_pro) or die(mysql_error());
 	
 			
 				if($_POST['mode'] == "U"){
 					$objCommon->setMessage("Message Add/Reply susccessfully",'Info');
 					$activity="Task has been updated";
 				$sSQLlog_log = "INSERT INTO rs_tbl_user_log(user_id, epname, logintime, user_ip, user_pcname, url_capture) VALUES ('$uid', '$nameuser', '$nowdt', '$ipadd', '$hostname','$activity')";
-				mysql_query($sSQLlog_log);		
+				$objDb->dbCon->query($sSQLlog_log);		
 				}
 				else{
 					$objCommon->setMessage("Message Add/Reply  susccessfully",'Info');
 					$activity="Task has been updated";
 				$sSQLlog_log = "INSERT INTO rs_tbl_user_log(user_id, epname, logintime, user_ip, user_pcname, url_capture) VALUES ('$uid', '$nameuser', '$nowdt', '$ipadd', '$hostname','$activity')";
-				mysql_query($sSQLlog_log);		
+				$objDb->dbCon->query($sSQLlog_log);		
 				}
 				
 				$log_module = "Setting";
@@ -324,7 +325,7 @@ if($objAdminUser->is_login == true){
 {
 $mess_id= $_GET['mess_id'];
 $messl="Select * from rs_tbl_threads where cat_cd=".$_GET['category_cd']. "  and message_id=". $mess_id;
-$res_messl=mysql_query($messl);
+$res_messl=$objDb->dbCon->query($messl);
 $res_mess=mysql_fetch_array($res_messl);
 $thread_title= $res_mess['thread_title'];
 $thread_comments= $res_mess['thread_comments'];

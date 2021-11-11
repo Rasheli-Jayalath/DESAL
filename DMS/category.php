@@ -527,8 +527,9 @@ if($objAdminUser->is_login == true){
 			}
 				
 			?>
-<div id="containerContent" class="box" style="min-height:80px;padding:0px">
-		<div id="pageContentName" class="shadowWhite"><div align="left"><strong><?php echo ($mode == "U")? "Update Category" : "Add New Category"."&raquo;".$report_category;?></strong></div></div>
+			<h4 class="semibold"  style="text-align: center; margin: auto; margin-bottom: 20px; margin-top: 25PX;"><?php echo ($mode == "U")? "Update Category" : "Add New Category  "." &raquo; ".$report_category;?> </h4>
+<div id="" class="container bg-light bg-gradient" style=" margin-bottom: 100px;  border-radius: 15px;  padding: 20px;">
+
          
 		<!--<div id="pageContentRight">
 			<div class="menu1">
@@ -539,14 +540,15 @@ if($objAdminUser->is_login == true){
 			</div>
 		</div>-->
 		<div class="clear"></div>
-				<form name="frmCategory" id="frmCategory" action="" method="post" onSubmit="return frmValidate(this);">
+				<form class="form-inline" name="frmCategory" id="frmCategory" action="" method="post" onSubmit="return frmValidate(this);">
         <input type="hidden" name="mode" id="mode" value="<?php echo $mode;?>" />
         <input type="hidden" name="category_cd" id="category_cd" value="<?php echo $category_cd;?>" />
         <input type="hidden" name="parent_cd" id="parent_cd" value="<?php echo $parent_cd;?>" />
          <input type="hidden" name="cid" id="cid" value="<?php echo $_REQUEST["cid"];?>" />
-         <div id="tableContainer" class="table" style="border-left:1px;">
+
+         <div id="tableContainer" class=" commontextsize">
         
-          <table width="70%" border="0" cellspacing="0" cellpadding="0" >
+
 		   <?php /*?><tr>
       
         <td>
@@ -564,23 +566,36 @@ if($objAdminUser->is_login == true){
 		
 		
 		
-		
-   <tr>
+		<div class="row" style="margin-top: 20px;">
+
+            <div class="col-md-4 regular" style="text-align: right; font-size: small;">
+              <label  class="sr-only bold">Category Name <span style="color:#FF0000;">*</span></label>
+            </div>
+
+            <div class=" col-md-4" style="text-align: left; margin: auto;">
+				<input class="form-control commontextsize" type="text" placeholder="Category Name" name="category_name" id="category_name" value="<?php echo $category_name;?>" style="width:300px;" />
+            </div>
+
+            <div class="col-md-1"></div>
+            <div class="col-md-3"></div>
+
+        </div>
+  
       
-        <td >
-	    Category Name <span style="color:#FF0000;">*</span>:
 		
-        </td>
-        <td>
-        <div class="frmElement"><input class="rr_input" type="text" name="category_name" id="category_name" value="<?php echo $category_name;?>" style="width:200px;" /></div>
-		</td>
-        </tr>
+		<table  id="" class="table" style ="border-style: none; margin-top: 20px" >
 		 <tr>
       
         <td >
-	    Template <span style="color:#FF0000;"></span>:
+	
+		<div class="col-md-4 regular" style=" margin: auto; font-size: small;">
+                <p class="bold"  style="text-align: left; margin: auto; font-size: 20px;">Template &ensp; </p>
+       
+            </div>
         </td>
         <td>
+
+		
 		<table>
 		
 		<?php
@@ -629,8 +644,10 @@ elseif($column_name1=="report_status")
 else
 {
  ?>
- <td>
+ <td >
  <?php
+ echo " <div class=\"col-md-6 regular\" style=\"text-align: right;   font-size: small;\">
+ <label  class=\"sr-only bold\" style=\"  margin-top:5px;\" >  ";
 if($column_name1=="report_title")
 {
 echo $column_name="Title";
@@ -700,7 +717,7 @@ if($column_name1=="file_category")
 {
 echo $column_name="File Category";
 }
-
+echo "</label> </div>";
 ?>
 	
 </td>
@@ -736,8 +753,9 @@ else
 ?>
 
 		<td>
+		<div class="bg-primary " style="text-align: left; margin-left: -100px;  margin-right: 20px">
         <input class="rr_input" type="hidden" name="cat_field_name[]" id="cat_field_name[]" value="<?php echo $column_name1;?>" style="width:200px;" />
-		<input class="rr_input" type="text" name="cat_title_text[]" id="cat_title_text[]" value="<?php
+		<input class=" form-control commontextsize text-sm" type="text" name="cat_title_text[]" id="cat_title_text[]" placeholder="" style="  margin-top:5px;" value="<?php
 		if(isset($_GET['category_cd']))
 		{
 		$sql3="Select * from rs_tbl_category_template where cat_id=".$category_cd;
@@ -759,8 +777,8 @@ else
 			{
 			}
 		
-		 ?>" style="width:200px;" />
-		 
+		 ?>"  />
+		 </div>
 		</td>
 		<?php
 		}
@@ -791,8 +809,8 @@ elseif($column_name1=="report_status")
 else
 {
 		?>
-		<td>
-		<input name="order[]" type="text" class="rr_input" id="order[]" tabindex="<?php echo $i;?>" value="<?php
+		<td style = "  padding : 5px; "> 
+		<input name="order[]" type="text" class="rr_input form-control commontextsize" id="order[]" tabindex="<?php echo $i;?>" value="<?php
 		if(isset($_GET['category_cd']))
 		{
 		$sql3="Select * from rs_tbl_category_template where cat_id=".$category_cd;
@@ -814,7 +832,7 @@ else
 			{
 			}
 		
-		 ?>" style="width:40px" />
+		 ?>"  style="width:75px;  margin-top:5px;" placeholder="Order #" />
 						
          <input name="field_name[]" type="hidden" id="field_name[]" value="<?php echo $column_name1;?>"  />
 		</td>
@@ -831,12 +849,16 @@ else
 		}
 		?>
 		<tr><td>
-		Do you need Status of Documents? </td><td><input type="checkbox" name="category_status" id="category_status" value="1" <?php if($category_status==1){ echo 'checked="checked"';} ?> /></td></tr>
+		<label  class="sr-only bold mt-3 ">Do you need Status of Documents? &ensp;  </label> </td> 
+		<td> <input class="form-check-input mt-3"  type="checkbox" name="category_status" id="category_status" value="1" <?php if($category_status==1){ echo 'checked="checked"';} ?> />
+	 </td></tr>
 		</table>
+
+
 		</td>
         </tr>
 		
-		<tr>
+		<tr style=" border-style: none;">
         <td>		</td>
        
         <td>
@@ -1049,7 +1071,7 @@ else if($t=$len_u1-1)
 	
 		?>
 		
-		<input type="checkbox"    name="users[]"  value="<?php echo $rows['user_cd'];?>"  <?php echo $disabled;?>   <?php echo $selected;?>   onclick="readWrite(this)"/><?php echo $rows['fullname'];?>
+		<input type="checkbox"  class="form-check-input" style="margin-right: 15px;  " name="users[]"  value="<?php echo $rows['user_cd'];?>"  <?php echo $disabled;?>   <?php echo $selected;?>   onclick="readWrite(this)"/><?php echo $rows['fullname'];?>
 		<?php if($rows['user_cd']==$user_cd)
 		{
 		?>
@@ -1066,7 +1088,14 @@ else if($t=$len_u1-1)
 		?>
         
 		<div id="rights_<?php echo $rows['user_cd'];?>"<?php if($objAdminUser->user_cd==$rows['user_cd']){ ?> class="inactive"<?php } ?> 
-		<?php if($flag!=""){?>style=" text-align:right;margin-top:-20px;display:block;"<?php }else{ ?>style="display:none;text-align:right;margin-top:-20px;"<?php }?> ><input type="radio" name="rights<?php echo $rows['user_cd'];?>" value="3" <?php if($flag==3){ echo $selected;}?> /> R/W/D <input type="radio" name="rights<?php echo $rows['user_cd'];?>" value="1" <?php if($flag==1){ echo $selected;}?> /> R/W <input type="radio" name="rights<?php echo $rows['user_cd'];?>" value="2" <?php if($flag==2){ echo $selected;}?>/> R</div>
+		<?php if($flag!=""){?>style=" text-align:right;margin-top:-20px;display:block;"<?php }else{ ?>style="display:none;text-align:right;margin-top:-20px;"<?php }?> >
+		   <input class="form-check-input" type="radio" name="rights<?php echo $rows['user_cd'];?>" value="3" <?php if($flag==3){ echo $selected;}?> />
+		         <label class="form-check-label text-white bg-secondary semibold px-1 py-1 " style="font-size:small; "> R / W / D </label> &emsp; 
+		   	<input  class="form-check-input" type="radio" name="rights<?php echo $rows['user_cd'];?>" value="1" <?php if($flag==1){ echo $selected;}?> /> 
+		   		 <label class="form-check-label text-white bg-secondary semibold px-1 py-1 " style="font-size:small; "> R / W </label> &emsp; 
+		   <input  class="form-check-input"  type="radio" name="rights<?php echo $rows['user_cd'];?>" value="2" <?php if($flag==2){ echo $selected;}?>/> 
+		         <label class="form-check-label text-white bg-secondary semibold px-1 py-1 " style="font-size:small; "> Read </label> &emsp; 
+		</div>
 		 <br />
   
 	
@@ -1082,12 +1111,13 @@ else if($t=$len_u1-1)
         </td>
         </tr>
 		
-        <tr >
+        <tr style=" border-style: none;" >
         <td colspan="2" align="center">
           
         <div id="div_button">
-            <input type="submit" class="rr_button" value="<?php echo ($mode == "U") ? _BTN_UPDATE : _BTN_SAVE;?>" />
-            <!--<input type="button" class="rr_button" value="<?php //echo _BTN_CANCEL;?>" onClick="document.location='./?p=category';" />-->
+			<div class=" regular commontextsize" style=" text-align: center; margin: auto; margin-top: 40px;" >
+                <button type="submit" class="btn btn-success"><i class="bi bi-arrow-bar-up" style="margin-right: 10px;" value="<?php echo ($mode == "U") ? _BTN_UPDATE : _BTN_SAVE;?>" ></i>Save</button>
+            </div>
         </div>
         </td>
         </tr>
