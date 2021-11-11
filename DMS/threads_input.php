@@ -1,6 +1,6 @@
 <?php 
 require_once("config/config.php");
-$objDb		= new Database;
+$objDb		    = new Database;
 $objCommon 		= new Common;
 $objMenu 		= new Menu;
 //$objNews 		= new News;
@@ -345,12 +345,12 @@ if($objAdminUser->is_login == true){
 			?>
 			  <h4 class="semibold"  style="text-align: center; margin: auto; margin-bottom: 20px; margin-top: 25PX;"><?php echo ($mode == "U")? "Edit Task" : "Add New Task" ?></h4>
 			
-<div id="containerContent" class="container bg-light bg-gradient" style=" margin-bottom: 100px;  border-radius: 15px;  padding: 20px;  ">
+<div id="containerContent" class="container bg-light bg-gradient" style=" margin-bottom: 100px;  border-radius: 15px;  padding: 20px;" >
 		
          
 		
 		<div class="clear"></div>
-				<form name="frmCategory" id="frmCategory" action="" method="post" onSubmit="return frmValidate(this);">
+				<form class="form-inline" name="frmCategory" id="frmCategory" action="" method="post" onSubmit="return frmValidate(this);">
         <input type="hidden" name="mode" id="mode" value="<?php echo $mode;?>" />
 		<input type="hidden" name="tt_id" id="tt_id" value="<?php echo $tt_id;?>" />
         <input type="hidden" name="category_cd" id="category_cd" value="<?php echo $category_cd;?>" />

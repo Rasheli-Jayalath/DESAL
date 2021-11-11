@@ -31,7 +31,7 @@ if($_GET['mode'] == 'Delete')
 	$objCommon->setMessage('Member account deleted successfully.', 'Error');
 	$activity="Staff member  deleted successfully";
 	$sSQLlog_log = "INSERT INTO rs_tbl_user_log(user_id, epname, logintime, user_ip, user_pcname, url_capture) VALUES ('$uid', '$nameuser', '$nowdt', '$ipadd', '$hostname','$activity')";
-	mysql_query($sSQLlog_log);		
+	$objDb->dbCon->query($sSQLlog_log);		
 	redirect('./?p=staff_dir');
 	
 }

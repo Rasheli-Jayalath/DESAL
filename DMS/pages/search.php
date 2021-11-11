@@ -108,7 +108,7 @@ function showResult(strd,strr,strt) {
   xmlhttp.onreadystatechange=function() {
     if (xmlhttp.readyState==4 && xmlhttp.status==200) {
       document.getElementById("livesearch").innerHTML=xmlhttp.responseText;
-      document.getElementById("livesearch").style.border="1px solid #A5ACB2";
+      document.getElementById("livesearch").style.border="";  // table style   1px solid #A5ACB2
     }
   }
   xmlhttp.open("GET","livesearch.php?d="+strd+"&r="+strr+"&t="+strt,true);
@@ -136,7 +136,7 @@ else
 	document.getElementById("livesearch").style.display="none"; 
 	document.getElementById("advsearch").style.display="block"; 
       document.getElementById("advsearch").innerHTML=xmlhttp.responseText;
-      document.getElementById("advsearch").style.border="1px solid #A5ACB2";
+      document.getElementById("advsearch").style.border="";  // table style   1px solid #A5ACB2
     }
   }
   xmlhttp.open("GET","reports_search.php?catid="+catid+"&last_subcat="+last_subcat+"&titlee="+titlee+"&document_no="+document_no+"&reference_no="+reference_no+"&rep_reference_no="+rep_reference_no+"&revision="+revision+"&file_from="+file_from+"&file_to="+file_to+"&file_no="+file_no+"&file_category="+file_category+"&drawing_series="+drawing_series+"&doc_issue_date="+doc_issue_date+"&received_date="+received_date+"&doc_upload_datef="+doc_upload_datef+"&doc_upload_datet="+doc_upload_datet+"&remarks="+remarks,true);
@@ -393,9 +393,9 @@ function subcatlisting(subcatid,catid,parent_cd) {
 </head>
 
 <body>
-<div id="">
 
-<div class="container" style="margin-top: 20px; margin-bottom: 130px;" >
+
+<div class="container" style="margin-top: 20px; " >
 
 <h4 class="semibold"  style="text-align: center; margin: auto; margin-bottom: 20px;">Quick Search</h4>
 
@@ -672,15 +672,13 @@ $cquery = "select category_cd from  rs_tbl_category";
 
 </form>
 
-   
 </div>
 
 
-
-<div id="livesearch"></div>
-<div id="advsearch"></div>
-	
  	</div> 
-	</div>
 
-      
+   <div style="width:95%; margin:auto;">
+      <div id="livesearch" ></div>
+      <div id="advsearch" ></div>
+
+ 	</div> 
