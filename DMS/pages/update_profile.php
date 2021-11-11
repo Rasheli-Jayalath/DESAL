@@ -363,7 +363,7 @@ function frmValidate(frm){
 
             <div class=" regular commontextsize" style=" text-align: center; margin: auto; margin-top: 40px;">
                 <button id="submit"  type="submit" class="btn btn-success"><i class="bi bi-arrow-bar-up" style="margin-right: 10px;" value="<?php echo ($mode == "U") ? " Update " : " Save ";?>"></i>Save  </button>
-                <button id="submit2" type="button" class="btn btn-danger"> <i class="bi bi-x-circle"     style="margin-right: 10px;" value="Cancel" onClick="document.location='./index.php';"   ></i>Cancel </button>
+                <button id="submit2" type="button" class="btn btn-danger"> <a href="index.php?p=user_mgmt" class="text-white" style="text-decoration: none;"><i class="bi bi-x-circle"     style="margin-right: 10px;" value="Cancel" onClick="document.location='./index.php';"   ></i>Cancel </a></button>
             </div>
 
         </div>
