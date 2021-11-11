@@ -1,3 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+    </style>
+     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/table-styling.css" rel="stylesheet">
+
+
+    <title>DMS</title>
+</head>
+
+<body>
+
 <?php
 if(($_SERVER['REQUEST_METHOD'] == "POST") && ($_POST['cancel']=="Cancel"))
 {
@@ -379,42 +402,57 @@ var req= getXMLHTTP();
 }
 	
 		</script>
-<div id="wrapperPRight">
-		<div id="pageContentName" class="shadowWhite"><?php echo ($mode == "U") ? "Manage Rights &raquo; ".$name_full : "Manage Rights &raquo; ".$name_full?></div>
-		<div class="menu1">
-				<ul>
-				<li><a href="./?p=user_mgmt" class="lnkButton"><?php echo "Back";?>
-					</a></li>
-					</ul>
-				<br style="clear:left"/>
-			</div>
-		<!--<div id="pageContentRight">
-			<div class="menu">
-				<ul>
-					<li><a href="./?p=my_profile" class="lnkButton"><?php //echo "My Profile";?></a></li>				
-				</ul>
-				<br style="clear:left"/>
-			</div>
-		</div>-->
-		<div class="clear"></div>
-	<?php echo $objCommon->displayMessage();?>
-		<div class="clear"></div>
-		<div class="NoteTxt"><?php echo _NOTE;?></div>
-		<div id="tableContainer">
-		 <form name="form1" method="post" action="">
-		<table width="100%" border="1px solid" bgcolor="#EFEFEF">
-		 <tr>
-<td width="70%" align="right" style="font-weight:bold; font-size:12px">All rights will enable in one click</td>
-<td width="30%">
-		<div class="<?php echo $active; ?>"  >
-  <input type="radio" name="status_all" value="2" onclick="Showactiveall(2,<?php echo $u_id; ?>)"  >R
-  <input type="radio" name="status_all" value="1" onclick="Showactiveall(1,<?php echo $u_id; ?>)">R/W
-  <input type="radio" name="status_all" value="3" onclick="Showactiveall(3,<?php echo $u_id; ?>)">R/W/D
-  <input type="radio" name="status_all" value="0" onclick="Showactiveall(0,<?php echo $u_id; ?>)"> No
+
+	<h4 class="semibold"  style="text-align: center; margin: auto; margin-bottom: 20px; margin-top: 25PX;">
+			<?php echo ($mode == "U") ? "Manage Rights &raquo; ".$name_full : "Manage Rights &raquo; ".$name_full?>
+	</h4>
+<div id="wrapperPRight" class="container" style=" margin-bottom: 100px;  border-radius: 15px; border: 2px solid #dfdfdf;padding: 20px; ">
+
+		
+  <div class="row">
+    <div class="col pt-2">
+	<?php echo _NOTE;?>
+    </div>
+    <div class="col">
+    <p style="text-align:right;  font-weight:bold"><a href="./?p=user_mgmt" class="btn btn-primary" style="text-decoration: none;"> 
+			 <i class="bi bi-chevron-double-left"></i> Back </a>	</p>
+    </div>
+ 
   </div>
 
-		</td>
+	
+	<?php echo $objCommon->displayMessage();?>
+		
+		<div id="tableContainer"  class="table-responsive commontextsize">
+		 <form name="form1" method="post" action="">
+		<table width="100%" id="customers" class="table">
+		<thead>
+		 <tr>
+<th width="70%" align="right" style="font-weight:bold; font-size:12px">All rights will enable in one click</th>
+
+		<div class="<?php echo $active; ?>"  >
+		<th  width="6%" style="border-style: none; margin:0; padding:0; padding-left:10px; padding-bottom:5px"> 
+  <input type="radio" class="form-check-input mt-1 px-2 py-2" style="margin-right: 5px; " name="status_all" value="2" onclick="Showactiveall(2,<?php echo $u_id; ?>)"  >
+  <label class="form-check-label text-warning  semibold px-1 py-1 " style=" "> R  </label> 
+</th>
+<th  width="8%" style="border-style: none; margin:0; padding:0; padding-left:10px; padding-bottom:5px">
+  <input type="radio" class="form-check-input mt-1 px-2 py-2" style="margin-right: 5px; " name="status_all" value="1" onclick="Showactiveall(1,<?php echo $u_id; ?>)">
+  <label class="form-check-label text-warning  semibold px-1 py-1 " style=" "> R / W </label>
+  </th>
+<th  width="9%" style="border-style: none; margin:0; padding:0; padding-left:10px; padding-bottom:5px"> 
+  <input type="radio" class="form-check-input mt-1 px-2 py-2" style="margin-right: 5px; " name="status_all" value="3" onclick="Showactiveall(3,<?php echo $u_id; ?>)">
+  <label class="form-check-label text-warning  semibold px-1 py-1 " style=" "> R / W / D </label>
+  </th>
+<th  width="8%" style="border-style: none; margin:0; padding:0; padding-left:10px; padding-bottom:5px">
+  <input type="radio" class="form-check-input mt-1 px-2 py-2" style="margin-right: 5px; " name="status_all" value="0" onclick="Showactiveall(0,<?php echo $u_id; ?>)"> 
+  <label class="form-check-label text-warning  semibold px-1 py-1 " style=" "> No</label>
+  </th>
+
+  </div>
+
+	
 		</tr>
+</thead>
 		</table>
 		<div id="all">
 		<?php
@@ -434,8 +472,8 @@ while ($data =  $sqlresult->fetch()) {
 	//	echo $cdlist[0];
 	?>
 	
-<div id="abcd<?php echo $cdlist[$items-1];?>">
-<table border="1px solid" width="100%" >
+<div id="abcd<?php echo $cdlist[$items-1];?>"  class="table-responsive commontextsize" >
+<table  width="100%" id="customers" class="table">
 
 
 
@@ -637,15 +675,30 @@ while ($data =  $sqlresult->fetch()) {
 		  }
 		
 		 ?>
-		<td width="30%">
+		
 		<div class="<?php echo $active; ?>"  >
-  <input type="radio" name="status<?php echo $category_cd2;?>" value="2" <?php if($user_rit=="2"){ echo "checked";} ?> onclick="Showactive(<?php echo $category_cd2;?>,2,<?php echo $items; ?>,<?php echo $abc; ?>)"  >R
-  <input type="radio" name="status<?php echo $category_cd2;?>" value="1" <?php if($user_rit=="1"){ echo "checked";} ?> onclick="Showactive(<?php echo $category_cd2;?>,1,<?php echo $items; ?>,<?php echo $abc; ?>)" >R/W
-   <input type="radio" name="status<?php echo $category_cd2;?>" value="3" <?php if($user_rit=="3"){ echo "checked";} ?>  onclick="Showactive(<?php echo $category_cd2;?>,3,<?php echo $items; ?>,<?php echo $abc; ?>)" >R/W/D
-  <input type="radio" name="status<?php echo $category_cd2;?>" value="0"  <?php if($user_rit=="0"){ echo "checked";} ?> onclick="Showactive(<?php echo $category_cd2;?>,0,<?php echo $items; ?>,<?php echo $abc; ?>)"> No
-  </div>
-
+		<td width="6%" style="border-style: none;  margin:0; padding:0; padding-left:10px" >
+  <input type="radio" class="form-check-input" style="margin-right: 5px; " name="status<?php echo $category_cd2;?>" value="2" <?php if($user_rit=="2"){ echo "checked";} ?> onclick="Showactive(<?php echo $category_cd2;?>,2,<?php echo $items; ?>,<?php echo $abc; ?>)"  >
+   <label class="form-check-label text-dark  semibold  px-2 " style="font-size:small; "> R  </label> &emsp; &emsp; 
 		</td>
+	   	<td width="8%"  style="border-style: none;  margin:0; padding:0; padding-left:10px">
+   <input type="radio" class="form-check-input" style="margin-right: 5px; " name="status<?php echo $category_cd2;?>" value="1" <?php if($user_rit=="1"){ echo "checked";} ?> onclick="Showactive(<?php echo $category_cd2;?>,1,<?php echo $items; ?>,<?php echo $abc; ?>)" >
+  <label class="form-check-label text-dark  semibold  px-2 " style="font-size:small; "> R / W </label> &emsp; &emsp; 
+  </td>
+	   	<td width="9%" style="border-style: none;  margin:0; padding:0; padding-left:10px">
+  <input type="radio" class="form-check-input" style="margin-right: 5px; " name="status<?php echo $category_cd2;?>" value="3" <?php if($user_rit=="3"){ echo "checked";} ?>  onclick="Showactive(<?php echo $category_cd2;?>,3,<?php echo $items; ?>,<?php echo $abc; ?>)" >
+  <label class="form-check-label text-dark  semibold px-2 " style="font-size:small; ">  R / W / D   </label> &emsp; &emsp; 
+  </td>
+	   	<td width="8%" style="border-style: none;  margin:0; padding:0; padding-left:10px">
+  <input type="radio" class="form-check-input" style="margin-right: 5px; " name="status<?php echo $category_cd2;?>" value="0"  <?php if($user_rit=="0"){ echo "checked";} ?> onclick="Showactive(<?php echo $category_cd2;?>,0,<?php echo $items; ?>,<?php echo $abc; ?>)">
+    <label class="form-check-label text-dark  semibold  px-2 " style="font-size:small; "> No  </label> &emsp; &emsp; 
+	</td>
+
+
+	   	
+</div>
+
+	
 		<?php
 		$flag="";
 		$flag3="";
@@ -660,9 +713,18 @@ while ($data =  $sqlresult->fetch()) {
 }
 			?>
 			</div>
-			<input type="submit" name="save" value="Save" />
-			<input type="submit" name="cancel" value="Cancel" />
-			<input type="submit" name="refresh" value="Refresh" />
+			<div class="d-flex justify-content-center" style="margin:auto; ">
+				<button type="submit" class="btn btn-success mx-2" name="save"    value="Save" >   <i class="bi bi-arrow-bar-up"    style="margin-right: 10px;"></i>Save     </button>
+				<button type="submit" class="btn btn-danger mx-2"  name="cancel"  value="Cancel" > <i class="bi bi-x-circle"        style="margin-right: 10px;"></i>Cancel   </button>
+				<button type="submit" class="btn btn-info mx-2"    name="refresh" value="Refresh" ><i class="bi bi-arrow-clockwise" style="margin-right: 10px;"></i>Refresh  </button>
+			</div>
 			</form>
   	    </div>
 	</div>
+
+
+
+
+</body>
+
+</html>

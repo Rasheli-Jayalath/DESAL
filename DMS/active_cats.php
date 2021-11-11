@@ -1,5 +1,6 @@
 <?php 
 require_once("config/config.php");
+$objDb		= new Database;
 $objCommon 		= new Common;
 $objMenu 		= new Menu;
 //$objNews 		= new News;
@@ -46,8 +47,8 @@ $indent_space= $indent_space1+1;
 			
 <?php
 $cdsql2 = "select category_cd,category_name,user_right from rs_tbl_category where category_cd = ".$cat_cd;
-		$cdsqlresult2 = mysql_query($cdsql2);
-		$cddata2 = mysql_fetch_array($cdsqlresult2);
+		$cdsqlresult2 = $objDb->dbCon->query($cdsql2);
+		$cddata2 =  $cdsqlresult2->fetch();
 		
 		$category_cd2 = $cddata2['category_cd'];
 		$parent_cdd = $cddata2['parent_cd'];
@@ -134,13 +135,27 @@ $cdsql2 = "select category_cd,category_name,user_right from rs_tbl_category wher
 		  }*/
 		 
 		  ?>
-<td width="30%">
+
 <div class="<?php echo $active; ?>"  >
-  <input type="radio" name="status<?php echo $category_cd2;?>" value="2" <?php if($user_rit=="2"){ echo "checked";} ?> <?php if($user_rit=="0"){ ?> onclick="Showactive(<?php echo $category_cd2;?>,2,<?php echo  $indent_space; ?>,<?php echo $abc; ?>)" <?php }?>>R
-  <input type="radio" name="status<?php echo $category_cd2;?>" value="1" <?php if($user_rit=="1"){ echo "checked";} ?> <?php if($user_rit=="0"){ ?>onclick="Showactive(<?php echo $category_cd2;?>,1,<?php echo $indent_space; ?>,<?php echo $abc; ?>)"<?php }?>>R/W
-   <input type="radio" name="status<?php echo $category_cd2;?>" value="3" <?php if($user_rit=="3"){ echo "checked";} ?> <?php if($user_rit=="0"){ ?>onclick="Showactive(<?php echo $category_cd2;?>,3,<?php echo $indent_space; ?>,<?php echo $abc; ?>)"<?php }?>>R/W/D
-  <input type="radio" name="status<?php echo $category_cd2;?>" value="0"  <?php if($user_rit=="0"){ echo "checked";} ?> onclick="Showactive(<?php echo $category_cd2;?>,0,<?php echo $indent_space; ?>,<?php echo $abc; ?>)" > No
-  </div>
-  </td>
+<td width="6%" style="border-style: none;  margin:0; padding:0; padding-left:10px" >
+  <input class="form-check-input" style="margin-right: 5px; "  type="radio" name="status<?php echo $category_cd2;?>" value="2" <?php if($user_rit=="2"){ echo "checked";} ?> <?php if($user_rit=="0"){ ?> onclick="Showactive(<?php echo $category_cd2;?>,2,<?php echo  $indent_space; ?>,<?php echo $abc; ?>)" <?php }?>>
+  <label class="form-check-label text-dark  semibold  px-2 " style="font-size:small; "> R  </label> &emsp; &emsp; 
+		</td>
+	   	<td width="8%"  style="border-style: none;  margin:0; padding:0; padding-left:10px">
+  <input class="form-check-input" style="margin-right: 5px; "  type="radio" name="status<?php echo $category_cd2;?>" value="1" <?php if($user_rit=="1"){ echo "checked";} ?> <?php if($user_rit=="0"){ ?>onclick="Showactive(<?php echo $category_cd2;?>,1,<?php echo $indent_space; ?>,<?php echo $abc; ?>)"<?php }?>>R/W
+  <label class="form-check-label text-dark  semibold  px-2 " style="font-size:small; "> R / W  </label> &emsp; &emsp; 
+		</td>
+	   	<td width="9%"  style="border-style: none;  margin:0; padding:0; padding-left:10px">
+  <input class="form-check-input" style="margin-right: 5px; "  type="radio" name="status<?php echo $category_cd2;?>" value="3" <?php if($user_rit=="3"){ echo "checked";} ?> <?php if($user_rit=="0"){ ?>onclick="Showactive(<?php echo $category_cd2;?>,3,<?php echo $indent_space; ?>,<?php echo $abc; ?>)"<?php }?>>R/W/D
+  <label class="form-check-label text-dark  semibold  px-2 " style="font-size:small; "> R / W / D  </label> &emsp; &emsp; 
+		</td>
+	   	<td width="8%"  style="border-style: none;  margin:0; padding:0; padding-left:10px">
+  <input class="form-check-input" style="margin-right: 5px; "  type="radio" name="status<?php echo $category_cd2;?>" value="0"  <?php if($user_rit=="0"){ echo "checked";} ?> onclick="Showactive(<?php echo $category_cd2;?>,0,<?php echo $indent_space; ?>,<?php echo $abc; ?>)" > No
+  <label class="form-check-label text-dark  semibold  px-2 " style="font-size:small; "> No  </label> &emsp; &emsp; 
+		</td>
+
+
+</div>
+
 </tr>
 </table>

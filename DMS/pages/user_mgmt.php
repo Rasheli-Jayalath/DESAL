@@ -244,7 +244,7 @@ function doFilter(frm){
 					{?>
 			 <a href="./?p=update_rights&user_cd=<?php echo $rows['user_cd'];?>" title="Manage Rights"><i class="bi bi-gear-fill" style="color:#000" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Manage Right"></i></a><?php } ?></td>
 		<td align="center">
-			 <a href="./?p=update_profile&user_cd=<?php echo $rows['user_cd'];?>" title="Edit"><i class="bi bi-pencil-fill iconorange" style="padding-right:10px" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Edit"></i> </a>
+			 <a style="text-decoration: none;" href="./?p=update_profile&user_cd=<?php echo $rows['user_cd'];?>" title="Edit"><i class="bi bi-pencil-fill iconorange" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Edit"></i> </a>
 			 <!--<td align="center">
 					<?php if($rows['is_active'] != 1){?>
 				<a href="./?p=user_mgmt&mode=Activate&user_cd=<?php echo $rows['user_cd'];?>" onClick="return doConfirm('Are you sure you want to activate the user?');" title="Activate Customer's Account"><img src="images/icons/action_download.gif" border="0" title="Activate" alt="Activate"  /></a>
@@ -252,7 +252,7 @@ function doFilter(frm){
 				<a href="./?p=user_mgmt&mode=Suspend&user_cd=<?php echo $rows['user_cd'];?>" onClick="return doConfirm('Are you sure you want to suspend the user?');" title="Suspend Customer's Account">
 					<img src="images/icons/action_block.gif" border="0" title="Suspend" alt="Suspend" /></a><?php }?></td>-->
 					
-				<a class="lnk" href="./?p=user_mgmt&amp;mode=Delete&amp;user_cd=<?php echo $rows['user_cd'];?>" onclick="return doConfirm('Are you sure you want to Delete Permanently this user ?');" title="Delete"><i class="bi bi-trash-fill iconred" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Delete"></i></a>
+				<a style="margin-left:20px" class="lnk" href="./?p=user_mgmt&amp;mode=Delete&amp;user_cd=<?php echo $rows['user_cd'];?>" onclick="return doConfirm('Are you sure you want to Delete Permanently this user ?');" title="Delete"><i class="bi bi-trash-fill iconred" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Delete"></i></a>
 				</td>
 				</tr>
 			<?php

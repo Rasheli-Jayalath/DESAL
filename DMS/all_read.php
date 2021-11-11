@@ -1,5 +1,6 @@
 <?php 
 require_once("config/config.php");
+$objDb		= new Database;
 $objCommon 		= new Common;
 $objMenu 		= new Menu;
 //$objNews 		= new News;
@@ -41,8 +42,8 @@ $s_value=$_GET['s_value'];
  ?>
  		<?php
 		$sql = "SELECT * FROM rs_tbl_category order by parent_group, parent_cd";
-$sqlresult = mysql_query($sql);
-while ($data = mysql_fetch_array($sqlresult)) {
+$sqlresult = $objDb->dbCon->query($sql);
+while ($data = $sqlresult->fetch()) {
 	$cdlist = array();
 	$items = 0;
 	$path = $data['parent_group'];
@@ -50,13 +51,13 @@ while ($data = mysql_fetch_array($sqlresult)) {
 	$cdlist = explode("_",$path);
 	$items = count($cdlist);
 	$cdsql = "select * from rs_tbl_category where category_cd = ".$cdlist[0];
-	$cdsqlresult = mysql_query($cdsql);
-	$cddata = mysql_fetch_array($cdsqlresult);
+	$cdsqlresult = $objDb->dbCon->query($cdsql);
+	$cddata =  $cdsqlresult->fetch();
 	$category_name = $cddata['category_name'];
 	//	echo $cdlist[0];
 	?>
-<div id="abcd<?php echo $cdlist[$items-1];?>">
-<table border="1px solid" width="100%" >
+<div id="abcd<?php echo $cdlist[$items-1];?>" class="table-responsive commontextsize">
+<table id="customers" class="table" width="100%" >
 
 
 
@@ -68,8 +69,8 @@ while ($data = mysql_fetch_array($sqlresult)) {
 		
 	
 		$cdsql = "select category_cd,category_name from rs_tbl_category where category_cd = ".$cdlist[$items-1];
-		$cdsqlresult = mysql_query($cdsql);
-		$cddata = mysql_fetch_array($cdsqlresult);
+		$cdsqlresult = $objDb->dbCon->query($cdsql);
+		$cddata =  $cdsqlresult->fetch();
 		$category_cd = $cddata['category_cd'];
 
 			?>
@@ -148,14 +149,14 @@ while ($data = mysql_fetch_array($sqlresult)) {
 		{
 		  $abc= $_GET["user_cd"];
 		$cdsql2 = "select category_cd,parent_cd,user_ids,user_right from rs_tbl_category where category_cd = ".$cdlist[$items-1];
-		$cdsqlresult2 = mysql_query($cdsql2);
-		$cddata2 = mysql_fetch_array($cdsqlresult2);
+		$cdsqlresult2 = $objDb->dbCon->query($cdsql2);
+		$cddata2 =  $cdsqlresult2->fetch();
 		$category_cd2 = $cddata2['category_cd'];
 		$parent_cdd = $cddata2['parent_cd'];
 		
 		$cdsqlt = "select category_cd,parent_cd,user_ids,user_right from rs_tbl_category where category_cd = ".$parent_cdd;
-		$cdsqlresult = mysql_query($cdsqlt);
-		$cddatat = mysql_fetch_array($cdsqlresult);
+		$cdsqlresult = $objDb->dbCon->query($cdsqlt);
+		$cddatat = $cdsqlresult->fetch();
 		$category_cdt = $cddatat['category_cd'];
 	
 		if($s_value==1  || $s_value==2 || $s_value==3)
@@ -171,15 +172,28 @@ while ($data = mysql_fetch_array($sqlresult)) {
 		$active="inactive";
 		}
 		 ?>
-		<td width="30%">
+		
 		<div class="<?php echo $active; ?>"  >
-  <input type="radio" name="status<?php echo $category_cd2;?>" value="2" <?php if($s_value=="2"){ echo "checked";} ?>  onclick="Showactive(<?php echo $category_cd2;?>,2,<?php echo $items; ?>,<?php echo $abc; ?>)"  >R
-  <input type="radio" name="status<?php echo $category_cd2;?>" value="1" <?php if($s_value=="1"){ echo "checked";} ?> onclick="Showactive(<?php echo $category_cd2;?>,1,<?php echo $items; ?>,<?php echo $abc; ?>)">R/W
-  <input type="radio" name="status<?php echo $category_cd2;?>" value="3" <?php if($s_value=="3"){ echo "checked";} ?> onclick="Showactive(<?php echo $category_cd2;?>,3,<?php echo $items; ?>,<?php echo $abc; ?>)">R/W/D
-  <input type="radio" name="status<?php echo $category_cd2;?>" value="0"  <?php if($s_value=="0"){ echo "checked";} ?> onclick="Showactive(<?php echo $category_cd2;?>,0,<?php echo $items; ?>,<?php echo $abc; ?>)"> No
-  </div>
-
+		<td width="6%" style="border-style: none;  margin:0; padding:0; padding-left:10px" >
+  <input  class="form-check-input" style="margin-right: 5px; " type="radio" class="form-check-input" style="margin-right: 10px; " name="status<?php echo $category_cd2;?>" value="2" <?php if($s_value=="2"){ echo "checked";} ?>  onclick="Showactive(<?php echo $category_cd2;?>,2,<?php echo $items; ?>,<?php echo $abc; ?>)"  >
+  <label class="form-check-label text-dark  semibold  px-2 " style="font-size:small; "> R  </label> &emsp; &emsp; 
 		</td>
+	   	<td width="8%"  style="border-style: none;  margin:0; padding:0; padding-left:10px">
+  <input  class="form-check-input" style="margin-right: 5px; " type="radio" class="form-check-input" style="margin-right: 10px; " name="status<?php echo $category_cd2;?>" value="1" <?php if($s_value=="1"){ echo "checked";} ?> onclick="Showactive(<?php echo $category_cd2;?>,1,<?php echo $items; ?>,<?php echo $abc; ?>)">
+  <label class="form-check-label text-dark  semibold  px-2 " style="font-size:small; "> R / W  </label> &emsp; &emsp; 
+		</td>
+	   	<td width="9%"  style="border-style: none;  margin:0; padding:0; padding-left:10px">
+  <input  class="form-check-input" style="margin-right: 5px; " type="radio" class="form-check-input" style="margin-right: 10px; " name="status<?php echo $category_cd2;?>" value="3" <?php if($s_value=="3"){ echo "checked";} ?> onclick="Showactive(<?php echo $category_cd2;?>,3,<?php echo $items; ?>,<?php echo $abc; ?>)">
+  <label class="form-check-label text-dark  semibold  px-2 " style="font-size:small; "> R / W / D   </label> &emsp; &emsp; 
+		</td>
+	   	<td width="8%"  style="border-style: none;  margin:0; padding:0; padding-left:10px">
+  <input  class="form-check-input" style="margin-right: 5px; " type="radio" class="form-check-input" style="margin-right: 10px; " name="status<?php echo $category_cd2;?>" value="0"  <?php if($s_value=="0"){ echo "checked";} ?> onclick="Showactive(<?php echo $category_cd2;?>,0,<?php echo $items; ?>,<?php echo $abc; ?>)">
+  <label class="form-check-label text-dark  semibold  px-2 " style="font-size:small; "> No  </label> &emsp; &emsp; 
+		</td>
+	
+</div>
+
+		
 		<?php
 		$flag="";
 		$flag3="";

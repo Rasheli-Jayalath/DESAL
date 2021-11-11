@@ -1,6 +1,6 @@
 <?php 
 require_once("config/config.php");
-$objDb		= new Database;
+$objDb		    = new Database;
 $objCommon 		= new Common;
 $objMenu 		= new Menu;
 //$objNews 		= new News;
@@ -1137,6 +1137,20 @@ else{
 <html xmlns="http://www.w3.org/1999/xhtml">
 <title><?php echo HOME_MAIN_TITLE?></title>
 <head>
+	<!-- Added when updating -->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+    </style>
+     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/table-styling.css" rel="stylesheet">
+	<!-- End Adding  -->
 
 <link href="css/style.css" rel="stylesheet" type="text/css">
 <link rel="stylesheet" type="text/css" href="menu/chromestyle.css"/>
@@ -1215,49 +1229,48 @@ function frmValidatetitle(frm){
 	
   });
   </script>
-   
-<div id="wrapperPRight" style="width:700px">
+   <h4 class="semibold"  style="text-align: center; margin: auto; margin-bottom: 20px; margin-top: 60px;">Upload File</h4>
 
-<h2 align="center">Upload File</h2>
+
+
 <?php echo $objCommon->displayMessage();?>
          
-		<div class="clear"></div>
-				<form name="frmReport" id="frmReport"  action="" method="post" enctype="multipart/form-data" onSubmit="return frmValidatetitle(this);">
+	
+				<form name="frmReport" class="form-inline" id="frmReport"  action="" method="post" enctype="multipart/form-data" onSubmit="return frmValidatetitle(this);">
         <input type="hidden" name="mode" id="mode" value="<?php echo $mode;?>" />
         <input type="hidden" name="report_id" id="report_id" value="<?php echo $cdata11['report_id'];?>" />
         
-         <div id="tableContainer" class="table" style="border-left:1px;">
-        
-          <table width="70%" border="1" style="margin-right:90px" cellspacing="0" cellpadding="0" align="left">
-    
-    <tr>
-      
-        <td >
-	    <?php echo PRD_CAT_NAME;?><span style="color:#FF0000;">*</span>:
-        </td>
-        <td>
-        <div id="componentdiv">
-        
-        <select name="cat_id" id="cat_id" onChange="getsubcat(this.value)" disabled="disabled">
-              <option value="0">Select Category..</option>
-              <?php
-$cquery = "select category_cd,category_name,parent_cd from  rs_tbl_category WHERE category_cd = ".$cat_idm;
-$cresult=$objDb->dbCon->query($cquery);
-while ($cdata = $cresult->fetch()) {
+		<div class="container" style=" margin-bottom: 100px;  border-radius: 15px; border: 2px solid #dfdfdf;padding: 20px; ">
+       
+          
 
-?>
-              <option value="<?php echo $cdata['category_cd']; ?>" <?php if ($cat_idm == $cdata['category_cd']) {echo ' selected="selected"';} ?>><?php echo $cdata['category_name']; ?></option>
-              <?php
-}
-?>
+        <div class="row" style="margin-top: 20px;">
+
+            <div class="col-md-4 regular" style="text-align: right; font-size: small; margin: auto;">
+			    <label  class="sr-only bold"><?php echo PRD_CAT_NAME;?><span style="color:#FF0000;">*</span></label>
+            </div>
+
+            <div class=" col-md-4" style="text-align: left; ">
+			<select class="form-select" name="cat_id" id="cat_id" onChange="getsubcat(this.value)" disabled="disabled">
+				<option value="0">Select Category..</option>
+				<?php
+						$cquery = "select category_cd,category_name,parent_cd from  rs_tbl_category WHERE category_cd = ".$cat_idm;
+						$cresult=$objDb->dbCon->query($cquery);
+						while ($cdata = $cresult->fetch()) {
+
+						?>
+									<option value="<?php echo $cdata['category_cd']; ?>" <?php if ($cat_idm == $cdata['category_cd']) {echo ' selected="selected"';} ?>><?php echo $cdata['category_name']; ?></option>
+									<?php
+						}
+					?>
             </select>
-			<!--<input type="hidden" name="cat_id" id="cat_id" value="<?php //echo $cat_id ?>"/>-->
-			</div>
-		</td>
-        </tr>
+            </div>
 
-		<tr>
-		<td colspan="2" style="padding:0px;">
+            <div class="col-md-1"></div>
+            <div class="col-md-3"></div>
+
+        </div>
+
 			<?php
 		
 
@@ -1283,7 +1296,7 @@ while ($cdata = $cresult->fetch()) {
 		{
 ?>
 <div id="<?php echo "subcatdiv_".$cat_idm?>" style="display:block" >
-<table width="100%" border="0" style="margin-right:90px" cellspacing="0" cellpadding="0" align="center">
+
 <?php
 
  $tquery = "select * from  rs_tbl_category where parent_cd = ".$cat_idm . " order by category_cd ASC";
@@ -1297,7 +1310,7 @@ if($tresult->rowCount()>0)
 <?php
 }
 ?>
-</table>
+
 
 		</div>
 <?php
@@ -1309,7 +1322,7 @@ if($tresult->rowCount()>0)
 		{
 		?>
 		<div id="<?php echo "subcatdiv_".$arr_subcat[$i]?>" style="display:block" >
-		<table width="100%" border="0" style="margin-right:90px" cellspacing="0" cellpadding="0" align="center">
+	
 		<?php
  $subcat_id= $arr_subcat[$i];
 $catid= $cat_idm;
@@ -1342,10 +1355,9 @@ if($i==0)
  }
 
 ?>
-<tr>
-<td width="180px"><?php echo "Sub Category";?> 
-       <span style="color:#FF0000;">*</span>:</td>
-<td>
+<?php echo "Sub Category";?> 
+       <span style="color:#FF0000;">*</span>:
+
 <select name="subcatid_<?php echo $subcat_id; ?>" id="subcatid_<?php echo $subcat_id; ?>" onChange="subcatlisting_<?php echo $subcat_id; ?>(this.value,'<?php echo $con_catid; ?>')" >
 <option value="0">Select Sub Category..</option>
 <?php
@@ -1357,13 +1369,12 @@ while ($tdata = $tresult->fetch()) {
 }
 ?>
 </select>
-</td>
-</tr>
+
 <?php
 }
 }
 ?>
-</table>
+
 		</div>
 		<?php
 		}
@@ -1387,32 +1398,39 @@ if($cat_id2==$lst_sub)
 
 ?>
 <div id="<?php echo "fields_".$lst_sub?>" style="display:block" >
-<table width="100%" border="0" style="margin-right:90px" cellspacing="0" cellpadding="0" align="center">
+
 <?php
 $sql36="Select * from rs_tbl_category_template where cat_id=".$lst_sub." order by cat_temp_order asc";
 $tresult=$objDb->dbCon->query($sql36);
 while($row36=$tresult->fetch())
 			{
 ?>
-<tr>
-        
-        <td><?php echo $row36['cat_title_text'] ?>:
-        </td>
-        <td>
+
+<div class="row" style="margin-top: 20px;">
+
+<div class="col-md-4 regular" style="text-align: right; font-size: small; ">
+       <label  class="sr-only bold"><?php echo $row36['cat_title_text'] ?></label>
+</div>
+
+<div class=" col-md-4" style="text-align: left; ">
+ 
 		<?php 
 		 $field_name=$row36["cat_field_name"];
 		
            if($field_name=="remarks")
 		   {
 		   ?>
-		   <textarea name="<?php echo $row36['cat_field_name'] ?>" id="<?php echo $row36['cat_field_name']?>"><?php echo $cdata11[$field_name];?></textarea>
+		
+                <input class="form-control commontextsize" type="text"  name="<?php echo $row36['cat_field_name'] ?>" id="<?php echo $row36['cat_field_name']?>" value="<?php echo $cdata11[$field_name];?>">    
+          
+
 		   <?php 
 		   }
 		   else
 		   {
 		   ?>
-		   
-		    <input type="text" name="<?php echo $row36['cat_field_name'] ?>" id="<?php echo $row36['cat_field_name']?>" size="25px" 
+		    
+		    <input  class="form-control commontextsize" type="text" name="<?php echo $row36['cat_field_name'] ?>" id="<?php echo $row36['cat_field_name']?>" size="25px" 
 			value="<?php 
 			if($field_name=="doc_upload_date" && $cdata11[$field_name]=="")
 			{
@@ -1421,24 +1439,29 @@ while($row36=$tresult->fetch())
 			else
 			{
 			echo $cdata11[$field_name];
-			}?>">&nbsp;&nbsp;<?php if(($field_name=="doc_issue_date")||($field_name=="doc_closing_date")||($field_name=="doc_upload_date")||($field_name=="received_date"))
+			}?>"> 
+						</div>
+
+<div class="col-md-3">
+			<?php if(($field_name=="doc_issue_date")||($field_name=="doc_closing_date")||($field_name=="doc_upload_date")||($field_name=="received_date"))
 			{
-			echo "yyyy-mm-dd";
+			echo "<p class=\" text-secondary  commontextsize\"> yyyy-mm-dd </p>";
 			}
 			if($field_name=="report_title")
 			{
-			echo "Please avoid special characters";
+			echo "<p class=\" text-secondary commontextsize\"> Please avoid special characters </p>";
 			}
 			} ?>
 			
-        </td>
-        </tr>
+            </div>
+		    <div class="col-md-1"></div>
+	</div>
 		
 <?php
 }
 ?>
-</table>
-		</div>
+
+	
 <?php
 }
 else
@@ -1457,47 +1480,52 @@ else
 			
 			
 			<input type="hidden" name="subcatide" id="subcatide" value="<?php echo $subcatid; ?>"/>
-           <input type="hidden" name="subcatidm" id="subcatidm" value=""/>
+            <input type="hidden" name="subcatidm" id="subcatidm" value=""/>
 		
        
-		</td>
-        </tr>
-		<tr>
-        <td>	<?php if(isset($_GET['report_id']))
-		{
-		echo "Upload File";
-		}
-		else
-		{
-		echo "Upload File(s):";
-		}
-		?>       </td>
-		
-        <td>
-		<?php if(isset($_GET['report_id']))
-		{
-		?>
-		<input type="file" name="report_file" id="report_file" />
-            <input type="hidden" name="old_report_file" value="<?php echo $cdata11['report_file'];?>" />
-		<?php
-		}
-		else
-		{?>
-        <input type="file" name="report_file[]" id="report_file" multiple="multiple" /><div id="selectedFiles"></div>
-		 <input type="hidden" name="old_report_file" value="" />
+        <div class="row" style="margin-top: 20px;">
+
+            <div class="col-md-4 regular" style="text-align: right; font-size: small; margin: auto;">
+              <label  class="sr-only bold">  <?php if(isset($_GET['report_id']))
+					{
+					echo "Upload File";
+					}
+					else
+					{
+					echo "Upload File(s)";
+					}
+					?>    
+			</label>
+            </div>
+
+            <div class=" col-md-4" style="text-align: left; ">
+			<?php if(isset($_GET['report_id']))
+				{
+				?>
+				<input  type="file" name="report_file" id="report_file" />
+					<input  type="hidden" name="old_report_file" value="<?php echo $cdata11['report_file'];?>" style="margin-top: 10px; margin-bottom: 10px;" />
+				<?php
+				}
+				else
+				{?>
+				<input class="btn btn-primary btn-sm" type="file" name="report_file[]" id="report_file" multiple="multiple" style="margin-top: 10px; margin-bottom: 10px;"/><div id="selectedFiles"></div>
+				<input type="hidden" name="old_report_file" value="" />
 		<?php }	?>
-        </td>
-		</tr>
-		
-            <tr>
-					  <td class="label" valign="top" ></td>
-<td  valign="top" align="left">
+
+
+
+            </div>
+
+            <div class="col-md-1"></div>
+            <div class="col-md-3"></div>
+
+        </div>
 
 <?php if(($cdata11['report_file']!="")||($cdata11['report_file']!=NULL)) {
 ?> <a href="<?php echo REPORT_URL.$cdata11['report_file']?>" ><img src="images/tag_small.png" border="0" /></a>
 			<?php /*?><a onClick="return doConfirm('Are you sure you want to delete the Document?');" href="?p=upload_report&report_id=<?php echo $cdata11['report_id'];?>&mode=DoDelete&file_report=<?php echo urlencode($cdata11['report_file']);?>">Remove Document?</a><?php */?>
-           <?php }?>                        </td>					  
-	    </tr>
+           <?php }?>                    			  
+
 		<?php
 		if(isset($cat_idm))
 		{
@@ -1511,10 +1539,18 @@ else
 		  /*if($user_type==1)
 			 {*/
 			 ?>
-		<tr>
-        <td>Status:</td>
-        
-        <td>
+
+
+	<div class="row" style="margin-top: 10px;">
+
+		<div class="col-md-4" style="text-align: right; margin: auto; font-size: small;">
+		      <label  class="sr-only bold">Status</label>
+		</div>
+
+		<div class=" col-md-4 regular" style="text-align: left; margin: auto;">
+
+
+
 		<?php
 		
 		if($cdata11['report_status']=='')
@@ -1522,16 +1558,16 @@ else
 		$cdata11['report_status']='1';
 		}
 		?>
-		 <select name="report_status">
-		 <option value="1" <?php if($cdata11['report_status']=='1')echo "selected";?>>Initiated</option>
-  		<option value="2" <?php if($cdata11['report_status']=='2')echo "selected";?>>Approved</option>
-  		<option value="3" <?php if($cdata11['report_status']=='3')echo "selected";?>>Not Approved</option>
-  		<option value="4" <?php if($cdata11['report_status']=='4')echo "selected";?>>Under Review</option>
- 		 <option value="5" <?php if($cdata11['report_status']=='5')echo "selected";?>>Response Awaited</option>
-		  <option value="7" <?php if($cdata11['report_status']=='7')echo "selected";?>>Responded</option>
-          <option value="8" <?php if($cdata11['report_status']=='8')echo "selected";?>>For Information Only</option>
-		</select>  </td>
-        </tr>
+		 <select class= "form-select"name="report_status">
+			<option value="1" <?php if($cdata11['report_status']=='1')echo "selected";?>>Initiated              </option>
+			<option value="2" <?php if($cdata11['report_status']=='2')echo "selected";?>>Approved   		    </option>
+			<option value="3" <?php if($cdata11['report_status']=='3')echo "selected";?>>Not Approved			</option>
+			<option value="4" <?php if($cdata11['report_status']=='4')echo "selected";?>>Under Review			</option>
+			<option value="5" <?php if($cdata11['report_status']=='5')echo "selected";?>>Response Awaited		</option>
+			<option value="7" <?php if($cdata11['report_status']=='7')echo "selected";?>>Responded				</option>
+			<option value="8" <?php if($cdata11['report_status']=='8')echo "selected";?>>For Information Only   </option>
+		</select> 
+  
 		<?php
 		/*}
 		else
@@ -1543,17 +1579,28 @@ else
 		}
 		}
 		?>
-		
-        <tr >
-        <td colspan="2" align="center">
-          
-        <div id="div_button">
-            <input type="submit" id="report_add" name="report_add" class="rr_button" value="<?php echo ($mode == "U") ? _BTN_UPDATE : _BTN_SAVE;?>" />
-           
+	</div>
+
+		<div class="col-md-4">
+		</div>
+
+</div>
+
+
+
+        <!-- Save Button -->
+
+        <div class="row">
+
+            <div class="regular" style=" text-align: center; margin: auto; margin-top: 40px;">
+                <button type="submit" class="btn btn-success"  id="report_add" name="report_add" class="rr_button" value="<?php echo ($mode == "U") ? _BTN_UPDATE : _BTN_SAVE;?>">
+				<i class="bi bi-arrow-bar-up" style="margin-right: 10px;"></i>Save</button>
+            </div>
+
         </div>
-        </td>
-        </tr>
-        </table>
+     
+
+        
             </div>
 	</form>
 	 <script>
@@ -1591,8 +1638,6 @@ else
 	
 		
 		</div>
- 	 
-	</div>
 
 </body>
 </html>

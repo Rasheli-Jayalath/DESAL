@@ -488,7 +488,7 @@ if(chkAll.checked == true){
 <a class="btn btn-secondary commontextsize" href="javascript:void(null);" onclick="window.open('category.php?cat_cd=<?php echo $category_cd;?>&cid=<?php echo $cid;?>', 'INV','width=870,height=550,scrollbars=yes');" > 
       <i class="bi bi-plus-square" style="margin-right: 10px;"></i>     Add Category</a> 	
 <?php if($parent_cd!=0){?>
-<a class="btn btn-secondary commontextsize" href="javascript:void(null);" onclick="window.open('upload_report.php?cat_cd=<?php echo $_REQUEST['cat_cd'];?>&category_cd=<?php echo $category_cd;?>&cid=<?php echo $cid;?> ', 'INV','width=550,height=400,scrollbars=yes');" >
+<a class="btn btn-secondary commontextsize" href="javascript:void(null);" onclick="window.open('upload_report.php?cat_cd=<?php echo $_REQUEST['cat_cd'];?>&category_cd=<?php echo $category_cd;?>&cid=<?php echo $cid;?> ', 'INV','width=870,height=550,scrollbars=yes');" >
       <i class="bi bi-plus-square" style="margin-right: 10px;"></i>     Add File</a>
 <?php
 }
