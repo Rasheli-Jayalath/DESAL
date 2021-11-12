@@ -328,7 +328,7 @@ $i=0;
 
 	if($user_ids=="" && $parent_cd==0)
 	{
-	if(mysql_num_rows($sSQL13)>=1)	
+	if($sSQL13->rowCount()>=1)	
 	{
 	?>
 	<tr <?php echo $style; ?>>
@@ -392,7 +392,7 @@ $i=0;
 }
 if($count_group_arr==$sign)
 {
-if(mysql_num_rows($sSQL13)>=1)	
+if($sSQL13->rowCount()>=1)	
 {
 ?>
 <tr <?php echo $style; ?>>

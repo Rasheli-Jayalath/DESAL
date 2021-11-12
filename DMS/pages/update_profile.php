@@ -15,8 +15,6 @@
     <link href="css/style.css" rel="stylesheet">
     <link href="css/table-styling.css" rel="stylesheet">
 
-
-
     <title>DMS</title>
 </head>
 
