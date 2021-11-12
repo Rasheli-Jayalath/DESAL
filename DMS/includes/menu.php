@@ -1,7 +1,12 @@
 
-<?php 
+<?php  
+ $obj_check_active = new check_active_status(); 		
+ $default_value = "";
 
-	
+if(isset($_GET['p'])  ){
+	$default_value = './?p='.$_GET['p'] ;
+}
+
 function getSubM($parent_cd){
 	//$spaces .= '';
 $objProductN = new Product;
@@ -37,7 +42,7 @@ if($objProductN->totalRecords() >= 1){
 		<div class="collapse navbar-collapse" id="navbarNav">
 			<ul class="navbar-nav me-auto">
 				<li class="nav-item" >
-				<a class="nav-link navbasicfontsize" aria-current="page" href="./index.php" ><?php echo strtoupper(HOME); ?></a>
+				<a class="nav-link navbasicfontsize" style = " <?php echo $obj_check_active->_checkActive("",  $default_value ) ; ?> "   aria-current="page" href="./index.php" ><?php echo strtoupper(HOME); ?></a>
 			   </li>
 
 				<?php
@@ -77,7 +82,7 @@ if($objMenu->totalRecords() >= 1){
 
 		echo '<li  class="nav-item dropdown "   id="' . $rows_p['menu_cd'] . '">
 		
-		<a href="' . str_replace("USER_TYPE", $objAdminUser->user_type, $rows_p['menu_link']). '" class="  ' . $dropdownIcon, $btnLogout.' "  role="button"   >';  
+		<a href="' . str_replace("USER_TYPE", $objAdminUser->user_type, $rows_p['menu_link']). '" class="  ' . $dropdownIcon, $btnLogout.' " style="  '   .$obj_check_active->_checkActive($rows_p['menu_link'],  $default_value ).'  "  role="button"   >';  
 		
 		if(($rows_p['menu_cd']==84) && (($objAdminUser->user_type)!=1))
 {
