@@ -15,7 +15,7 @@ $(document).ready(function(){
   padding: 5px;
   padding-left: 30px;
   padding-right: 30px;
-  border-radius: 50px 20px;
+  border-radius: 50px 20px
   background-color: #f44336;
   color: white;
   opacity: 0.8;
