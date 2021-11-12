@@ -1,3 +1,50 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+  $("#hide").click(function(){
+    $(".alert-badge").hide();
+  });
+  $("#show").click(function(){
+    $(".alert-badge").show();
+  });
+});
+</script>
+
+<style>
+.top-alert {
+  padding: 5px;
+  padding-left: 30px;
+  padding-right: 30px;
+  border-radius: 50px 20px;
+  background-color: #f44336;
+  color: white;
+  opacity: 0.8;
+  transition: opacity 0.6s;
+  margin-bottom: 10px;
+}
+
+.top-alert.success {background-color: #04AA6D;}
+.top-alert.info {background-color: #2196F3;}
+.top-alert.warning {background-color: #ff9800;}
+
+.closebtn {
+  margin-left: 15px;
+  color: white;
+  font-weight: bold;
+  float: right;
+  font-size: 22px;
+  line-height: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.closebtn:hover {
+  color: black;
+}
+</style>
+
+
+
 <?php
 /**
 *
@@ -528,70 +575,54 @@ class Common extends Database{
 			foreach($data as $type => $msg){
 				if(count($msg) >= 1 && $type == 'Error'){
 					foreach($msg as $msg){
-					    $output .=	'<div id="message-red">
-				<table border="0" width="100%" cellpadding="0" cellspacing="0">
-				<tr>
-					<td class="red-left">';
-						$output .=	$msg . '</td>
-					<td class="red-right"><a class="close-red" href="javascript:'."toggleDiv('message-red');".'"><img src="images/icon_close_red.gif"   alt="" /></a></td>
-				</tr>
-				</table>
-				</div>';
+					    $output .=	'<div id="message-red" class="alert-badge" >
+												<div class="top-alert  bg-gradient">
+													<span class="closebtn" id="hide">&times;</span>  
+													<strong> <i class="bi bi-bell-fill " style="margin-right: 10px; "></i> '; $output .=	$msg . ' </strong>
+										        </div>
+										</div>';
 					}
 				}
 				else if(count($msg) >= 1 && $type == 'Valid'){
 				$i=0;
 					foreach($msg as $msg){
 					
-					    	$output .=	'<div id="message-blue'.$i.'">
-				<table border="0" width="100%" cellpadding="0" cellspacing="0">
-				<tr>
-					<td class="blue-left">';
-						$output .=	$msg . '</td>
-					<td class="blue-right"><a class="close-blue" href="javascript:'."toggleDiv('message-blue".$i."');".'"><img src="images/icon_close_blue.gif"   alt="" /></a></td>
-				</tr>
-				</table>
-				</div>';
+					    	$output .=	'<div id="message-blue'.$i.'" class="alert-badge">
+												<div class="top-alert info bg-gradient">
+													<span class="closebtn" id="hide" >&times;</span>  
+													<strong> <i class="bi bi-bell-fill " style="margin-right: 10px; "></i> '; $output .=	$msg . ' /strong>
+										        </div>
+										</div>';
 				$i++;
 					}
 				}
 				else if(count($msg) >= 1 && $type == 'Update'){
 					foreach($msg as $msg){
-					    	$output .=	'<div id="message-yellow">
-				<table border="0" width="100%" cellpadding="0" cellspacing="0">
-				<tr>
-					<td class="yellow-left">';
-						$output .=	$msg . '</td>
-					<td class="blue-right"><a class="close-yellow" href="javascript:'."toggleDiv('message-yellow');".'"><img src="images/icon_close_yellow.gif"   alt="" /></a></td>
-				</tr>
-				</table>
-				</div>';
+					    	$output .=	'<div id="message-yellow"  class="alert-badge">
+												<div class="top-alert warning bg-gradient" >
+													<span class="closebtn" id="hide">&times;</span>  
+													<strong> <i class="bi bi-bell-fill " style="margin-right: 10px; "></i> '; $output .=	$msg . ' </strong>
+										        </div>
+										</div>';
 					}
 				}
 				else if(count($msg) > 1 && $type == 'Info'){
 					foreach($msg as $msg){
-					$output .=	'<div id="message-blue">
-				<table border="0" width="100%" cellpadding="0" cellspacing="0">
-				<tr>
-					<td class="blue-left">';
-						$output .=	$msg . '</td>
-					<td class="blue-right"><a class="close-blue" href="javascript:'."toggleDiv('message-blue');".'"><img src="images/icon_close_blue.gif"   alt="" /></a></td>
-				</tr>
-				</table>
-				</div>';
+					$output .=	'<div id="message-blue" class="alert-badge">
+												<div class="top-alert info bg-gradient">
+													<span class="closebtn" id="hide">&times;</span>  
+													<strong> <i class="bi bi-bell-fill " style="margin-right: 10px; "></i> '; $output .=	$msg . ' </strong>
+										        </div>
+										</div>';
 					}
 				}
 		  		else{
-				$output .=	'<div id="message-green">
-				<table border="0" width="100%" cellpadding="0" cellspacing="0">
-				<tr>
-					<td class="green-left">';
-						$output .=	$msg[0] . '</td>
-					<td class="red-right"><a class="close-green" href="javascript:'."toggleDiv('message-green');".'"><img src="images/icon_close_green.gif"   alt="" /></a></td>
-				</tr>
-				</table>
-				</div>';
-					
+				$output .=	'<div id="message-green" class="alert-badge">
+												<div class="alert success bg-gradient">
+													<span class="closebtn" id="hide">&times;</span>  
+													<strong> <i class="bi bi-bell-fill " style="margin-right: 10px; "></i> '; $output .=	$msg . ' </strong>
+										        </div>
+										</div>';
 		  		}
 			}
 			
