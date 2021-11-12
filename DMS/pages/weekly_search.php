@@ -1,4 +1,27 @@
-<?php
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+    </style>
+     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/table-styling.css" rel="stylesheet">
+
+
+    <title>DMS</title>
+</head>
+
+<body>
+	
+	<?php
 $report_path = REPORT_PATH;
 $user_type=$objAdminUser->user_type;
 $user_cd	= $objAdminUser->user_cd;
@@ -214,9 +237,13 @@ unlink("Zip/".$filename1);
   
 <div id="wrapperPRight">
 
-<div id="containerContent" style="min-height:80px;padding:0px">
 
-<h2 align="center">Current Week Documents Summary (<?php echo "Start Date: ".$fromdate." End Date: ".$todate ?>)<br /> All Files (PDF,DOC,XLSX,TXT,JPG,GIF,PNG,DWG and Others)</h2>
+
+<h4 class="semibold"  style="text-align: center; margin: auto; margin-bottom: 20px; margin-top: 25PX;">Current Week Documents Summary (<?php echo "Start Date: ".$fromdate." End Date: ".$todate ?>)
+<br /> <span class="muted"> All Files (PDF,DOC,XLSX,TXT,JPG,GIF,PNG,DWG and Others)</span></h4>
+<div id="containerContent" class="container" style="margin-top: 20px; margin-bottom: 50px;" >
+<p style="text-align:right; margin-right:10px; font-weight:bold"><a href="./?p=document_summary" class="btn btn-primary" style="text-decoration: none;">  <i class="bi bi-chevron-double-left"></i> Back </a>	</p>
+
 <div id="weeklysearch"><?php 
 
 $sSQL1 = "SELECT * FROM rs_tbl_documents WHERE ".$sCondition.$orderby;
@@ -227,19 +254,20 @@ if($iCount>0)
 ?>
 <form action="" method="post"  name="report_cat" id="report_cat" onsubmit="return atleast_onecheckbox(event)">
 
-<p style="text-align:right; margin-right:10px; font-weight:bold"><a href="./?p=document_summary" class="lnkButton"><?php echo "Back";?>	</a></p>   
-	<table class="reference" style="width:100%" > 
-    <tr bgcolor="#333333" style="text-decoration:inherit; color:#CCC">
-    
-      <th  width="4%" style="text-align:center"><strong>Sr. No.</strong></th>
-	  <th  width="36%" style="text-align:center"><strong>Title</strong></th>
-	  <th  width="5%" style="text-align:center"><strong>Type</strong></th>
-      <th  width="10%" style="text-align:center"><strong>Document No.</strong></th>
-	  <th  width="25%" style="text-align:center"><strong>Reference No.</strong></th>
-      <th  width="10%" style="text-align:center"><strong>Uploaded Date</strong></th>
-	 <th  width="10%" style="text-align:center"><strong>Size (MBs)</strong></th>
+ 
+<div class="table-responsive commontextsize">
+	<table id="customers" class="table" style="width:100%" > 
+	<thead>
+    <tr >
+      <th class="semibold"   width="4%" >Sr. No.		</th>
+	  <th class="semibold"   width="36%">Title			</th>
+	  <th class="semibold"   width="5%" >Type			</th>
+      <th class="semibold"   width="10%">Document No. 	</th>
+	  <th class="semibold"   width="25%">Reference No.	</th>
+      <th class="semibold"   width="10%">Uploaded Date	</th>
+	  <th class="semibold"   width="10%">Size (MBs)	    </th>
     </tr>
-  
+   </thead>
 
 
 <?php
@@ -385,6 +413,7 @@ if( $sSQL13->rowCount() >=1)
 	}
 ?>
 </table>
+</div>
 </form>
 
 <?php
@@ -395,4 +424,5 @@ if( $sSQL13->rowCount() >=1)
   </div> 
 	</div>
 
-      
+</body>
+</html>
