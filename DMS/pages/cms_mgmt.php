@@ -23,15 +23,7 @@
 <h4 class="semibold"  style="text-align: center; margin: auto; margin-bottom: 20px; margin-top: 25PX;">CMS Management</h4>
 <div id="wrapperPRight" class="container" style="margin-top: 20px; margin-bottom: 50px;">
 
-		<?php /*?><div id="pageContentRight">
-			<div class="menu1">
-				<ul>
-				<li><a href="./?p=cms_form" class="lnkButton"><?php echo "Add New Page";?>
-					</a></li>
-					</ul>
-				<br style="clear:left"/>
-			</div>
-		</div><?php */?>
+
 		<div class="clear"></div>
 		<br />
 		<?php echo $objCommon->displayMessage();?>

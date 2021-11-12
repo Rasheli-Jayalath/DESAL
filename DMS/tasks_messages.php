@@ -162,7 +162,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST" && isset($_REQUEST["save"])){
 */
 			
 			if($objProdctC1->actMessage($_POST['mode'])){
-			$messg_id=mysql_insert_id();
+			$messg_id=mysql_insert_id();   // $id = $pdo->lastInsertId();
 			
 			
 			 if(count($_FILES['upload']['name']) > 0){
