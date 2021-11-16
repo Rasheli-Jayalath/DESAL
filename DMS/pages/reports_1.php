@@ -1317,7 +1317,7 @@ if(($has_right==1) || ($user_type=='1'))
 <td style="background:none; width:10%" ><?php if($res_t['status']==1){
 if(($read_right_task==1) || ($user_type=='1'))
 { 
- ?> <a href="javascript:void(null);" onclick="window.open('tasks_messages.php?task_id=<?php echo $res_t['tt_id']; ?>&cat_cd=<?php echo $res_t['category_cd']; ?>&cid=<?php echo $_GET['cid'];?>&p_mess_id=0', 'INV2','width=550,height=400,scrollbars=yes');" >Add Item</a><?php }} ?></td>
+ ?> <a href="javascript:void(null);" onclick="window.open('tasks_messages.php?task_id=<?php echo $res_t['tt_id']; ?>&cat_cd=<?php echo $res_t['category_cd']; ?>&cid=<?php echo $_GET['cid'];?>&p_mess_id=0', 'INV2','width=1000,height=550,scrollbars=yes');" >Add Item</a><?php }} ?></td>
 <td style="background:none;"><?php echo $res_t['thread_created_by']; ?></td>
 <td style="background:none;"><?php echo $res_t['date_time'];?></td>
 <td style="background:none;">

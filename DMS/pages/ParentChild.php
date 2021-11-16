@@ -69,11 +69,8 @@ class ParentChild {
 	
 	public function getAllChilds1($level_identifier="", $start=true) { // get all the childs of all the levels under a parent as a tree		
 		$immediate_childs=$this->getImmediateChilds1($this->extra_condition, $this->order_by_phrase);
-		return $immediate_childs;
-		
-	} 
-	
-	
+		return $immediate_childs;	
+	}  
 	
 	private function getImmediateChilds($parent_identifier_field_value, $extra_condition="", $order_by_phrase="") { // get only the direct/immediate childs under a parent 
 		$sql="SELECT * FROM `".$this->db_table."` WHERE `".$this->parent_identifier_field_name."`='".$parent_identifier_field_value."' ".$extra_condition." ".$order_by_phrase;

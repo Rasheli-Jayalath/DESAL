@@ -534,38 +534,32 @@ width="32" height="32" />Add Tasks</a> &nbsp;&nbsp;-->
 							{
 							$read_right=1;
 							?>
-							<tr>
-		<td height="40" colspan="4" align="center" style=" padding-bottom:15px;padding-left:125px;" width="50%">
-		</td>
-		<td align="right" width="20%">
+
 <!--<a href="javascript:void(null);" onclick="window.open('threads_input.php?cat_cd=<?php echo $category_cd;?>&cid=<?php echo $cid;?>', 'INV','width=870,height=550,scrollbars=yes');" ><img src="<?php echo SITE_URL;?>images/folder.ico" border="0" 
 width="32" height="32" />Add Tasks</a> &nbsp;&nbsp;-->
-<a href="javascript:void(null);" onclick="window.open('category.php?cat_cd=<?php echo $category_cd;?>&cid=<?php echo $cid;?>', 'INV','width=870,height=550,scrollbars=yes');" ><img src="<?php echo SITE_URL;?>images/folder.ico" border="0" 
-		width="32" height="32" />Add Category</a>&nbsp;&nbsp;
-		<a href="javascript:void(null);" onclick="window.open('upload_report.php?cat_cd=<?php echo $_REQUEST["cat_cd"];?>&category_cd=<?php echo $category_cd;?>&cid=<?php echo $cid;?>', 'INV','width=550,height=400,scrollbars=yes');" >
-		<img src="<?php echo SITE_URL;?>images/doc.ico" border="0" width="32"/>Add File</a>	
-</td>
+<div style="text-align: right; ">
+<a class="btn btn-secondary commontextsize" href="javascript:void(null);" onclick="window.open('category.php?cat_cd=<?php echo $category_cd;?>&cid=<?php echo $cid;?>', 'INV','width=870,height=550,scrollbars=yes');" >
+		<i class="bi bi-plus-square" style="margin-right: 10px;"></i>  >Add Category</a>
+<a class="btn btn-secondary commontextsize" href="javascript:void(null);"  href="javascript:void(null);" onclick="window.open('upload_report.php?cat_cd=<?php echo $_REQUEST['cat_cd'];?>&category_cd=<?php echo $category_cd;?>&cid=<?php echo $cid;?>', 'INV','width=870,height=550,scrollbars=yes');" >
+		<i class="bi bi-plus-square" style="margin-right: 10px;"></i> Add File</a>	
+
+		</div><!-- Action Buttons -->
 		
-		</tr>
 							<?php
 							}
 							else if($aright[1]==3)
 							{
 							$read_right=3;
 							?>
-							<tr>
-		<td height="40" colspan="4" align="center" style=" padding-bottom:15px;padding-left:125px;" width="50%">
-		</td>
-		<td align="right" width="20%">
+<div style="text-align: right; ">
 <!--<a href="javascript:void(null);" onclick="window.open('threads_input.php?cat_cd=<?php echo $category_cd;?>&cid=<?php echo $cid;?>', 'INV','width=870,height=550,scrollbars=yes');" ><img src="<?php echo SITE_URL;?>images/folder.ico" border="0" 
 width="32" height="32" />Add Tasks</a> &nbsp;&nbsp;-->
-<a href="javascript:void(null);" onclick="window.open('category.php?cat_cd=<?php echo $category_cd;?>&cid=<?php echo $cid;?>', 'INV','width=870,height=550,scrollbars=yes');" ><img src="<?php echo SITE_URL;?>images/folder.ico" border="0" 
-		width="32" height="32" />Add Category</a>
-		<a href="javascript:void(null);" onclick="window.open('upload_report.php?cat_cd=<?php echo $_REQUEST["cat_cd"];?>&category_cd=<?php echo $category_cd;?>&cid=<?php echo $cid;?>', 'INV','width=550,height=400,scrollbars=yes');" >
-		<img src="<?php echo SITE_URL;?>images/doc.ico" border="0" width="32"/>Add File</a>
-</td>
-		 
-		</tr>
+<a class="btn btn-secondary commontextsize"  href="javascript:void(null);" onclick="window.open('category.php?cat_cd=<?php echo $category_cd;?>&cid=<?php echo $cid;?>', 'INV','width=870,height=550,scrollbars=yes');" >
+<i class="bi bi-plus-square" style="margin-right: 10px;"></i>Add Category</a>
+		<a class="btn btn-secondary commontextsize"  href="javascript:void(null);" onclick="window.open('upload_report.php?cat_cd=<?php echo $_REQUEST['cat_cd'];?>&category_cd=<?php echo $category_cd;?>&cid=<?php echo $cid;?>', 'INV','width=870,height=550,scrollbars=yes');" >
+		<i class="bi bi-plus-square" style="margin-right: 10px;"></i>Add File</a>
+		</div><!-- Action Buttons -->
+
 							<?php
 							}
 							else if($aright[1]==2)
@@ -806,7 +800,9 @@ $stats="&status=".$_GET['status'];
 {
 }
 else
-{ ?>cat_cd=<?php echo $cat_cd;}?>&cid=<?php echo $cid;?><?php echo $stats; ?>&field=<?php echo $res_temp1['cat_field_name'];?>&sort=<?php echo $order;?>"><?php if($order=="asc"){?><img src="images/asc.png" title="Ascending" alt="Ascending"/><?php }else{?> <img src="images/desc.png" title="Descending" alt="Descending"/><?php } ?> </a></th>
+{ ?>cat_cd=<?php echo $cat_cd;}?>&cid=<?php echo $cid;?><?php echo $stats; ?>&field=<?php echo $res_temp1['cat_field_name'];?>&sort=<?php echo $order;?>"><?php if($order=="asc"){?>
+ <i class="bi bi-caret-up-fill text-white" title="Ascending" alt="Ascending"></i> <?php 
+}else{?> <i class="bi bi-caret-down-fill text-white" title="Descending" alt="Descending"></i> <?php } ?> </a></th>
 
 <?php
 }
@@ -1068,7 +1064,7 @@ $total_numdd=$res2doc->rowCount();
 			 {
 			 ?>
 			<td colspan="2"></td> 
-			 <!--<td colspan="2"><a href="javascript:void(null);" onclick="window.open('upload_report.php?report_id=<?php //echo $rows['report_id']; ?>', 'INV','width=550,height=400,scrollbars=yes');" > <i class="bi bi-pencil-fill iconorange" style="margin-right: 10px;"></i> </a></td>--> 
+			 <!--<td colspan="2"><a href="javascript:void(null);" onclick="window.open('upload_report.php?report_id=<?php //echo $rows['report_id']; ?>', 'INV','width=870,height=550,scrollbars=yes');" > <i class="bi bi-pencil-fill iconorange" style="margin-right: 10px;"></i> </a></td>--> 
 			 <?php
 			 }
 			
@@ -1098,7 +1094,7 @@ $total_numdd=$res2doc->rowCount();
 							
 ?>
 <td class="text-center"><a href="javascript:void(null);" onclick="window.open('upload_report.php?report_id=<?php echo $rows['report_id']; ?>', 'INV','width=870,height=550,scrollbars=yes');" > <i class="bi bi-pencil-fill iconorange" style="margin-right: 10px;"></i></a></td>
-  <a href="?p=reports&report_cd=<?php echo $rows['report_id']; ?>&cid=<?php echo $_REQUEST['cid']; ?>&cat_cd=<?php if($_REQUEST['cat_cd'])
+<td class="text-center"> <a href="?p=reports&report_cd=<?php echo $rows['report_id']; ?>&cid=<?php echo $_REQUEST['cid']; ?>&cat_cd=<?php if($_REQUEST['cat_cd'])
 			 {
 			 echo $_REQUEST['cat_cd'];
 			 }
@@ -1160,7 +1156,7 @@ if($temp_t1->rowCount()>=1)
 <td  colspan="5"   style="line-height:18px; text-align:justify">
 
 
-<span style="margin-left:45px;  font-size:16px; font-weight:bold">Threads</span>
+<span style="font-size:16px; font-weight:bold">Threads</span>
 <span style="font-size:16px; font-weight:bold; float:right">
 <?php if(isset($_GET['cat_cd']))
 {
@@ -1228,7 +1224,7 @@ if(($has_right==1) || ($user_type=='1'))
 <td style="background:none; width:10%" ><?php if($res_t['status']==1){
 if(($read_right_task==1) || ($user_type=='1'))
 { 
- ?> <a href="javascript:void(null);" class="btn btn-sm btn-success commontextsize" onclick="window.open('tasks_messages.php?task_id=<?php echo $res_t['tt_id']; ?>&cat_cd=<?php echo $res_t['category_cd']; ?>&cid=<?php echo $_GET['cid'];?>&p_mess_id=0', 'INV2','width=550,height=400,scrollbars=yes');" ><i class="bi bi-plus-square" >&ensp; Add Item</a><?php }} ?></td>
+ ?> <a href="javascript:void(null);" class="btn btn-sm btn-success commontextsize" onclick="window.open('tasks_messages.php?task_id=<?php echo $res_t['tt_id']; ?>&cat_cd=<?php echo $res_t['category_cd']; ?>&cid=<?php echo $_GET['cid'];?>&p_mess_id=0', 'INV2','width=870,height=550,scrollbars=yes');" ><i class="bi bi-plus-square" >&ensp; Add Item</a><?php }} ?></td>
 <td style="background:none;"><?php echo $res_t['thread_created_by']; ?></td>
 <td style="background:none;"><?php echo $res_t['date_time'];?></td>
 <td class="text-center" style="background:none;">

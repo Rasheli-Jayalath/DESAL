@@ -162,7 +162,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST" && isset($_REQUEST["save"])){
 */
 			
 			if($objProdctC1->actMessage($_POST['mode'])){
-			$messg_id=mysql_insert_id();   // $id = $pdo->lastInsertId();
+				$messg_id= $objDb->lastInsertId(); //$messg_id=mysql_insert_id();  
 			
 			
 			 if(count($_FILES['upload']['name']) > 0){
@@ -290,6 +290,18 @@ function frmValidate(frm){
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <title><?php echo HOME_MAIN_TITLE?></title>
+
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+    </style>
+     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/table-styling.css" rel="stylesheet">
+
+
 <head>
 
 <link href="css/style.css" rel="stylesheet" type="text/css">
@@ -334,21 +346,23 @@ $thread_comments= $res_mess['thread_comments'];
 }*/
 				
 			?>
-<div id="containerContent" class="box" style="min-height:80px;padding:0px">
-		<div id="pageContentName" class="shadowWhite"><div align="left"><strong><?php echo $res_w['thread_heading']?></strong></div></div>
+
+<h4 class="semibold"  style="text-align: center; margin: auto; margin-bottom: 20px; margin-top: 25PX;">    <?php echo $res_w['thread_heading']?>  </h4>
+
+<div id="containerContent" class="container bg-light bg-gradient" style=" margin-bottom: 100px;  border-radius: 15px;  padding: 20px;">
+
          
 		
 		<div class="clear"></div>
-				<form name="frmCategory" id="frmCategory" action="" method="post" enctype="multipart/form-data" onSubmit="return frmValidate(this);">
+				<form name="frmCategory" id="frmCategory" action="" method="post" enctype="multipart/form-data" onSubmit="return frmValidate(this);" class="form-inline">
         <input type="hidden" name="mode" id="mode" value="<?php echo $mode;?>" />
         <input type="hidden" name="message_id" id="message_id" value="<?php echo $message_id;?>" />
         <input type="hidden" name="p_mess_id" id="p_mess_id" value="<?php echo $p_mess_id;?>" />
          <input type="hidden" name="thread_no" id="thread_no" value="<?php echo $_REQUEST["task_id"];?>" />
-         <div id="tableContainer" class="table" style="border-left:1px;width:470 ">
+         <div  >
         
-          <table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
-		<!--<tr>
-		<td colspan="2" >
+        
+		<!--
 		<div id="div_button" style="text-align:right">
 		
 		<a href="javascript:void(null);" onClick="window.open('threads_input.php?mess_id=<?php echo $mess_id;?>&category_cd=<?php echo $_GET['category_cd']; ?>&cid=<?php echo $_GET['cid']; ?>', 'INV','width=650,height=500,scrollbars=yes');" >
@@ -356,98 +370,127 @@ Reply</a>
 		
             
         </div>
-		</td>
-        </tr>   -->
-	 <tr><td >
-	    From<span style="color:#FF0000;">*</span>:
-		
-        </td>
-        <td>
-        <div class="frmElement"><input class="rr_input" type="text" name="meassage_sent_by" id="meassage_sent_by" value="<?php echo $meassage_sent_by;?>" style="width:200px;" /></div>
-		</td>
-        </tr>
-		 <tr><td >
-	    From Email<span style="color:#FF0000;">*</span>:
-		
-        </td>
-        <td>
-        <div class="frmElement"><input class="rr_input" type="text" name="meassage_sent_email" id="meassage_sent_email" value="<?php echo $meassage_sent_email;?>" style="width:200px;" /></div>
-		</td>
-        </tr>
-		<!--<tr><td >
-	    To <span style="color:#FF0000;">*</span>:
-		
-        </td>
-        <td>
-        <div class="frmElement"><input class="rr_input" type="text" name="to_name" id="to_name" value="<?php //echo $to_name;?>" style="width:200px;" /></div>
-		</td>
-        </tr>	-->	
-   <tr><td >
-	    Subject <span style="color:#FF0000;">*</span>:
-		
-        </td>
-        <td>
-        <div class="frmElement"><input class="rr_input" type="text" name="thread_title" id="thread_title" value="<?php echo $thread_title;?>" style="width:300px;" /></div>
-		</td>
-        </tr>
-		<tr><td >
-	    Status <span style="color:#FF0000;">*</span>:
-		
-        </td>
-        <td>
-        <div class="frmElement"><select name="thread_status">
-		 <option value="1" <?php if($thread_status=='1')echo "selected";?>>Initiated</option>
-  		<option value="2" <?php if($thread_status=='2')echo "selected";?>>Approved</option>
-  		<option value="3" <?php if($thread_status=='3')echo "selected";?>>Not Approved</option>
-  		<option value="4" <?php if($thread_status=='4')echo "selected";?>>Under Review</option>
- 		 <option value="5" <?php if($thread_status=='5')echo "selected";?>>Response Awaited</option>
-		  <option value="6" <?php if($thread_status=='6')echo "selected";?>>Replied</option>
-		</select></div>
-		</td>
-        </tr>
-		 <tr>
-        
-        <td >
-	   Message <span style="color:#FF0000;">*</span>:
-		
-        </td>
-        <td>
-		<textarea name="thread_comments" rows="7"   style="width:300px;"><?php echo $thread_comments;?></textarea>
-		</td>
-        </tr>
-		<tr><td >
-	    Attachments <span style="color:#FF0000;">*</span>:
-		
-        </td>
-        <td>
-        <div class="frmElement">
-		 <input id='upload' name="upload[]" type="file" multiple="multiple" /></div>
-		</td>
-        </tr>
-	
-		
-		
-        <tr >
-        <td colspan="2" align="center">
-          
-        <div id="div_button" style="text-align:right">
-			
-            <input type="submit" class="rr_button" value="Save" name="save" id="save" />
-			
-           
+	   -->
+
+
+        <div class="row" style="margin-top: 20px;">
+
+            <div class="col-md-4 regular" style="text-align: right; font-size: small;">
+              <label  class="sr-only bold">From<span style="color:#FF0000;">*</span></label>
+            </div>
+
+            <div class=" col-md-4" style="text-align: left; margin: auto;">
+                <input class="form-control commontextsize" type="text" name="meassage_sent_by" id="meassage_sent_by" value="<?php echo $meassage_sent_by;?>" >
+                <!-- <label class="commontextsize">* Please avoid special characters</label> -->
+            </div>
+
+            <div class="col-md-1"></div>
+            <div class="col-md-3"></div>
+
         </div>
-        </td>
-        </tr>
-        </table>
-      
+
+
+        <div class="row" style="margin-top: 20px;">
+
+            <div class="col-md-4 regular" style="text-align: right; font-size: small;">
+              <label  class="sr-only bold">  From Email<span style="color:#FF0000;"> </label>
+            </div>
+
+            <div class=" col-md-4" style="text-align: left; margin: auto;">
+                <input class="form-control commontextsize" type="text"  name="meassage_sent_email" id="meassage_sent_email" value="<?php echo $meassage_sent_email;?>">
+                <!-- <label class="commontextsize">* Please avoid special characters</label> -->
+            </div>
+
+            <div class="col-md-1"></div>
+            <div class="col-md-3"></div>
+
+        </div>
+
+
+		<!--
+	    To <span style="color:#FF0000;">*</span>:
+     
+        <div class="frmElement"><input class="rr_input" type="text" name="to_name" id="to_name" value="<?php //echo $to_name;?>" style="width:200px;" /></div>
+		-->	
+
+
+		<div class="row" style="margin-top: 20px;">
+
+            <div class="col-md-4 regular" style="text-align: right; font-size: small;">
+              <label  class="sr-only bold"> Subject <span style="color:#FF0000;">*</span></label>
+            </div>
+
+            <div class=" col-md-4" style="text-align: left; margin: auto;">
+                <input class="form-control commontextsize" type="text" name="thread_title" id="thread_title" value="<?php echo $thread_title;?>" >
+                <!-- <label class="commontextsize">* Please avoid special characters</label> -->
+            </div>
+
+            <div class="col-md-1"></div>
+            <div class="col-md-3"></div>
+
+        </div>
+
+		<div class="row" style="margin-top: 20px;">
+
+                    <div class="col-md-4" style="text-align: right; margin: auto; font-size: small;">
+                      <label  class="sr-only bold"> Status <span style="color:#FF0000;">*</span> </label>
+                    </div>
+
+                    <div class=" col-md-4 regular" style="text-align: left; margin: auto;" name="thread_status">
+                        <select class="form-select" style="font-size: small;">
+						<option value="1" <?php if($thread_status=='1')echo "selected";?>>Initiated           	</option>
+						<option value="2" <?php if($thread_status=='2')echo "selected";?>>Approved				</option>
+						<option value="3" <?php if($thread_status=='3')echo "selected";?>>Not Approved			</option>
+						<option value="4" <?php if($thread_status=='4')echo "selected";?>>Under Review			</option>
+						<option value="5" <?php if($thread_status=='5')echo "selected";?>>Response Awaited		</option>
+						<option value="6" <?php if($thread_status=='6')echo "selected";?>>Replied				</option>
+                          </select>
+                    </div>
+
+                    <div class="col-md-4">
+                    </div>
+
+        </div>
+
+        <div class="row" style="margin-top: 10px;">
+
+            <div class="col-md-4" style="text-align: right; margin: auto; font-size: small;">
+              <label  class="sr-only bold">Message <span style="color:#FF0000;">*</span></label>
+            </div>
+
+            <div class=" col-md-4 regular" style="text-align: left; margin: auto;">
+			    <textarea name="thread_comments" class="form-control" id="exampleFormControlTextarea1" rows="7">   <?php echo $thread_comments;?> </textarea>
+            </div>
+
+            <div class="col-md-4">
+            </div>
+
+        </div>
+
+		
+	
+		 <div class="row" style="margin-top: 10px;">
+
+            <div class="col-md-4" style="text-align: right; margin: auto; font-size: small;">
+              <label  class="sr-only bold">Attachments <span style="color:#FF0000;">*</span></label>
+            </div>
+
+            <div class=" col-md-4 regular" style="text-align: left; margin: auto;">
+                <input class="form-control commontextsize" id='upload' name="upload[]" type="file" multiple="multiple">
+            </div>
+
+            <div class="col-md-4">
+            </div>
+
+        </div>
+		
+
+		<div class="row " style="width: 20%; margin: auto; margin-top: 20px">
+                <button type="submit" class="btn btn-success " value="Save" name="save" id="save" ><i class="bi bi-arrow-bar-up" style="margin-right: 10px;"></i>Save</button>
+        </div>
       </div>
 	</form>
 	
-	
- 			
-		
-		
-        
 		
 	</div> 
 	<!--</div>

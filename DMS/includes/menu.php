@@ -3,18 +3,22 @@
  $obj_check_active = new check_active_status(); 		
  $default_value = "home";
 
-if( $_GET['category_cd']  ){
-	$default_value  = 'javascript:void(null); p' ;
+if( $_GET['cid']  ){
+	if(($_GET['cid'] =='1')){
+		$default_value  = 'javascript:void(null); p' ;
+	}else if ($_GET['cid'] =='2'){
+		$default_value  = 'javascript:void(null); d' ;
+	}
+	
 }else if(isset($_GET['p'])  ){
 
-	if( ($_GET['p'] =='my_profile') || ($_GET['p'] =='update_profile') || ($_GET['p'] =='user_mgmt') || ($_GET['p'] =='cms_mgmt') || ($_GET['p'] =='cms_form')) {
+	if( ($_GET['p'] =='my_profile') || ($_GET['p'] =='update_profile') || ($_GET['p'] =='user_mgmt') || ($_GET['p'] =='cms_mgmt') || ($_GET['p'] =='cms_form') || ($_GET['p'] =='change_password') ) {
 		$default_value  = 'javascript:void(null); s' ;
 	}else if(($_GET['p'] =='all_search') || ($_GET['p'] =='weekly_search')){   
 		$default_value  = './?p=document_summary' ;
     }else{
 	$default_value = './?p='.$_GET['p'] ;
     }
-
 }
 
 function getSubM($parent_cd){
@@ -74,7 +78,7 @@ if($objMenu->totalRecords() >= 1){
 	# Print parent menus
 	while($rows_p = $objMenu->dbFetchArray(1)){
 
-		if( $rows_p['menu_cd']==5 ||  $rows_p['menu_cd']== 19 ) 
+		if( $rows_p['menu_cd']==5 ||  $rows_p['menu_cd']== 19 ||  $rows_p['menu_cd']== 54) 
 		{
 			$dropdownIcon = "nav-link  navbasicfontsize dropdown-toggle";
 		
@@ -84,7 +88,7 @@ if($objMenu->totalRecords() >= 1){
 
 		if( $rows_p['menu_cd']==23 ) 
 		{
-			$btnLogout = "btn btn-outline-warning navbasicfontsize mx-xxl-2 ";
+			$btnLogout = "btn btn-outline-warning navbasicfontsize ms-xxl-5 ";
 		
 		}	else {
 			$btnLogout = " nav-link  navbasicfontsize";
@@ -146,7 +150,7 @@ echo '</a>' . "\n";
 			$objProduct->lstCategory();
 			$Sql = $objProduct->getSQL();
 			if($objProduct->totalRecords() >= 1){
-				echo '<ul class="dropdown-menu >' . "\n";
+				echo '<ul class="dropdown-menu" aria-labelledby="navbarDropdown" >' . "\n";
 				while($rows = $objProduct->dbFetchArray(1)){
 				
 				echo '<li><a href="./?p=reports&cid='.$rows['cid'].'&category_cd='.$rows['category_cd'].'" ';
@@ -154,7 +158,7 @@ echo '</a>' . "\n";
 	{
 	echo $target="target='_blank'";
 	}
-				echo 'class=" dropdown-item navbasicfontsize"  >';
+				echo 'class="dropdown-item navbasicfontsize"  >';
 				echo  strtoupper($rows['category_name']);
 				echo  '</a>';
 				//getSubM($rows['category_cd']);

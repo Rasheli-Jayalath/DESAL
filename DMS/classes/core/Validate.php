@@ -106,7 +106,10 @@ class Validate extends Database{
 	* @modified 10 Aug, 2007 by Raju Gautam
 	*/
 	function checkEmail($email){
+
+
 		# First,we check that there's one @ symbol, and that the lengths are right
+		/*
 		if(!ereg("^[^@]{1,64}@[^@]{1,255}$", $email)){
 			#  Email invalid because wrong number of characters in one section, or wrong number of @ symbols.
 			return false;
@@ -131,6 +134,10 @@ class Validate extends Database{
 			}
 		}
 		return true;
+*/
+
+
+
 	}
 }
 ?>
