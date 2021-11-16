@@ -117,6 +117,33 @@ echo '<link rel="stylesheet" type="text/css" media="all" href="'.SITE_URL.'css/j
 
   </script>
 
+<style>
+
+
+::-webkit-scrollbar {
+  height: 12px;  
+  width:  14px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+box-shadow: inset 0 0 2px grey; 
+border-radius: 3px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+background: #6c757d; 
+border-radius: 3px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+background: #3a41a5; 
+}
+</style>
+
+
 </head>
 <body>
 <div id="wrap">

@@ -1,10 +1,24 @@
 
 <?php  
  $obj_check_active = new check_active_status(); 		
- $default_value = "";
+ $default_value = "home";
 
-if(isset($_GET['p'])  ){
+if( $_GET['cid']  ){
+	if(($_GET['cid'] =='1')){
+		$default_value  = 'javascript:void(null); p' ;
+	}else if ($_GET['cid'] =='2'){
+		$default_value  = 'javascript:void(null); d' ;
+	}
+	
+}else if(isset($_GET['p'])  ){
+
+	if( ($_GET['p'] =='my_profile') || ($_GET['p'] =='update_profile') || ($_GET['p'] =='user_mgmt') || ($_GET['p'] =='cms_mgmt') || ($_GET['p'] =='cms_form') || ($_GET['p'] =='change_password') ) {
+		$default_value  = 'javascript:void(null); s' ;
+	}else if(($_GET['p'] =='all_search') || ($_GET['p'] =='weekly_search')){   
+		$default_value  = './?p=document_summary' ;
+    }else{
 	$default_value = './?p='.$_GET['p'] ;
+    }
 }
 
 function getSubM($parent_cd){
@@ -42,7 +56,7 @@ if($objProductN->totalRecords() >= 1){
 		<div class="collapse navbar-collapse" id="navbarNav">
 			<ul class="navbar-nav me-auto">
 				<li class="nav-item" >
-				<a class="nav-link navbasicfontsize" style = " <?php echo $obj_check_active->_checkActive("",  $default_value ) ; ?> "   aria-current="page" href="./index.php" ><?php echo strtoupper(HOME); ?></a>
+				<a class="nav-link navbasicfontsize" style = " <?php echo $obj_check_active->_checkActive("home",  $default_value ) ; ?> "   aria-current="page" href="./index.php" ><?php echo strtoupper(HOME); ?></a>
 			   </li>
 
 				<?php
@@ -64,7 +78,7 @@ if($objMenu->totalRecords() >= 1){
 	# Print parent menus
 	while($rows_p = $objMenu->dbFetchArray(1)){
 
-		if( $rows_p['menu_cd']==5 ||  $rows_p['menu_cd']== 19 ) 
+		if( $rows_p['menu_cd']==5 ||  $rows_p['menu_cd']== 19 ||  $rows_p['menu_cd']== 54) 
 		{
 			$dropdownIcon = "nav-link  navbasicfontsize dropdown-toggle";
 		
@@ -74,7 +88,7 @@ if($objMenu->totalRecords() >= 1){
 
 		if( $rows_p['menu_cd']==23 ) 
 		{
-			$btnLogout = "btn btn-outline-warning navbasicfontsize mx-xxl-2 ";
+			$btnLogout = "btn btn-outline-warning navbasicfontsize ms-xxl-5 ";
 		
 		}	else {
 			$btnLogout = " nav-link  navbasicfontsize";
@@ -82,7 +96,7 @@ if($objMenu->totalRecords() >= 1){
 
 		echo '<li  class="nav-item dropdown "   id="' . $rows_p['menu_cd'] . '">
 		
-		<a href="' . str_replace("USER_TYPE", $objAdminUser->user_type, $rows_p['menu_link']). '" class="  ' . $dropdownIcon, $btnLogout.' " style="  '   .$obj_check_active->_checkActive($rows_p['menu_link'],  $default_value ).'  "  role="button"   >';  
+		<a href="' . str_replace("USER_TYPE", $objAdminUser->user_type, $rows_p['menu_link']). '" class="  ' . $dropdownIcon, $btnLogout.' " style="'.$obj_check_active->_checkActive($rows_p['menu_link'], $default_value).' "  role="button"   >';  
 		
 		if(($rows_p['menu_cd']==84) && (($objAdminUser->user_type)!=1))
 {
@@ -136,7 +150,7 @@ echo '</a>' . "\n";
 			$objProduct->lstCategory();
 			$Sql = $objProduct->getSQL();
 			if($objProduct->totalRecords() >= 1){
-				echo '<ul class="dropdown-menu >' . "\n";
+				echo '<ul class="dropdown-menu" aria-labelledby="navbarDropdown" >' . "\n";
 				while($rows = $objProduct->dbFetchArray(1)){
 				
 				echo '<li><a href="./?p=reports&cid='.$rows['cid'].'&category_cd='.$rows['category_cd'].'" ';
@@ -144,7 +158,7 @@ echo '</a>' . "\n";
 	{
 	echo $target="target='_blank'";
 	}
-				echo 'class=" dropdown-item navbasicfontsize" >';
+				echo 'class="dropdown-item navbasicfontsize"  >';
 				echo  strtoupper($rows['category_name']);
 				echo  '</a>';
 				//getSubM($rows['category_cd']);
@@ -177,7 +191,7 @@ echo '</a>' . "\n";
 					}
 					
 					else{
-					echo '<li  id="' . $rows['menu_cd'] . '"><a class=" dropdown-item navbasicfontsize"';
+					echo '<li  id="' . $rows['menu_cd'] . '"><a class=" dropdown-item navbasicfontsize"  ';
 					
 					echo 'href="' . $rows['menu_link'] ;
 					if($rows_p['menu_cd']!=5)
@@ -206,7 +220,7 @@ echo '</a>' . "\n";
 					echo '<ul >' . "\n";
 					while($rows1 = $objMenu1->dbFetchArray(1)){
 						
-			echo '<li  id="' . $rows1['menu_cd'] . '"><a href="' . $rows1['menu_link'] . '" ';
+			echo '<li  id="' . $rows1['menu_cd'] . '"><a  href="' . $rows1['menu_link'] . '" ';
 			
 			if($rows1['menu_cd']==1 || $rows1['menu_cd']==2 || $rows1['menu_cd']==4 || $rows1['menu_cd']==81)
 	{

@@ -1,3 +1,5 @@
+
+
 <?php
 $mode	= "I";
 if($_SERVER['REQUEST_METHOD'] == "POST"){
@@ -80,8 +82,10 @@ function frmValidate(frm){
 	}
 }
 </script>
-<div id="wrapperPRight">
-		<div id="pageContentName" class="shadowWhite"><?php echo CHANGEPWD_UPDATE_BRD;?></div>
+<h4 class="semibold"  style="text-align: center; margin: auto; margin-bottom: 20px; margin-top: 20px;"> <?php echo CHANGEPWD_UPDATE_BRD;?> </h4>
+<div id="wrapperPRight" class="container" style="margin-top: 20px; margin-bottom: 50px;  border-radius: 15px; border: 2px solid #dfdfdf;padding: 20px; ">
+
+
 		<div id="pageContentRight">
 		
 		</div>
@@ -91,27 +95,82 @@ function frmValidate(frm){
 		<div class="NoteTxt"><?php echo _NOTE;?></div>
 		<div id="tableContainer">
 		
-			<div class="clear"></div>			
-	  	    <form name="frmPassword" id="frmPassword" action="" method="post" onSubmit="return frmValidate(this);">
-        <input type="hidden" name="user_cd" id="user_cd" value="<?php echo $user_cd;?>" />
-			<div class="formfield b shadowWhite"><?php echo CHANGEPWD_FLD_CPWD?> <span style="color:#FF0000;">*</span>:</div>
-			<div class="formvalue"><input class="rr_input" type="password" name="current_password" id="current_password" /></div>
 			<div class="clear"></div>
+
+	  	    <form name="frmPassword" id="frmPassword" action="" method="post" onSubmit="return frmValidate(this);" class="form-inline">
+
+            <input type="hidden" name="user_cd" id="user_cd" value="<?php echo $user_cd;?>" />
+
+			<div class="row" >
+                <div class="col-md-2">
+                </div>
+
+                    <div class="col-md-3 mobileclass" style="font-size: small; margin: auto;">
+                      <label  class="sr-only semibold"> <?php echo CHANGEPWD_FLD_CPWD?> <span style="color:#FF0000;">*</span> </label>
+                    </div>
+
+                    <div class=" col-md-4 regular mobileclass2" style="font-size: small;">
+                        <input class="form-control" placeholder="Current Password..." style="font-size: small;" type="password" name="current_password" id="current_password">
+                     </div>   
+
+                       <div class="col-md-3">
+                       </div>
+            </div>
 			
-			<div class="formfield b shadowWhite"><?php echo CHANGEPWD_FLD_NPWD?> <span style="color:#FF0000;">*</span>:</div>
-			<div class="formvalue"><input class="rr_input" type="password" name="npassword" id="npassword" /></div>
-			<div class="clear"></div>
+			<div class="row" style="margin-top: 20px;">
+
+                <div class="col-md-2">
+                </div>
+
+                    <div class="col-md-3 mobileclass" style="font-size: small; margin: auto;">
+                      <label  class="sr-only semibold"> <?php echo CHANGEPWD_FLD_NPWD?> <span style="color:#FF0000;">*</span> </label>
+                    </div>
+
+                    <div class=" col-md-4 regular mobileclass2" style="font-size: small;">
+                        <input class="form-control" placeholder="New Password..." style="font-size: small;"  type="password" name="npassword" id="npassword">
+                    </div>   
+
+                    <div class="col-md-3">
+                    </div>
+
+            </div>
 			
-			<div class="formfield b shadowWhite"><?php echo CHANGEPWD_FLD_CNPWD?> <span style="color:#FF0000;">*</span>:</div>
-			<div class="formvalue"><input class="rr_input" type="password" name="c_password" id="c_password" /></div>
-			<div class="clear"></div>
-		
-			<div id="submit">
-			
-			  <input type="submit" class="SubmitButton" value="Save" /></div>
-			  <div id="submit2">
-             <input type="button" class="SubmitButton" value=" Cancel " onclick="javascript: history.back(-1);" />
-			</div>
+			 <div class="row" style="margin-top: 20px;">
+
+                <div class="col-md-2">
+                </div>
+
+                    <div class="col-md-3 mobileclass" style="font-size: small; margin: auto;">
+                      <label  class="sr-only semibold"><?php echo CHANGEPWD_FLD_CNPWD?> <span style="color:#FF0000;">*</span></label>
+                      </div>
+
+                    <div class=" col-md-4 regular mobileclass2" style="font-size: small;">
+                        <input class="form-control" type="text" placeholder="Confirm Password..." style="font-size: small;" type="password" name="c_password" id="c_password">
+                       </div>   
+
+                       <div class="col-md-3">
+                        </div>
+
+            </div>
+
+			         <!-- Update Button -->
+				<div class="row" style="margin-top: 20px;">
+
+					<div class="col-md-2">
+					</div>
+
+					<div class="col-md-3">
+					</div>
+
+					<div class="col-md-4 regular" style="font-size: small;text-align: left;">
+						<button id="submit"  type="submit" class="btn btn-warning mb-2" style="font-size: 13px;"  value="Save" >Update</button>
+						<button id="submit2" type="button" class="btn btn-danger mb-2" style="font-size: 13px;" value=" Cancel " onclick="javascript: history.back(-1);" >Cancel</button>
+					</div>   
+
+					<div class="col-md-3">
+					</div>
+
+				</div>
 			
 			<div class="clear"></div>
 			

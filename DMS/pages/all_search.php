@@ -241,6 +241,8 @@ unlink("Zip/".$filename1);
 <div id="wrapperPRight">
 <h4 class="semibold"  style="text-align: center; margin: auto; margin-bottom: 20px; margin-top: 25PX;">Complete Documents Summary <br /> <span class="muted"> All Files (PDF,DOC,XLSX,TXT,JPG,GIF,PNG,DWG and Others)</span></h4>
 <div class="container" style="margin-top: 20px; margin-bottom: 50px;   ">
+<p style="text-align:right; margin-right:10px; font-weight:bold"><a href="./?p=document_summary" class="btn btn-primary" style="text-decoration: none;">  <i class="bi bi-chevron-double-left"></i> Back </a>	</p>
+
 
 <div id="weeklysearch"><?php 
 
@@ -252,21 +254,19 @@ if($iCount>0)
 ?>
 <form action="" method="post"  name="report_cat" id="report_cat" onsubmit="return atleast_onecheckbox(event)">
 
-<p style="text-align:right; margin-right:10px; font-weight:bold"><a href="./?p=document_summary" class="btn btn-primary" style="text-decoration: none;">  <i class="bi bi-chevron-double-left"></i> Back </a>	</p>
-
 
 <div class="table-responsive commontextsize">
 	<table id="customers" class="table" style="width:100%" > 
 	<thead>
     <tr >
     
-      <th  class="semibold"  width="6%" style="text-align:left">Sr. No.</th>
-	  <th  class="semibold" width="36%" style="text-align:left">Title</th>
-	  <th  class="semibold"  width="5%" style="text-align:left">Type</th>
-      <th  class="semibold" width="10%" style="text-align:left">Document No.</th>
-	  <th  class="semibold"  width="20%" style="text-align:left">Reference No.</th>
-      <th  class="semibold" width="13%" style="text-align:left">Uploaded Date</th>
-	  <th  class="semibold" width="10%" style="text-align:left">Size (MBs)</th>
+      <th  class="semibold"  width="6%" style="text-align:left">Sr. No.   		</th>
+	  <th  class="semibold" width="36%" style="text-align:left">Title			</th>
+	  <th  class="semibold"  width="5%" style="text-align:left">Type			</th>
+      <th  class="semibold" width="10%" style="text-align:left">Document No.	</th>
+	  <th  class="semibold"  width="20%" style="text-align:left">Reference No.  </th>
+      <th  class="semibold" width="13%" style="text-align:left">Uploaded Date   </th>
+	  <th  class="semibold" width="10%" style="text-align:left">Size (MBs)      </th>
     </tr>
 </thead>
 

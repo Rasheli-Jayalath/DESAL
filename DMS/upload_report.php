@@ -1,4 +1,15 @@
+
+
+
+
+
+
 <?php 
+
+
+// mysql
+
+
 require_once("config/config.php");
 $objDb		    = new Database;
 $objCommon 		= new Common;
@@ -102,7 +113,8 @@ if($_SERVER['REQUEST_METHOD'] == "POST" && isset($_REQUEST["report_add"])){
 			$cat_id = $cat_idm;
 			$subcatidm = trim($_POST['subcatidm']);
 			//$subcatid = trim($_POST['subcatid']);
-			$cat_title = mysql_real_escape_string(trim($_POST['report_title']));
+			//$cat_title = mysql_real_escape_string(trim($_POST['report_title']));    
+			$cat_title = trim($_POST['report_title']);  
 			$comment = trim($_POST['report_status']);
 			$period = trim($_POST['period']);
 			$revision = trim($_POST['revision']);
@@ -1058,7 +1070,8 @@ if($_SERVER['REQUEST_METHOD'] == "POST" && isset($_REQUEST["report_add"])){
 				}
 				else
 				{
-				$report_title= mysql_real_escape_string(trim($array_sname[0]));
+				//$report_title= mysql_real_escape_string(trim($array_sname[0]));
+				$report_title= trim($array_sname[0]);
 				}
 				$report_title_1=preg_replace("/[^a-zA-Z0-9.]/", "", $array_sname[0]);
 				$shortname=$shortname1.$ext;
@@ -1075,7 +1088,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST" && isset($_REQUEST["report_add"])){
 						doc_upload_date,revision,doc_closing_date,document_no,reference_no,rep_reference_no,received_date,file_from,file_to,file_no,drawing_series,file_category,remarks,doc_creater,doc_creater_id) Values(".$cat_id.",'".$report_title."','".$doc_issue_date."','".$comment1."','".$period."','".$doc_upload_date."','".$revision."','".$doc_closing_date."','".$document_no."','".$reference_no."','".$rep_reference_no."','".$received_date."','".$file_from."','".$file_to."','".$file_no."','".$drawing_series."','".$file_category."','".$remarks."', '".$doc_creat_by."',".$userid_owner.")";
 				 
 				 $query_res=$objDb->dbCon->query($sql_pro_ins);
-					$report_idd=$query_res->lastInsertId();		
+					$report_idd=$sql_pro_ins->lastInsertId();		
 		
 		
 				$filename=$report_title_1."-".$report_idd.".".$ext;
